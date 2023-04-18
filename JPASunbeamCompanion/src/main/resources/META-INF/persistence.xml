@@ -7,16 +7,16 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<!-- begin entities -->
-		<class>com.skilldistillery.todoapp.entities.User</class>
+		<class>com.skilldistillery.sunbeamapp.entities.User</class>
 		
 		<!-- end entities -->
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/tododb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
-			<property name="javax.persistence.jdbc.user" value="todos" />
+				value="jdbc:mysql://localhost:3306/FIXME?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
+			<property name="javax.persistence.jdbc.user" value="FIXME" />
 			<property name="javax.persistence.jdbc.password"
-				value="todos" />
+				value="FIXME" />
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
 
