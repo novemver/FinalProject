@@ -7,7 +7,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<!-- begin entities -->
-		<class>com.skilldistillery.sunbeamapp.entities.User</class>
+	<!-- 	<class>com.skilldistillery.sunbeamapp.entities.User</class> -->
 		
 		<!-- end entities -->
 
