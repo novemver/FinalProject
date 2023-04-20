@@ -12,10 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class NoteTest {
+class AppointmentTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Note note; 
+	private Appointment appointment; 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPASunbeamCompanion");
@@ -29,20 +30,22 @@ class NoteTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		note = em.find(Note.class, 1);
+		appointment = em.find(Appointment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
 	}
-
+	
 	@Test
-	void test_title_description_create() {
-		assertNotNull(note);
-		assertEquals("Pain Issues ", note.getTitle());
-		assertEquals("He told me he had some pain in his chest. ", note.getDescription());
-		assertNotNull(note.getCreateDate());
-		
+	void test_apptdate_appttime_title_createdate() {
+		assertNotNull(appointment);
+		assertEquals("Cardiologist appt. with Dr.Rob", appointment.getDescription());
+		assertNotNull(appointment.getApptDate());
+		assertNotNull(appointment.getApptTime());
+		assertEquals("Get Bert to Cardiologist", appointment.getTitle());
+		assertNotNull(appointment.getCreateDate());
 	}
+
 }

@@ -37,10 +37,12 @@ class CommentTest {
 	void tearDown() throws Exception {
 		em.close();
 	}
-
+ 
 	@Test
-	void test() {
+	void test_title_description() {
 		assertNotNull(comment);
-
+		assertEquals("Family Reunion", comment.getTitle());
+		assertEquals("Hey everyone, just a reminder that the family reunion is coming up and we would like to have Bert there! Let's see if we can schedule something on here.", comment.getDescription());
+		assertNotNull(comment.getCreateDate());
 	}
 }
