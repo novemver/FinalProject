@@ -24,7 +24,7 @@ public class Message {
 	private boolean enabled;
 	
 	@Column(name="is_read")
-	private boolean isRead;
+	private Boolean isRead;
 	
 	///// Methods /////
 	
@@ -64,11 +64,11 @@ public class Message {
 		this.enabled = enabled;
 	}
 
-	public boolean isRead() {
+	public Boolean isRead() {
 		return isRead;
 	}
 
-	public void setRead(boolean isRead) {
+	public void setRead(Boolean isRead) {
 		this.isRead = isRead;
 	}
 

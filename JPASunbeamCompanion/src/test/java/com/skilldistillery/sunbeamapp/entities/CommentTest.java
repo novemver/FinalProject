@@ -16,7 +16,7 @@ class CommentTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private EmergencyContact emergencycontact; 
+	private Comment comment; 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPASunbeamCompanion");
@@ -30,7 +30,7 @@ class CommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		emergencycontact = em.find(EmergencyContact.class, 1);
+		comment = em.find(Comment.class, 1);
 	}
 
 	@AfterEach
@@ -40,7 +40,7 @@ class CommentTest {
 
 	@Test
 	void test() {
-		assertNotNull(emergencycontact);
+		assertNotNull(comment);
 
 	}
 }

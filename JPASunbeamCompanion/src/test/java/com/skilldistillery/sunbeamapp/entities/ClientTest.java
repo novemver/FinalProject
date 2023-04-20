@@ -1,6 +1,8 @@
 package com.skilldistillery.sunbeamapp.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -40,9 +42,17 @@ class ClientTest {
 	}
 
 	@Test
-	void test() {
+	void test_client_firstname_lastname_weight_height_others() {
 		assertNotNull(client);
-//		assertEquals("admin", client.getFirstName());
+		assertEquals("Bert", client.getFirstName());
+		assertEquals("Johson", client.getLastName());
+		assertEquals("180", client.getWeight());
+		assertEquals("6" , client.getHeight());
+		assertNotNull(client.getBirthDate());
+		assertNotNull(client.getClientOverview());
+		assertEquals("Male", client.getGender());
+		assertNotNull(client.getCreateDate());
+		assertNotNull(client.getImageUrl());
 	}
 
 }
