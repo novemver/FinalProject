@@ -56,11 +56,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `client`
+-- Table `elder`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `client` ;
+DROP TABLE IF EXISTS `elder` ;
 
-CREATE TABLE IF NOT EXISTS `client` (
+CREATE TABLE IF NOT EXISTS `elder` (
   `id` INT NOT NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `user_id` INT NOT NULL,
   `title` VARCHAR(45) NULL,
   `location_id` INT NULL,
-  `client_id` INT NOT NULL,
+  `elder_id` INT NOT NULL,
   `category_id` INT NOT NULL,
   `create_date` DATETIME NULL,
   `update_date` DATETIME NULL,
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   PRIMARY KEY (`id`),
   INDEX `fk_appointment_user_idx` (`user_id` ASC),
   INDEX `fk_appointment_location1_idx` (`location_id` ASC),
-  INDEX `fk_appointment_client1_idx` (`client_id` ASC),
+  INDEX `fk_appointment_client1_idx` (`elder_id` ASC),
   INDEX `fk_appointment_category1_idx` (`category_id` ASC),
   CONSTRAINT `fk_appointment_user`
     FOREIGN KEY (`user_id`)
@@ -125,8 +125,8 @@ CREATE TABLE IF NOT EXISTS `appointment` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_appointment_client1`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `client` (`id`)
+    FOREIGN KEY (`elder_id`)
+    REFERENCES `elder` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_appointment_category1`
@@ -170,14 +170,14 @@ CREATE TABLE IF NOT EXISTS `medication` (
   `medication` VARCHAR(200) NULL,
   `health_condition` VARCHAR(50) NULL,
   `description` VARCHAR(500) NULL,
-  `client_id` INT NOT NULL,
+  `elder_id` INT NOT NULL,
   `dose` VARCHAR(45) NULL,
   `frequency` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_medication_client1_idx` (`client_id` ASC),
+  INDEX `fk_medication_client1_idx` (`elder_id` ASC),
   CONSTRAINT `fk_medication_client1`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `client` (`id`)
+    FOREIGN KEY (`elder_id`)
+    REFERENCES `elder` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -195,18 +195,18 @@ CREATE TABLE IF NOT EXISTS `note` (
   `flagged` TINYINT NULL,
   `create_date` DATE NULL,
   `user_id` INT NOT NULL,
-  `client_id` INT NOT NULL,
+  `elder_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_note_user1_idx` (`user_id` ASC),
-  INDEX `fk_note_client1_idx` (`client_id` ASC),
+  INDEX `fk_note_client1_idx` (`elder_id` ASC),
   CONSTRAINT `fk_note_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_note_client1`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `client` (`id`)
+    FOREIGN KEY (`elder_id`)
+    REFERENCES `elder` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -247,14 +247,14 @@ CREATE TABLE IF NOT EXISTS `emergency_contact` (
   `last_name` VARCHAR(45) NULL,
   `phone_number` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
-  `client_id` INT NOT NULL,
+  `elder_id` INT NOT NULL,
   `user_id` INT NULL,
-  PRIMARY KEY (`id`, `client_id`),
-  INDEX `fk_emergency_contact_client1_idx` (`client_id` ASC),
+  PRIMARY KEY (`id`, `elder_id`),
+  INDEX `fk_emergency_contact_client1_idx` (`elder_id` ASC),
   INDEX `fk_emergency_contact_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_emergency_contact_client1`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `client` (`id`)
+    FOREIGN KEY (`elder_id`)
+    REFERENCES `elder` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_emergency_contact_user1`
@@ -271,16 +271,16 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `family_member` ;
 
 CREATE TABLE IF NOT EXISTS `family_member` (
-  `client_id` INT NOT NULL,
+  `elder_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `relationship` VARCHAR(45) NULL,
   `enabled` TINYINT NULL,
-  PRIMARY KEY (`client_id`, `user_id`),
+  PRIMARY KEY (`elder_id`, `user_id`),
   INDEX `fk_client_has_user_user1_idx` (`user_id` ASC),
-  INDEX `fk_client_has_user_client1_idx` (`client_id` ASC),
+  INDEX `fk_client_has_user_client1_idx` (`elder_id` ASC),
   CONSTRAINT `fk_client_has_user_client1`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `client` (`id`)
+    FOREIGN KEY (`elder_id`)
+    REFERENCES `elder` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_client_has_user_user1`
@@ -297,14 +297,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `caretaker_has_client` ;
 
 CREATE TABLE IF NOT EXISTS `caretaker_has_client` (
-  `client_id` INT NOT NULL,
+  `elder_id` INT NOT NULL,
   `user_id` INT NOT NULL,
-  PRIMARY KEY (`client_id`, `user_id`),
+  PRIMARY KEY (`elder_id`, `user_id`),
   INDEX `fk_client_has_user1_user1_idx` (`user_id` ASC),
-  INDEX `fk_client_has_user1_client1_idx` (`client_id` ASC),
+  INDEX `fk_client_has_user1_client1_idx` (`elder_id` ASC),
   CONSTRAINT `fk_client_has_user1_client1`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `client` (`id`)
+    FOREIGN KEY (`elder_id`)
+    REFERENCES `elder` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_client_has_user1_user1`
@@ -325,16 +325,16 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `title` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
   `create_date` DATE NULL,
-  `client_id` INT NOT NULL,
+  `elder_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `reply_to_id` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_comment_client1_idx` (`client_id` ASC),
+  INDEX `fk_comment_client1_idx` (`elder_id` ASC),
   INDEX `fk_comment_user1_idx` (`user_id` ASC),
   INDEX `fk_comment_comment1_idx` (`reply_to_id` ASC),
   CONSTRAINT `fk_comment_client1`
-    FOREIGN KEY (`client_id`)
-    REFERENCES `client` (`id`)
+    FOREIGN KEY (`elder_id`)
+    REFERENCES `elder` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_comment_user1`
@@ -395,7 +395,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'ADMIN', '@distillery.edu', '5553294455', 'SD', 'Dee', 'https://static.wikia.nocookie.net/telletubbies/images/5/5d/Pic-meet-char-po.jpg/revision/latest?cb=20200317005848', NULL, '2023-03-17', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (2, 'kstout', '$2a$10$leijdDDbJ2tNn4G1T2Cbo.yIztaaPEYGWS5UX2Cm9SN7VcfxugduO', 1, 'user', 'kstout@distillery.edu', '5555555555', 'Kira', 'Stout', 'https://static.wikia.nocookie.net/telletubbies/images/e/e5/Tinky_Winky.jpg/revision/latest?cb=20200317005814', NULL, '2023-03-18', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (2, 'kstout', '$2a$10$leijdDDbJ2tNn4G1T2Cbo.yIztaaPEYGWS5UX2Cm9SN7VcfxugduO', 1, 'caretaker', 'kstout@distillery.edu', '5555555555', 'Kira', 'Stout', 'https://static.wikia.nocookie.net/telletubbies/images/e/e5/Tinky_Winky.jpg/revision/latest?cb=20200317005814', NULL, '2023-03-18', NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (3, 'user', '$2a$10$qCiN.i4V2GslC.XHGUTMg.CIQAxFAw2iJDL0UZ2tRsuum5b1Mt.9S', 1, 'caretaker', 'stello@distillery.edu', '5555555556', 'Sebastian', 'Tello', 'https://static.wikia.nocookie.net/telletubbies/images/d/d0/Kids_tele_lala.jpg/revision/latest/scale-to-width-down/200?cb=20120225003505', NULL, '2023-03-18', NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (4, 'family', '$2a$10$.8sk8P7Bt8xnEjqVIjT2F.RTZ6ZBy9uJ7IFmGymK5sjCQalNqv7eO', 1, 'family', 'dsurina@distillery.edu', '5555555557', 'Dominic', 'Surina', 'https://static.wikia.nocookie.net/telletubbies/images/3/35/Url.jpg/revision/latest/scale-to-width-down/200?cb=20200413020256', NULL, '2023-03-18', NULL);
 
@@ -413,11 +413,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `client`
+-- Data for table `elder`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `client` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `client_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`) VALUES (1, 'Bert', 'Johson', '180', '6', '1945-08-05', NULL, 'WW2 Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `client_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`) VALUES (1, 'Bert', 'Johson', '180', '6', '1945-08-05', NULL, 'WW2 Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL);
 
 COMMIT;
 
@@ -437,7 +437,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `client_id`, `category_id`, `create_date`, `update_date`, `enabled`) VALUES (1, 'Cardiologist appt. with Dr.Rob', '2023-03-23', '1700', 2, 'Get Bert to Cardiologist', 1, 1, 1, '2023-03-17', NULL, 1);
+INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`, `enabled`) VALUES (1, 'Cardiologist appt. with Dr.Rob', '2023-03-23', '1700', 2, 'Get Bert to Cardiologist', 1, 1, 1, '2023-03-17', NULL, 1);
 
 COMMIT;
 
@@ -457,7 +457,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `medication` (`id`, `medication`, `health_condition`, `description`, `client_id`, `dose`, `frequency`) VALUES (1, 'Benazepril (Lotensin)', 'Heart murmurs', 'He has had a few heart attacks and is on a diet regmine for heart health', 1, '50mg', '2 times a day');
+INSERT INTO `medication` (`id`, `medication`, `health_condition`, `description`, `elder_id`, `dose`, `frequency`) VALUES (1, 'Benazepril (Lotensin)', 'Heart murmurs', 'He has had a few heart attacks and is on a diet regmine for heart health', 1, '50mg', '2 times a day');
 
 COMMIT;
 
@@ -467,7 +467,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `note` (`id`, `title`, `description`, `flagged`, `create_date`, `user_id`, `client_id`) VALUES (1, 'Pain Issues ', 'He told me he had some pain in his chest. ', NULL, '2023-03-17', 3, 1);
+INSERT INTO `note` (`id`, `title`, `description`, `flagged`, `create_date`, `user_id`, `elder_id`) VALUES (1, 'Pain Issues', 'He told me he had some pain in his chest.', NULL, '2023-03-17', 3, 1);
 
 COMMIT;
 
@@ -477,7 +477,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `emergency_contact` (`id`, `first_name`, `last_name`, `phone_number`, `email`, `client_id`, `user_id`) VALUES (1, 'Shirley', 'Jacobs', '5555555510', NULL, 1, NULL);
+INSERT INTO `emergency_contact` (`id`, `first_name`, `last_name`, `phone_number`, `email`, `elder_id`, `user_id`) VALUES (1, 'Shirley', 'Jacobs', '5555555510', NULL, 1, NULL);
 
 COMMIT;
 
@@ -487,8 +487,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `family_member` (`client_id`, `user_id`, `relationship`, `enabled`) VALUES (1, 3, 'Grandson', 1);
-INSERT INTO `family_member` (`client_id`, `user_id`, `relationship`, `enabled`) VALUES (1, 4, 'Nephew', 1);
+INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`) VALUES (1, 3, 'Grandson', 1);
+INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`) VALUES (1, 4, 'Nephew', 1);
 
 COMMIT;
 
@@ -498,7 +498,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `caretaker_has_client` (`client_id`, `user_id`) VALUES (1, 2);
+INSERT INTO `caretaker_has_client` (`elder_id`, `user_id`) VALUES (1, 2);
 
 COMMIT;
 
@@ -508,7 +508,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `comment` (`id`, `title`, `description`, `create_date`, `client_id`, `user_id`, `reply_to_id`) VALUES (1, 'Family Reunion', 'Hey everyone, just a reminder that the family reunion is coming up and we would like to have Bert there! Let\'s see if we can schedule something on here.', '2023-03-17', 1, 3, NULL);
+INSERT INTO `comment` (`id`, `title`, `description`, `create_date`, `elder_id`, `user_id`, `reply_to_id`) VALUES (1, 'Family Reunion', 'Hey everyone, just a reminder that the family reunion is coming up and we would like to have Bert there! Let\'s see if we can schedule something on here.', '2023-03-17', 1, 3, NULL);
 
 COMMIT;
 

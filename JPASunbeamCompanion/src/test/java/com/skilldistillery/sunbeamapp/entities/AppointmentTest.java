@@ -47,5 +47,24 @@ class AppointmentTest {
 		assertEquals("Get Bert to Cardiologist", appointment.getTitle());
 		assertNotNull(appointment.getCreateDate());
 	}
+	
+	@Test
+	void test_MTO_user_appointments() {
+		assertNotNull(appointment);
+		assertEquals("Kira", appointment.getUserAppointments().getFirstName());
+	}
+	
+	@Test
+	void test_MTO_client_appointments() {
+		assertNotNull(appointment);
+		assertTrue(appointment.getClientsAppointments().getAppointments().size() >= 0);
+	}
 
+	@Test
+	void test_MTO_category_appointment() {
+		assertNotNull(appointment);
+		assertEquals("Doctor", appointment.getCategory().getName());
+	}
+	
 }
+

@@ -44,4 +44,10 @@ class MessageTest {
 		assertNotNull(message.getCreateDate());
 
 	}
+	
+	@Test
+	void test_MTO_messages() {
+		assertNotNull(message);
+		assertEquals("Sebastian", message.getReceiver().getFirstName());
+	}
 }
