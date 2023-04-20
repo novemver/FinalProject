@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Note {
@@ -15,18 +17,25 @@ public class Note {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String title;
-	
+
 	private String description;
-	
+
 	private String flagged;
-	
-	@Column(name="create_date")
+
+	@Column(name = "create_date")
 	private LocalDate createDate;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User userNote;
 	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client clientNote;
 	///// Methods /////
-	
+
 	public Note() {
 		super();
 	}
@@ -47,12 +56,28 @@ public class Note {
 		this.title = title;
 	}
 
+	public User getUserNote() {
+		return userNote;
+	}
+
+	public void setUserNote(User userNote) {
+		this.userNote = userNote;
+	}
+
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Client getClientNote() {
+		return clientNote;
+	}
+
+	public void setClientNote(Client clientNote) {
+		this.clientNote = clientNote;
 	}
 
 	public String getFlagged() {
@@ -93,5 +118,5 @@ public class Note {
 		Note other = (Note) obj;
 		return id == other.id;
 	}
-	
+
 }

@@ -2,6 +2,7 @@ package com.skilldistillery.sunbeamapp.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Client {
@@ -48,6 +52,12 @@ public class Client {
 		
 	@Column(name="biography")
 	private String clientBio;
+	
+	@OneToMany(mappedBy = "clientNote")
+	private List<Note> clientNotes;
+	
+	@OneToMany(mappedBy = "clientsAppointments")
+	private List<Appointment> appointments;
 
 	///// Methods /////
 	
@@ -55,6 +65,30 @@ public class Client {
 		super();
 	}
 	
+	public LocalDate getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(LocalDate birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public String getClientBio() {
+		return clientBio;
+	}
+
+	public void setClientBio(String clientBio) {
+		this.clientBio = clientBio;
+	}
+
+	public List<Note> getClientNotes() {
+		return clientNotes;
+	}
+
+	public void setClientNotes(List<Note> clientNotes) {
+		this.clientNotes = clientNotes;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -85,6 +119,14 @@ public class Client {
 
 	public void setWeight(String weight) {
 		this.weight = weight;
+	}
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 	public String getHeight() {
