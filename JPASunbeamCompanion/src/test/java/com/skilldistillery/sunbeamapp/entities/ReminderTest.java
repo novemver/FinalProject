@@ -36,7 +36,7 @@ class ReminderTest {
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-	}
+	} 
 
 	@Test
 	void test_variables() {

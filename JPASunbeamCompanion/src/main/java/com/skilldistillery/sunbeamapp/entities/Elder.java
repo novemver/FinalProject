@@ -51,7 +51,7 @@ public class Elder {
 	private String imageUrl;
 		
 	@Column(name="biography")
-	private String clientBio;
+	private String elderBio;
 	
 	@OneToMany(mappedBy = "elderNote")
 	private List<Note> elderNotes;
@@ -73,12 +73,12 @@ public class Elder {
 		this.birthdate = birthdate;
 	}
 
-	public String getClientBio() {
-		return clientBio;
+	public String getElderBio() {
+		return elderBio;
 	}
 
-	public void setClientBio(String clientBio) {
-		this.clientBio = clientBio;
+	public void setElderBio(String elderBio) {
+		this.elderBio = elderBio;
 	}
 
 	public List<Note> getElderNotes() {
@@ -196,11 +196,11 @@ public class Elder {
 	}
 
 	public String getBio() {
-		return clientBio;
+		return elderBio;
 	}
 
 	public void setBio(String bio) {
-		this.clientBio = bio;
+		this.elderBio = bio;
 	}
 
 
@@ -209,7 +209,7 @@ public class Elder {
 		return "Elder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", weight=" + weight
 				+ ", height=" + height + ", birthdate=" + birthdate + ", accessCode=" + accessCode + ", elderOverview="
 				+ elderOverview + ", gender=" + gender + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
-				+ ", imageUrl=" + imageUrl + ", clientBio=" + clientBio + ", elderNotes=" + elderNotes
+				+ ", imageUrl=" + imageUrl + ", elderBio=" + elderBio + ", elderNotes=" + elderNotes
 				+ ", appointments=" + appointments + "]";
 	}
 
