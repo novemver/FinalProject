@@ -462,6 +462,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `note`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `note` (`id`, `title`, `description`, `flagged`, `create_date`, `user_id`, `client_id`) VALUES (1, 'Pain Issues ', 'He told me he had some pain in his chest. ', NULL, '2023-03-17', 3, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `emergency_contact`
 -- -----------------------------------------------------
 START TRANSACTION;
