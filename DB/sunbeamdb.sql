@@ -149,6 +149,7 @@ CREATE TABLE IF NOT EXISTS `reminder` (
   `title` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
   `appointment_id` INT NOT NULL,
+  `enabled` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_reminder_appointment1_idx` (`appointment_id` ASC),
   CONSTRAINT `fk_reminder_appointment1`
@@ -446,7 +447,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`) VALUES (1, '2023-03-23', '1600', 'Cardiologist', NULL, 1);
+INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`, `enabled`) VALUES (1, '2023-03-23', '1600', 'Cardiologist', NULL, 1, NULL);
 
 COMMIT;
 
