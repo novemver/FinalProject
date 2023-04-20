@@ -1,6 +1,7 @@
 package com.skilldistillery.sunbeamapp.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -50,10 +51,17 @@ public class Appointment {
 	private Category category;
 	///// Methods /////
 
+	@ManyToOne
+	@JoinColumn(name = "location_id")
+	private Location location;
+	
+	@OneToMany(mappedBy = "apptReminder")
+	private List<Reminder> reminders;
+	
 	public Appointment() {
 		super();
 	}
-
+ 
 	public int getId() {
 		return id;
 	}
@@ -76,6 +84,22 @@ public class Appointment {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public List<Reminder> getReminders() {
+		return reminders;
+	}
+
+	public void setReminders(List<Reminder> reminders) {
+		this.reminders = reminders;
 	}
 
 	public LocalDate getApptDate() {
