@@ -47,4 +47,9 @@ class LocationTest {
 		assertEquals("CO", location.getState());
 		assertEquals("80002", location.getZipcode());
 	}
+	@Test
+	void test_MTO_appointment_location() {
+		assertNotNull(location);
+		assertTrue(location.getAppointmentLocations().size() > 0);
+	}
 }

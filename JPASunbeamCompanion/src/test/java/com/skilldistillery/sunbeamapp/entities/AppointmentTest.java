@@ -65,6 +65,16 @@ class AppointmentTest {
 		assertNotNull(appointment);
 		assertEquals("Doctor", appointment.getCategory().getName());
 	}
+	@Test
+	void test_OTM_appointment_location() {
+		assertNotNull(appointment);
+		assertEquals("Denver", appointment.getLocation().getCity());
+	}
 	
+	@Test
+	void test_OTM_appointment_reminders() {
+		assertNotNull(appointment);
+		assertEquals("Cardiologist", appointment);
+	}
 }
 
