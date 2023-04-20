@@ -501,3 +501,13 @@ INSERT INTO `caretaker_has_client` (`client_id`, `user_id`) VALUES (1, 2);
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `message` (`id`, `description`, `create_date`, `enabled`, `receiver_id`, `sender_id`, `is_read`) VALUES (1, 'Hey, how is he today?', '2023-03-17', 1, 3, 2, NULL);
+
+COMMIT;
+
