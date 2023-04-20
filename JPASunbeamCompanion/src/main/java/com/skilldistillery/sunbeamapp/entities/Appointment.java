@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Appointment {
@@ -15,27 +18,38 @@ public class Appointment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String description;
-	
-	@Column(name="appointment_date")
+
+	@Column(name = "appointment_date")
 	private LocalDate apptDate;
 
-	@Column(name="appointment_time")
+	@Column(name = "appointment_time")
 	private LocalDate apptTime;
-	
+
 	private String title;
-	
+
 	@Column(name = "create_date")
 	private LocalDate createDate;
-	
+
 	@Column(name = "update_date")
 	private LocalDate updateDate;
-	
+
 	private boolean enabled;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User userAppointments;
+
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client clientsAppointments;
+
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
 	///// Methods /////
-	
+
 	public Appointment() {
 		super();
 	}
@@ -46,6 +60,14 @@ public class Appointment {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public String getDescription() {
@@ -72,12 +94,28 @@ public class Appointment {
 		this.apptTime = apptTime;
 	}
 
+	public Client getClientsAppointments() {
+		return clientsAppointments;
+	}
+
+	public void setClientsAppointments(Client clientsAppointments) {
+		this.clientsAppointments = clientsAppointments;
+	}
+
 	public String getTitle() {
 		return title;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public User getUserAppointments() {
+		return userAppointments;
+	}
+
+	public void setUserAppointments(User userAppointments) {
+		this.userAppointments = userAppointments;
 	}
 
 	public LocalDate getCreateDate() {
@@ -127,5 +165,5 @@ public class Appointment {
 		Appointment other = (Appointment) obj;
 		return id == other.id;
 	}
-	
+
 }

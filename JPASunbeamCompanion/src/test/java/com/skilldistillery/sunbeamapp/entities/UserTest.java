@@ -2,6 +2,7 @@ package com.skilldistillery.sunbeamapp.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -48,4 +49,27 @@ class UserTest {
 		assertEquals("ADMIN", user.getRole());
 	}
 
+	@Test
+	void test_OTM_user_messages_mapping() {
+		assertNotNull(user);
+		assertTrue(user.getReceiveMessages().size() >= 0);
+		assertTrue(user.getSenderMessages().size() >= 0);
+		
+	}
+	
+	@Test
+	void test_OTM_user_notes_mapping() {
+		assertNotNull(user);
+		assertTrue(user.getNotes().size() >= 0);
+		
+	}
+	
+	@Test
+	void test_OTM_appointments_user() {
+		assertNotNull(user);
+		assertTrue(user.getAppointments().size() >= 0);
+	}
+	
+
+		
 }
