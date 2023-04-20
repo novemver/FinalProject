@@ -412,6 +412,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `medication`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `medication` (`id`, `medication`, `health_condition`, `description`, `client_id`, `dose`, `frequency`) VALUES (1, 'Benazepril (Lotensin)', 'Heart murmurs', 'He has had a few heart attacks and is on a diet regmine for heart health', 1, '50mg', '2 times a day');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `emergency_contact`
 -- -----------------------------------------------------
 START TRANSACTION;
