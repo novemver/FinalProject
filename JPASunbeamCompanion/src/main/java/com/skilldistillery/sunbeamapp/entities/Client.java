@@ -47,9 +47,13 @@ public class Client {
 	private String imageUrl;
 		
 	@Column(name="biography")
-	private String bio;
+	private String clientBio;
 
 	///// Methods /////
+	
+	public Client() {
+		super();
+	}
 	
 	public int getId() {
 		return id;
@@ -148,11 +152,11 @@ public class Client {
 	}
 
 	public String getBio() {
-		return bio;
+		return clientBio;
 	}
 
 	public void setBio(String bio) {
-		this.bio = bio;
+		this.clientBio = bio;
 	}
 
 	@Override
@@ -160,7 +164,7 @@ public class Client {
 		return "Client [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", weight=" + weight
 				+ ", height=" + height + ", birthDate=" + birthdate + ", accessCode=" + accessCode + ", clientOverview="
 				+ clientOverview + ", gender=" + gender + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
-				+ ", imageUrl=" + imageUrl + ", bio=" + bio + "]";
+				+ ", imageUrl=" + imageUrl + ", bio=" + clientBio + "]";
 	}
 
 	@Override

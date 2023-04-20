@@ -1,5 +1,6 @@
 package com.skilldistillery.sunbeamapp.entities;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,51 +10,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Medication {
+public class Message {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String medication;
-
-	@Column(name="health_condition")
-	private String healthCondition;
-	
 	private String description;
 	
-	private String dose;
-	
-	private String frequency;
+	@Column(name="create_date")
+	private LocalDate createDate;
 
+	private boolean enabled;
+	
+	@Column(name="is_read")
+	private boolean isRead;
+	
 	///// Methods /////
 	
-	public Medication() {
+	public Message() {
 		super();
 	}
-	
+
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getMedication() {
-		return medication;
-	}
-
-	public void setMedication(String medication) {
-		this.medication = medication;
-	}
-
-	public String getHealthCondition() {
-		return healthCondition;
-	}
-
-	public void setHealthCondition(String healthCondition) {
-		this.healthCondition = healthCondition;
 	}
 
 	public String getDescription() {
@@ -64,26 +48,34 @@ public class Medication {
 		this.description = description;
 	}
 
-	public String getDose() {
-		return dose;
+	public LocalDate getCreateDate() {
+		return createDate;
 	}
 
-	public void setDose(String dose) {
-		this.dose = dose;
+	public void setCreateDate(LocalDate createDate) {
+		this.createDate = createDate;
 	}
 
-	public String getFrequency() {
-		return frequency;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setFrequency(String frequency) {
-		this.frequency = frequency;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isRead() {
+		return isRead;
+	}
+
+	public void setRead(boolean isRead) {
+		this.isRead = isRead;
 	}
 
 	@Override
 	public String toString() {
-		return "Medication [id=" + id + ", medication=" + medication + ", healthCondition=" + healthCondition
-				+ ", description=" + description + ", dose=" + dose + ", frequency=" + frequency + "]";
+		return "Message [id=" + id + ", description=" + description + ", createDate=" + createDate + ", enabled="
+				+ enabled + ", isRead=" + isRead + "]";
 	}
 
 	@Override
@@ -99,9 +91,9 @@ public class Medication {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Medication other = (Medication) obj;
+		Message other = (Message) obj;
 		return id == other.id;
 	}
 	
-
+	
 }
