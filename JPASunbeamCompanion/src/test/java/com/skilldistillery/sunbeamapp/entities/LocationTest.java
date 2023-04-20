@@ -16,7 +16,7 @@ class LocationTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private EmergencyContact emergencycontact; 
+	private Location location; 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPASunbeamCompanion");
@@ -30,7 +30,7 @@ class LocationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		emergencycontact = em.find(EmergencyContact.class, 1);
+		location = em.find(Location.class, 1);
 	}
 
 	@AfterEach
@@ -39,8 +39,12 @@ class LocationTest {
 	}
 
 	@Test
-	void test() {
-		assertNotNull(emergencycontact);
-
+	void test_name_address_city_state_zipcode() {
+		assertNotNull(location);
+		assertEquals("St. Francis Cardiology", location.getName());
+		assertEquals("123 Seasme St", location.getAddress());
+		assertEquals("Denver", location.getCity());
+		assertEquals("CO", location.getState());
+		assertEquals("80002", location.getZipcode());
 	}
 }

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 class NoteTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Client client; 
+	private Note note; 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPASunbeamCompanion");
@@ -29,7 +29,7 @@ class NoteTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		client = em.find(Client.class, 1);
+		note = em.find(Note.class, 1);
 	}
 
 	@AfterEach
@@ -38,8 +38,11 @@ class NoteTest {
 	}
 
 	@Test
-	void test() {
-		assertNotNull(client);
-//		assertEquals("admin", client.getFirstName());
+	void test_title_description_create() {
+		assertNotNull(note);
+		assertEquals("Pain Issues", note.getTitle());
+		assertEquals("He told me he had some pain in his chest.", note.getDescription());
+		assertNotNull(note.getCreateDate());
+		
 	}
 }
