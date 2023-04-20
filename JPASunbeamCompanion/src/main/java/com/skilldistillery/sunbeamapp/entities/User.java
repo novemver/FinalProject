@@ -69,8 +69,8 @@ public class User {
 	private List<Comment> comments;
 	
 	
-	@OneToMany(mappedBy = "elderComment")
-	private List<EmergencyContact> contact;
+	@OneToMany(mappedBy = "userContact")
+	private List<EmergencyContact> contacts;
 	
 	
 	public User() {
@@ -86,11 +86,11 @@ public class User {
 	}
  
 	public List<EmergencyContact> getContacts() {
-		return contact;
+		return contacts;
 	}
 
 	public void setContacts(List<EmergencyContact> contact) {
-		this.contact = contact;
+		this.contacts = contact;
 	}
 
 	public String getUsername() {

@@ -105,6 +105,14 @@ public class Elder {
 		this.id = id;
 	}
 
+	public List<EmergencyContact> getContact() {
+		return contact;
+	}
+
+	public void setContact(List<EmergencyContact> contact) {
+		this.contact = contact;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

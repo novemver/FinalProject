@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -33,6 +34,10 @@ public class EmergencyContact {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User userContact;
+	
+	@ManyToOne
+	@JoinColumn(name = "elder_id")
+	private Elder elderContact;
 
 	///// Methods /////
 
@@ -78,6 +83,14 @@ public class EmergencyContact {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Elder getElderContact() {
+		return elderContact;
+	}
+
+	public void setElderContact(Elder elderContact) {
+		this.elderContact = elderContact;
 	}
 
 	public User getUserContact() {
