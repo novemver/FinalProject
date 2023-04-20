@@ -478,6 +478,7 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `emergency_contact` (`id`, `first_name`, `last_name`, `phone_number`, `email`, `elder_id`, `user_id`) VALUES (1, 'Shirley', 'Jacobs', '5555555510', NULL, 1, NULL);
+INSERT INTO `emergency_contact` (`id`, `first_name`, `last_name`, `phone_number`, `email`, `elder_id`, `user_id`) VALUES (2, NULL, NULL, NULL, NULL, 1, 2);
 
 COMMIT;
 
