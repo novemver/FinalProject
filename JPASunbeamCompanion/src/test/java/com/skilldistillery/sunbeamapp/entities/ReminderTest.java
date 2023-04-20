@@ -36,13 +36,13 @@ class ReminderTest {
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-	}
+	} 
 
 	@Test
 	void test_variables() {
 		assertNotNull(reminder);
 		assertNotNull(reminder.getReminderDate());
 		assertNotNull(reminder.getReminderDate());
-		assertEquals("Cardiologist", reminder.getTitle());
+		assertEquals("Get Bert to Cardiologist", reminder.getApptReminder().getTitle());
 	}
 }

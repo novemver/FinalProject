@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,8 +30,9 @@ public class EmergencyContact {
 
 	private String email;
 
-	@Column(name = "user_id")
-	private String userId;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User userContact;
 
 	///// Methods /////
 
@@ -77,18 +80,18 @@ public class EmergencyContact {
 		this.email = email;
 	}
 
-	public String getUserId() {
-		return userId;
+	public User getUserContact() {
+		return userContact;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserContact(User userContact) {
+		this.userContact = userContact;
 	}
 
 	@Override
 	public String toString() {
 		return "EmergencyContact [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber="
-				+ phoneNumber + ", email=" + email + ", userId=" + userId + "]";
+				+ phoneNumber + ", email=" + email + ", userContact=" + userContact + "]";
 	}
 
 	@Override

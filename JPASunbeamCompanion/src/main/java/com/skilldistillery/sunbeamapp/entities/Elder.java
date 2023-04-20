@@ -36,8 +36,8 @@ public class Elder {
 	@Column(name="access_code")
 	private String accessCode;
 	
-	@Column(name="client_overview")
-	private String clientOverview;
+	@Column(name="elder_overview")
+	private String elderOverview;
 	
 	private String gender;
 	
@@ -51,13 +51,21 @@ public class Elder {
 	private String imageUrl;
 		
 	@Column(name="biography")
-	private String clientBio;
+	private String elderBio;
 	
-	@OneToMany(mappedBy = "clientNote")
-	private List<Note> clientNotes;
+	@OneToMany(mappedBy = "elderNote")
+	private List<Note> elderNotes;
 	
-	@OneToMany(mappedBy = "clientsAppointments")
+	@OneToMany(mappedBy = "elderAppointments")
 	private List<Appointment> appointments;
+	
+	@OneToMany(mappedBy = "elderComment")
+	private List<Comment> comments;
+	
+	@OneToMany(mappedBy = "elderContact")
+	private List<EmergencyContact> contact;
+	
+	
 
 	///// Methods /////
 	
@@ -73,20 +81,20 @@ public class Elder {
 		this.birthdate = birthdate;
 	}
 
-	public String getClientBio() {
-		return clientBio;
+	public String getElderBio() {
+		return elderBio;
 	}
 
-	public void setClientBio(String clientBio) {
-		this.clientBio = clientBio;
+	public void setElderBio(String elderBio) {
+		this.elderBio = elderBio;
 	}
 
-	public List<Note> getClientNotes() {
-		return clientNotes;
+	public List<Note> getElderNotes() {
+		return elderNotes;
 	}
 
-	public void setClientNotes(List<Note> clientNotes) {
-		this.clientNotes = clientNotes;
+	public void setElderNotes(List<Note> elderNotes) {
+		this.elderNotes = elderNotes;
 	}
 
 	public int getId() {
@@ -137,6 +145,14 @@ public class Elder {
 		this.height = height;
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public LocalDate getBirthDate() {
 		return birthdate;
 	}
@@ -153,12 +169,14 @@ public class Elder {
 		this.accessCode = accessCode;
 	}
 
-	public String getClientOverview() {
-		return clientOverview;
+
+
+	public String getElderOverview() {
+		return elderOverview;
 	}
 
-	public void setClientOverview(String clientOverview) {
-		this.clientOverview = clientOverview;
+	public void setElderOverview(String elderOverview) {
+		this.elderOverview = elderOverview;
 	}
 
 	public String getGender() {
@@ -194,19 +212,21 @@ public class Elder {
 	}
 
 	public String getBio() {
-		return clientBio;
+		return elderBio;
 	}
 
 	public void setBio(String bio) {
-		this.clientBio = bio;
+		this.elderBio = bio;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", weight=" + weight
-				+ ", height=" + height + ", birthDate=" + birthdate + ", accessCode=" + accessCode + ", clientOverview="
-				+ clientOverview + ", gender=" + gender + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
-				+ ", imageUrl=" + imageUrl + ", bio=" + clientBio + "]";
+		return "Elder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", weight=" + weight
+				+ ", height=" + height + ", birthdate=" + birthdate + ", accessCode=" + accessCode + ", elderOverview="
+				+ elderOverview + ", gender=" + gender + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
+				+ ", imageUrl=" + imageUrl + ", elderBio=" + elderBio + ", elderNotes=" + elderNotes
+				+ ", appointments=" + appointments + "]";
 	}
 
 	@Override

@@ -32,8 +32,8 @@ public class Note {
 	private User userNote;
 	
 	@ManyToOne
-	@JoinColumn(name = "client_id")
-	private Elder clientNote;
+	@JoinColumn(name = "elder_id")
+	private Elder elderNote;
 	///// Methods /////
 
 	public Note() {
@@ -72,12 +72,12 @@ public class Note {
 		this.description = description;
 	}
 
-	public Elder getClientNote() {
-		return clientNote;
+	public Elder getElderNote() {
+		return elderNote;
 	}
 
-	public void setClientNote(Elder clientNote) {
-		this.clientNote = clientNote;
+	public void setElderNote(Elder elderNote) {
+		this.elderNote = elderNote;
 	}
 
 	public String getFlagged() {
