@@ -44,7 +44,7 @@ public class Appointment {
 
 	@ManyToOne
 	@JoinColumn(name = "client_id")
-	private Client clientsAppointments;
+	private Elder clientsAppointments;
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
@@ -118,11 +118,11 @@ public class Appointment {
 		this.apptTime = apptTime;
 	}
 
-	public Client getClientsAppointments() {
+	public Elder getClientsAppointments() {
 		return clientsAppointments;
 	}
 
-	public void setClientsAppointments(Client clientsAppointments) {
+	public void setClientsAppointments(Elder clientsAppointments) {
 		this.clientsAppointments = clientsAppointments;
 	}
 

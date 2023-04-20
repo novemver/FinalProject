@@ -14,12 +14,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ClientTest {
+class ElderTest {
 
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Client client; 
+	private Elder elder; 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPASunbeamCompanion");
@@ -33,7 +33,7 @@ class ClientTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		client = em.find(Client.class, 1);
+		elder = em.find(Elder.class, 1);
 	}
 
 	@AfterEach
@@ -43,26 +43,26 @@ class ClientTest {
 
 	@Test
 	void test_client_firstname_lastname_weight_height_others() {
-		assertNotNull(client);
-		assertEquals("Bert", client.getFirstName());
-		assertEquals("Johson", client.getLastName());
-		assertEquals("180", client.getWeight());
-		assertEquals("6" , client.getHeight());
-		assertNotNull(client.getBirthDate());
-		assertNotNull(client.getClientOverview());
-		assertEquals("Male", client.getGender());
-		assertNotNull(client.getCreateDate());
-		assertNotNull(client.getImageUrl());
+		assertNotNull(elder);
+		assertEquals("Bert", elder.getFirstName());
+		assertEquals("Johson", elder.getLastName());
+		assertEquals("180", elder.getWeight());
+		assertEquals("6" , elder.getHeight());
+		assertNotNull(elder.getBirthDate());
+		assertNotNull(elder.getClientOverview());
+		assertEquals("Male", elder.getGender());
+		assertNotNull(elder.getCreateDate());
+		assertNotNull(elder.getImageUrl());
 	}
 	
 	@Test
 	void test_MTO_client_note() {
-		assertTrue(client.getClientNotes().size() >= 0);
+		assertTrue(elder.getClientNotes().size() >= 0);
 	}
 	
 	@Test
 	void test_OTM_client_appointment() {
-		assertEquals("Bert", client.getFirstName());
+		assertEquals("Bert", elder.getFirstName());
 	}
 
 }

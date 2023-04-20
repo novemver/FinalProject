@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Client {
+public class Elder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +61,7 @@ public class Client {
 
 	///// Methods /////
 	
-	public Client() {
+	public Elder() {
 		super();
 	}
 	
@@ -222,7 +222,7 @@ public class Client {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Client other = (Client) obj;
+		Elder other = (Elder) obj;
 		return id == other.id;
 	}
 	
