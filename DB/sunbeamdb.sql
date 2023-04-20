@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `emergency_contact` (
   `email` VARCHAR(45) NULL,
   `elder_id` INT NOT NULL,
   `user_id` INT NULL,
-  PRIMARY KEY (`id`, `elder_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_emergency_contact_client1_idx` (`elder_id` ASC),
   INDEX `fk_emergency_contact_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_emergency_contact_client1`
