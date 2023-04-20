@@ -1,5 +1,9 @@
 package com.skilldistillery.sunbeamapp.repositories;
 
-public interface LocationRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.skilldistillery.sunbeamapp.entities.Location;
+
+public interface LocationRepository extends JpaRepository<Location, Integer>{
 
 }
