@@ -421,3 +421,13 @@ INSERT INTO `family_member` (`client_id`, `user_id`, `relationship`, `enabled`) 
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `caretaker_has_client`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `caretaker_has_client` (`client_id`, `user_id`) VALUES (1, 2);
+
+COMMIT;
+
