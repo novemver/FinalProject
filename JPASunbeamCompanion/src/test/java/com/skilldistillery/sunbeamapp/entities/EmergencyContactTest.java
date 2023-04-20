@@ -39,8 +39,11 @@ class EmergencyContactTest {
 	}
 
 	@Test
-	void test() {
+	void test_emergencyContact_firstName_lastName_number() {
 		assertNotNull(emergencycontact);
-
+		assertEquals("Shirley", emergencycontact.getFirstName());
+		assertEquals("Jacobs", emergencycontact.getLastName());
+		assertEquals("5555555510", emergencycontact.getPhoneNumber());
+		
 	}
 }

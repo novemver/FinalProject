@@ -38,7 +38,7 @@ class MedicationTest {
 		em.close();
 	}
 
-	@Test
+	@Test 
 	void test_medicationname_and_id_and_password_and_role() {
 		assertNotNull(medication);
 		assertEquals("Benazepril (Lotensin)", medication.getMedication());
