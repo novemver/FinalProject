@@ -49,7 +49,7 @@ class ElderTest {
 		assertEquals("180", elder.getWeight());
 		assertEquals("6" , elder.getHeight());
 		assertNotNull(elder.getBirthDate());
-		assertNotNull(elder.getClientOverview());
+		assertNotNull(elder.getElderOverview());
 		assertEquals("Male", elder.getGender());
 		assertNotNull(elder.getCreateDate());
 		assertNotNull(elder.getImageUrl());
@@ -57,7 +57,7 @@ class ElderTest {
 	
 	@Test
 	void test_MTO_client_note() {
-		assertTrue(elder.getClientNotes().size() >= 0);
+		assertTrue(elder.getElderNotes().size() >= 0);
 	}
 	
 	@Test

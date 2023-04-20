@@ -36,8 +36,8 @@ public class Elder {
 	@Column(name="access_code")
 	private String accessCode;
 	
-	@Column(name="client_overview")
-	private String clientOverview;
+	@Column(name="elder_overview")
+	private String elderOverview;
 	
 	private String gender;
 	
@@ -53,10 +53,10 @@ public class Elder {
 	@Column(name="biography")
 	private String clientBio;
 	
-	@OneToMany(mappedBy = "clientNote")
-	private List<Note> clientNotes;
+	@OneToMany(mappedBy = "elderNote")
+	private List<Note> elderNotes;
 	
-	@OneToMany(mappedBy = "clientsAppointments")
+	@OneToMany(mappedBy = "elderAppointments")
 	private List<Appointment> appointments;
 
 	///// Methods /////
@@ -81,12 +81,12 @@ public class Elder {
 		this.clientBio = clientBio;
 	}
 
-	public List<Note> getClientNotes() {
-		return clientNotes;
+	public List<Note> getElderNotes() {
+		return elderNotes;
 	}
 
-	public void setClientNotes(List<Note> clientNotes) {
-		this.clientNotes = clientNotes;
+	public void setElderNotes(List<Note> elderNotes) {
+		this.elderNotes = elderNotes;
 	}
 
 	public int getId() {
@@ -153,12 +153,14 @@ public class Elder {
 		this.accessCode = accessCode;
 	}
 
-	public String getClientOverview() {
-		return clientOverview;
+
+
+	public String getElderOverview() {
+		return elderOverview;
 	}
 
-	public void setClientOverview(String clientOverview) {
-		this.clientOverview = clientOverview;
+	public void setElderOverview(String elderOverview) {
+		this.elderOverview = elderOverview;
 	}
 
 	public String getGender() {
@@ -201,12 +203,14 @@ public class Elder {
 		this.clientBio = bio;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", weight=" + weight
-				+ ", height=" + height + ", birthDate=" + birthdate + ", accessCode=" + accessCode + ", clientOverview="
-				+ clientOverview + ", gender=" + gender + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
-				+ ", imageUrl=" + imageUrl + ", bio=" + clientBio + "]";
+		return "Elder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", weight=" + weight
+				+ ", height=" + height + ", birthdate=" + birthdate + ", accessCode=" + accessCode + ", elderOverview="
+				+ elderOverview + ", gender=" + gender + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
+				+ ", imageUrl=" + imageUrl + ", clientBio=" + clientBio + ", elderNotes=" + elderNotes
+				+ ", appointments=" + appointments + "]";
 	}
 
 	@Override

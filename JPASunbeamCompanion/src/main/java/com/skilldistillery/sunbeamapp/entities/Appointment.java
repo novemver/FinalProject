@@ -43,8 +43,8 @@ public class Appointment {
 	private User userAppointments;
 
 	@ManyToOne
-	@JoinColumn(name = "client_id")
-	private Elder clientsAppointments;
+	@JoinColumn(name = "elder_id")
+	private Elder elderAppointments;
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
@@ -118,12 +118,13 @@ public class Appointment {
 		this.apptTime = apptTime;
 	}
 
-	public Elder getClientsAppointments() {
-		return clientsAppointments;
+
+	public Elder getElderAppointments() {
+		return elderAppointments;
 	}
 
-	public void setClientsAppointments(Elder clientsAppointments) {
-		this.clientsAppointments = clientsAppointments;
+	public void setElderAppointments(Elder elderAppointments) {
+		this.elderAppointments = elderAppointments;
 	}
 
 	public String getTitle() {
@@ -166,11 +167,14 @@ public class Appointment {
 		this.enabled = enabled;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Appointment [id=" + id + ", description=" + description + ", apptDate=" + apptDate + ", apptTime="
 				+ apptTime + ", title=" + title + ", createDate=" + createDate + ", updateDate=" + updateDate
-				+ ", enabled=" + enabled + "]";
+				+ ", enabled=" + enabled + ", userAppointments=" + userAppointments + ", elderAppointments="
+				+ elderAppointments + ", category=" + category + ", location=" + location + ", reminders=" + reminders
+				+ "]";
 	}
 
 	@Override

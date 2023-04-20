@@ -43,6 +43,6 @@ class ReminderTest {
 		assertNotNull(reminder);
 		assertNotNull(reminder.getReminderDate());
 		assertNotNull(reminder.getReminderDate());
-		assertEquals("Cardiologist", reminder.getTitle());
+		assertEquals("Cardiologist", reminder.getApptReminder().getTitle());
 	}
 }

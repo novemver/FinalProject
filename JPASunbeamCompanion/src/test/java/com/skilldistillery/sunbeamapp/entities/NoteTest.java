@@ -55,7 +55,7 @@ class NoteTest {
 	@Test 
 	void test_OTM_client_notes() {
 		assertNotNull(note);
-		assertEquals("Bert", note.getClientNote().getFirstName());
+		assertEquals("Bert", note.getElderNote().getFirstName());
 	}
 	
 	
