@@ -1,5 +1,6 @@
 package com.skilldistillery.sunbeamapp.entities;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,29 +10,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Medication {
+public class Note {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String medication;
-
-	@Column(name="health_condition")
-	private String healthCondition;
+	private String title;
 	
 	private String description;
 	
-	private String dose;
+	private String flagged;
 	
-	private String frequency;
-
+	@Column(name="create_date")
+	private LocalDate createDate;
+	
 	///// Methods /////
 	
-	public Medication() {
+	public Note() {
 		super();
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -40,20 +39,12 @@ public class Medication {
 		this.id = id;
 	}
 
-	public String getMedication() {
-		return medication;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setMedication(String medication) {
-		this.medication = medication;
-	}
-
-	public String getHealthCondition() {
-		return healthCondition;
-	}
-
-	public void setHealthCondition(String healthCondition) {
-		this.healthCondition = healthCondition;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
@@ -64,26 +55,26 @@ public class Medication {
 		this.description = description;
 	}
 
-	public String getDose() {
-		return dose;
+	public String getFlagged() {
+		return flagged;
 	}
 
-	public void setDose(String dose) {
-		this.dose = dose;
+	public void setFlagged(String flagged) {
+		this.flagged = flagged;
 	}
 
-	public String getFrequency() {
-		return frequency;
+	public LocalDate getCreateDate() {
+		return createDate;
 	}
 
-	public void setFrequency(String frequency) {
-		this.frequency = frequency;
+	public void setCreateDate(LocalDate createDate) {
+		this.createDate = createDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Medication [id=" + id + ", medication=" + medication + ", healthCondition=" + healthCondition
-				+ ", description=" + description + ", dose=" + dose + ", frequency=" + frequency + "]";
+		return "Note [id=" + id + ", title=" + title + ", description=" + description + ", flagged=" + flagged
+				+ ", createDate=" + createDate + "]";
 	}
 
 	@Override
@@ -99,9 +90,8 @@ public class Medication {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Medication other = (Medication) obj;
+		Note other = (Note) obj;
 		return id == other.id;
 	}
 	
-
 }
