@@ -58,6 +58,14 @@ public class Elder {
 	
 	@OneToMany(mappedBy = "elderAppointments")
 	private List<Appointment> appointments;
+	
+	@OneToMany(mappedBy = "elderComment")
+	private List<Comment> comments;
+	
+	@OneToMany(mappedBy = "elderContact")
+	private List<EmergencyContact> contact;
+	
+	
 
 	///// Methods /////
 	
@@ -135,6 +143,14 @@ public class Elder {
 
 	public void setHeight(String height) {
 		this.height = height;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public LocalDate getBirthDate() {

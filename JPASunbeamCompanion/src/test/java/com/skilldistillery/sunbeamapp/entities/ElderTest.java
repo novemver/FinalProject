@@ -56,13 +56,18 @@ class ElderTest {
 	}
 	
 	@Test
-	void test_MTO_client_note() {
+	void test_MTO_elder_note() {
 		assertTrue(elder.getElderNotes().size() >= 0);
 	}
 	
 	@Test
-	void test_OTM_client_appointment() {
+	void test_OTM_elder_appointment() {
 		assertEquals("Bert", elder.getFirstName());
+	}
+	
+	@Test
+	void test_OTM_elder_comments() {
+		assertTrue(elder.getComments().size() >= 0);
 	}
 
 }
