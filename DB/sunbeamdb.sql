@@ -149,6 +149,7 @@ CREATE TABLE IF NOT EXISTS `reminder` (
   `title` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
   `appointment_id` INT NOT NULL,
+  `enabled` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_reminder_appointment1_idx` (`appointment_id` ASC),
   CONSTRAINT `fk_reminder_appointment1`
@@ -446,7 +447,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`) VALUES (1, '2023-03-23', '1600', 'Cardiologist', NULL, 1);
+INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`, `enabled`) VALUES (1, '2023-03-23', '1600', 'Cardiologist', NULL, 1, NULL);
 
 COMMIT;
 
@@ -498,6 +499,16 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `caretaker_has_client` (`client_id`, `user_id`) VALUES (1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `comment` (`id`, `title`, `description`, `create_date`, `client_id`, `user_id`, `reply_to_id`) VALUES (1, 'Family Reunion', 'Hey everyone, just a reminder that the family reunion is coming up and we would like to have Bert there! Let\'s see if we can schedule something on here.', '2023-03-17', 1, 3, NULL);
 
 COMMIT;
 
