@@ -12,10 +12,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class NoteTest {
+class CategoryTest {
+
+	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Note note; 
+	private Category category; 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPASunbeamCompanion");
@@ -29,7 +31,7 @@ class NoteTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		note = em.find(Note.class, 1);
+		category = em.find(Category.class, 1);
 	}
 
 	@AfterEach
@@ -38,11 +40,10 @@ class NoteTest {
 	}
 
 	@Test
-	void test_title_description_create() {
-		assertNotNull(note);
-		assertEquals("Pain Issues ", note.getTitle());
-		assertEquals("He told me he had some pain in his chest. ", note.getDescription());
-		assertNotNull(note.getCreateDate());
-		
+	void test_category_firstname_lastname_weight_height_others() {
+		assertNotNull(category);
+		assertEquals("Doctor", category.getName());
+		assertEquals("Medical Appointment", category.getDescription());
+	
 	}
 }

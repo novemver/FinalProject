@@ -36,9 +36,9 @@ class MessageTest {
 	void tearDown() throws Exception {
 		em.close();
 	}
-
+ 
 	@Test
-	void test() {
+	void test_description_createDate() {
 		assertNotNull(message);
 		assertEquals("Hey, how is he today?", message.getDescription());
 		assertNotNull(message.getCreateDate());
