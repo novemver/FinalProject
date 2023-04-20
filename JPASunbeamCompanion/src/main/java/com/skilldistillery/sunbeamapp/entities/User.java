@@ -1,6 +1,7 @@
 package com.skilldistillery.sunbeamapp.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,48 +9,62 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	private int id;
-	
-	private String username;
-	
-	private String password;
-	
-	private boolean enabled;
-	
-	private String role;
-	
-	private String email;
-	
-	@Column(name="phone_number")
-	private String phoneNumber;
-	
-	@Column(name="first_name")
-	private String firstName;
-	
-	@Column(name="last_name")
-	private String lastName;
-	
-	@Column(name="image_url")
-	private String imageUrl;
-	
-	@Column(name="biography")
-	private String userBio;
-	
-	@Column(name="create_date")
-	private LocalDateTime createDate;
-	
-	@Column(name="update_date")
-	private LocalDateTime updateDate;
-	
-	
-	///// Methods /////
 
+	private int id;
+
+	private String username;
+
+	private String password;
+
+	private boolean enabled;
+
+	private String role;
+
+	private String email;
+
+	@Column(name = "phone_number")
+	private String phoneNumber;
+
+	@Column(name = "first_name")
+	private String firstName;
+
+	@Column(name = "last_name")
+	private String lastName;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	@Column(name = "biography")
+	private String userBio;
+
+	@Column(name = "create_date")
+	private LocalDateTime createDate;
+
+	@UpdateTimestamp
+	@Column(name = "update_date")
+	private LocalDateTime updateDate;
+
+	@OneToMany(mappedBy = "receiver")
+	private List<Message> receiveMessages;
+
+	@OneToMany(mappedBy = "sender")
+	private List<Message> senderMessages;
+
+	@OneToMany(mappedBy = "userNote")
+	private List<Note> notes;
+	///// Methods /////
+ 
+	@OneToMany(mappedBy = "userAppointments")
+	private List<Appointment> appointments;
+	
 	public User() {
 		super();
 	}
@@ -70,12 +85,44 @@ public class User {
 		this.username = username;
 	}
 
+	public List<Message> getReceiveMessages() {
+		return receiveMessages;
+	}
+
+	public void setReceiveMessages(List<Message> receiveMessages) {
+		this.receiveMessages = receiveMessages;
+	}
+
+	public List<Message> getSenderMessages() {
+		return senderMessages;
+	}
+
+	public void setSenderMessages(List<Message> senderMessages) {
+		this.senderMessages = senderMessages;
+	}
+
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
 	}
 
 	public boolean isEnabled() {
@@ -93,7 +140,7 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}

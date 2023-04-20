@@ -2,7 +2,7 @@ package com.skilldistillery.sunbeamapp.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -53,6 +53,16 @@ class ClientTest {
 		assertEquals("Male", client.getGender());
 		assertNotNull(client.getCreateDate());
 		assertNotNull(client.getImageUrl());
+	}
+	
+	@Test
+	void test_MTO_client_note() {
+		assertTrue(client.getClientNotes().size() >= 0);
+	}
+	
+	@Test
+	void test_OTM_client_appointment() {
+		assertEquals("Bert", client.getFirstName());
 	}
 
 }

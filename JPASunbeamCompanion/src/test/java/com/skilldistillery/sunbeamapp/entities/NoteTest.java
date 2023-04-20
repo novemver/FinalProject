@@ -45,4 +45,18 @@ class NoteTest {
 		assertNotNull(note.getCreateDate());
 		
 	}
+	
+	@Test
+	void test_MTO_user_notes() {
+		assertNotNull(note);
+		assertEquals("Sebastian", note.getUserNote().getFirstName());
+	}
+	
+	@Test 
+	void test_OTM_client_notes() {
+		assertNotNull(note);
+		assertEquals("Bert", note.getClientNote().getFirstName());
+	}
+	
+	
 }
