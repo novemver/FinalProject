@@ -33,7 +33,7 @@ public class Note {
 	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
-	private Client clientNote;
+	private Elder clientNote;
 	///// Methods /////
 
 	public Note() {
@@ -72,11 +72,11 @@ public class Note {
 		this.description = description;
 	}
 
-	public Client getClientNote() {
+	public Elder getClientNote() {
 		return clientNote;
 	}
 
-	public void setClientNote(Client clientNote) {
+	public void setClientNote(Elder clientNote) {
 		this.clientNote = clientNote;
 	}
 
