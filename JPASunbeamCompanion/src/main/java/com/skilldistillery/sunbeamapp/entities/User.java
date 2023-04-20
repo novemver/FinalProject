@@ -1,7 +1,9 @@
 package com.skilldistillery.sunbeamapp.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,11 +13,42 @@ import javax.persistence.Id;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private int id;
+	
 	private String username;
+	
 	private String password;
+	
 	private boolean enabled;
+	
 	private String role;
+	
+	private String email;
+	
+	@Column(name="phone_number")
+	private String phoneNumber;
+	
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+	
+	@Column(name="image_url")
+	private String imageUrl;
+	
+	@Column(name="biography")
+	private String userBio;
+	
+	@Column(name="create_date")
+	private LocalDateTime createDate;
+	
+	@Column(name="update_date")
+	private LocalDateTime updateDate;
+	
+	
+	///// Methods /////
 
 	public User() {
 		super();
@@ -60,11 +93,77 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getUserBio() {
+		return userBio;
+	}
+
+	public void setUserBio(String userBio) {
+		this.userBio = userBio;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + "]";
+				+ ", role=" + role + ", email=" + email + ", phoneNumber=" + phoneNumber + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", imageUrl=" + imageUrl + ", userBio=" + userBio + ", createDate="
+				+ createDate + ", updateDate=" + updateDate + "]";
 	}
 
 	@Override
