@@ -41,6 +41,11 @@ class MedicationTest {
 	@Test
 	void test_medicationname_and_id_and_password_and_role() {
 		assertNotNull(medication);
+		assertEquals("Benazepril (Lotensin)", medication.getMedication());
+		assertEquals("Heart murmurs", medication.getHealthCondition());
+		assertEquals("He has had a few heart attacks and is on a diet regmine for heart health", medication.getDescription());
+		assertEquals("50mg", medication.getDose());
+		assertEquals("2 times a day", medication.getFrequency());
 	}
 
 }

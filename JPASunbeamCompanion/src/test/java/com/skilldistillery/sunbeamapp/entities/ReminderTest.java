@@ -12,10 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class MessageTest {
+class ReminderTest {
+	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Message message; 
+	private Reminder reminder; 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPASunbeamCompanion");
@@ -29,7 +30,7 @@ class MessageTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		message = em.find(Message.class, 1);
+		reminder = em.find(Reminder.class, 1);
 	}
 
 	@AfterEach
@@ -38,10 +39,10 @@ class MessageTest {
 	}
 
 	@Test
-	void test() {
-		assertNotNull(message);
-		assertEquals("Hey, how is he today?", message.getDescription());
-		assertNotNull(message.getCreateDate());
-
+	void test_variables() {
+		assertNotNull(reminder);
+		assertNotNull(reminder.getReminderDate());
+		assertNotNull(reminder.getReminderDate());
+		assertEquals("Cardiologist", reminder.getTitle());
 	}
 }
