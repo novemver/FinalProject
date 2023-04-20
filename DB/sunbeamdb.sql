@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `elder` (
   `height` VARCHAR(45) NULL,
   `birthdate` DATE NULL,
   `access_code` VARCHAR(10) NULL,
-  `client_overview` TEXT NULL,
+  `elder_overview` TEXT NULL,
   `gender` VARCHAR(45) NULL,
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
@@ -417,7 +417,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `client_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`) VALUES (1, 'Bert', 'Johson', '180', '6', '1945-08-05', NULL, 'WW2 Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`) VALUES (1, 'Bert', 'Johson', '180', '6', '1945-08-05', NULL, 'WW2 Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL);
 
 COMMIT;
 
