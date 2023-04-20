@@ -402,11 +402,51 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `location`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `zipcode`) VALUES (1, 'St. Francis Cardiology', '123 Seasme St', 'Denver', 'CO', '80002');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `client`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `client` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `client_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`) VALUES (1, 'Bert', 'Johson', '180', '6', '1945-08-05', NULL, 'WW2 Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `category` (`id`, `name`, `description`) VALUES (1, 'Doctor', 'Medical Appointment');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `appointment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `client_id`, `category_id`, `create_date`, `update_date`, `enabled`) VALUES (1, 'Cardiologist appt. with Dr.Rob', '2023-03-23', '1700', 2, 'Get Bert to Cardiologist', 1, 1, 1, '2023-03-17', NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `reminder`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`) VALUES (1, '2023-03-23', '1600', 'Cardiologist', NULL, 1);
 
 COMMIT;
 
