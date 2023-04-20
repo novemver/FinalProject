@@ -412,6 +412,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `emergency_contact`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `emergency_contact` (`id`, `first_name`, `last_name`, `phone_number`, `email`, `client_id`, `user_id`) VALUES (1, 'Shirley', 'Jacobs', '5555555510', NULL, 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `family_member`
 -- -----------------------------------------------------
 START TRANSACTION;
