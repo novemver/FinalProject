@@ -400,3 +400,24 @@ INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `p
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `client`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `client` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `client_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`) VALUES (1, 'Bert', 'Johson', '180', '6', '1945-08-05', NULL, 'WW2 Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `family_member`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `family_member` (`client_id`, `user_id`, `relationship`, `enabled`) VALUES (1, 3, 'Grandson', 1);
+INSERT INTO `family_member` (`client_id`, `user_id`, `relationship`, `enabled`) VALUES (1, 4, 'Nephew', 1);
+
+COMMIT;
+
