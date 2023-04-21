@@ -1,6 +1,7 @@
 package com.skilldistillery.sunbeamapp.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Comment {
@@ -32,6 +34,10 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name = "elder_id")
 	private Elder elderComment;
+	
+	@OneToMany(mappedBy = "comments")
+	private List<Comment> comments;
+	
 	///// Methods /////
 	
 	public Comment() {
