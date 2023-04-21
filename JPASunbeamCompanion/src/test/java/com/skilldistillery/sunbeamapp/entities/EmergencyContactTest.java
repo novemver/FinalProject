@@ -50,7 +50,7 @@ class EmergencyContactTest {
 	@Test
 	void test_MTO_emergencyContact_emergency_contact_user() {
 		assertNotNull(emergencycontact);
-		assertEquals("Shirley",emergencycontact.getElderContact().getEmergencyContact().get(0).getFirstName());
+		assertEquals(2,emergencycontact.getElderContact().getEmergencyContact().get(1).getId());
 	}
 	
 	

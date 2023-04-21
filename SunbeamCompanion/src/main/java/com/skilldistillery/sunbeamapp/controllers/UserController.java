@@ -7,4 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin({ "*", "http://localhost/" })
 public class UserController {
 
+	
 }
