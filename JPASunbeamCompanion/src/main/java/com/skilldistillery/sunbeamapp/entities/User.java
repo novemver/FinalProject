@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -48,6 +49,7 @@ public class User {
 	@Column(name = "biography")
 	private String userBio;
 
+	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
 
@@ -76,7 +78,7 @@ public class User {
 	
 	@ManyToMany(mappedBy="userReminders")
 	private List<Reminder> reminders;
-	
+	 
 	@ManyToMany
 	  @JoinTable(name="caretaker_has_client",
 	    joinColumns=@JoinColumn(name="elder_id"),

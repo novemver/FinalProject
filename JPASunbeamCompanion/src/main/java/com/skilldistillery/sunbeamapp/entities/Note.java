@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Note {
 
@@ -24,6 +26,7 @@ public class Note {
 
 	private String flagged;
 
+	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDate createDate;
 

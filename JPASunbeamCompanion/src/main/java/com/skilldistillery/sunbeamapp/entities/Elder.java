@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class Elder {
 
@@ -40,9 +43,11 @@ public class Elder {
 
 	private String gender;
 
+	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
 
+	@UpdateTimestamp
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 
