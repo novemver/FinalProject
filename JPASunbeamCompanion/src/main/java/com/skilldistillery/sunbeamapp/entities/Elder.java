@@ -58,7 +58,7 @@ public class Elder {
 	@OneToMany(mappedBy = "elderAppointments")
 	private List<Appointment> appointments;
 
-	@OneToMany(mappedBy = "elderComment")
+	@OneToMany(mappedBy = "elder")
 	private List<Comment> comments;
 
 	@OneToMany(mappedBy = "elder")

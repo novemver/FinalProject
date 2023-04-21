@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Comment {
 
@@ -33,10 +35,15 @@ public class Comment {
 	
 	@ManyToOne
 	@JoinColumn(name = "elder_id")
-	private Elder elderComment;
+	private Elder elder;
 	
-	@OneToMany(mappedBy = "comments")
-	private List<Comment> comments;
+	@OneToMany(mappedBy = "parentComment")
+	private List<Comment> replies;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "reply_to_id")
+	private Comment parentComment;
 	
 	///// Methods /////
 	
@@ -44,13 +51,16 @@ public class Comment {
 		super();
 	}
 
-	public Elder getElderComment() {
-		return elderComment;
+	
+	public Elder getElder() {
+		return elder;
 	}
 
-	public void setElderComment(Elder elderComment) {
-		this.elderComment = elderComment;
+
+	public void setElder(Elder elder) {
+		this.elder = elder;
 	}
+
 
 	public int getId() {
 		return id;
@@ -90,6 +100,22 @@ public class Comment {
 
 	public void setCreateDate(LocalDate createDate) {
 		this.createDate = createDate;
+	}
+
+	public List<Comment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<Comment> replies) {
+		this.replies = replies;
+	}
+
+	public Comment getParentComment() {
+		return parentComment;
+	}
+
+	public void setParentComment(Comment parentComment) {
+		this.parentComment = parentComment;
 	}
 
 	@Override

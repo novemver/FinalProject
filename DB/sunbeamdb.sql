@@ -471,6 +471,7 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `comment` (`id`, `title`, `description`, `create_date`, `elder_id`, `user_id`, `reply_to_id`) VALUES (1, 'Family Reunion', 'Hey everyone, just a reminder that the family reunion is coming up and we would like to have Bert there! Let\'s see if we can schedule something on here.', '2023-03-17', 1, 3, NULL);
+INSERT INTO `comment` (`id`, `title`, `description`, `create_date`, `elder_id`, `user_id`, `reply_to_id`) VALUES (2, NULL, 'I can get him there!', '2023-03-17', 1, 2, 1);
 
 COMMIT;
 
