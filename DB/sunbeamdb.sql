@@ -449,7 +449,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (1, 3, 'Grandson', 1, NULL);
+INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (1, 3, 'Grandson', 1, 1);
 INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (1, 4, 'Nephew', 1, NULL);
 
 COMMIT;

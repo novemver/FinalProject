@@ -1,6 +1,7 @@
 package com.skilldistillery.sunbeamapp.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -31,6 +34,15 @@ public class Reminder {
 	@ManyToOne
 	@JoinColumn(name = "appointment_id")
 	private Appointment apptReminder;
+	
+	@ManyToMany
+	  @JoinTable(name="user_has_reminder",
+	    joinColumns=@JoinColumn(name="user_id"),
+	    inverseJoinColumns=@JoinColumn(name="reminder_id")
+	  )
+	  private List<User> userReminders;
+	
+	
 	
 	// TODO decide if enabled needed here
 	
@@ -86,6 +98,14 @@ public class Reminder {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<User> getUserReminders() {
+		return userReminders;
+	}
+
+	public void setUserReminders(List<User> userReminders) {
+		this.userReminders = userReminders;
 	}
 
 	@Override

@@ -47,5 +47,11 @@ class MedicationTest {
 		assertEquals("50mg", medication.getDose());
 		assertEquals("2 times a day", medication.getFrequency());
 	}
+	
+	@Test
+	void test_medication_to_elder() {
+		assertNotNull(medication);
+		assertEquals("Bert", medication.getMedicatedElder().getFirstName());
+	}
 
 }

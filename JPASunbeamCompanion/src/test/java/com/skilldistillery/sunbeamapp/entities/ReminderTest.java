@@ -1,6 +1,8 @@
 package com.skilldistillery.sunbeamapp.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,5 +46,9 @@ class ReminderTest {
 		assertNotNull(reminder.getReminderDate());
 		assertNotNull(reminder.getReminderDate());
 		assertEquals("Get Bert to Cardiologist", reminder.getApptReminder().getTitle());
+	}
+	
+	void test_MTM_reminder_to_user() {
+		assertTrue(reminder.getUserReminders().size() > 0);
 	}
 }

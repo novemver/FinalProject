@@ -69,5 +69,17 @@ class ElderTest {
 	void test_OTM_elder_comments() {
 		assertTrue(elder.getComments().size() >= 0);
 	}
+	@Test
+	void test_OTM_elder_to_family_member() {
+		assertTrue(elder.getFamilyMembers().size() > 0);
+	}
+	@Test
+	void test_OTM_elder_to_medication() {
+		assertTrue(elder.getMedications().size() > 0);
+	}
+	@Test
+	void test_MTM_elder_to_caretakers() {
+		assertTrue(elder.getElderCaretakers().size() >= 0);
+	}
 
 }
