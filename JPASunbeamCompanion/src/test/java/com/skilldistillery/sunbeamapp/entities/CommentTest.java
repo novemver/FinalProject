@@ -55,7 +55,12 @@ class CommentTest {
 	@Test
 	void test_MTO_comment_elder() {
 		assertNotNull(comment);
-		assertEquals("Bert", comment.getElderComment().getFirstName());
+		assertEquals("Bert", comment.getElder().getFirstName());
+	}
+	@Test
+	void test_MTO_replies_of_comment() {
+		assertNotNull(comment);
+		assertEquals("I can get him there!",comment.getReplies().get(0).getDescription());
 	}
 	
 }

@@ -10,8 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -59,13 +58,28 @@ public class Elder {
 	@OneToMany(mappedBy = "elderAppointments")
 	private List<Appointment> appointments;
 
-	@OneToMany(mappedBy = "elderComment")
+	@OneToMany(mappedBy = "elder")
 	private List<Comment> comments;
 
-	@OneToMany(mappedBy = "elderContact")
-	private List<EmergencyContact> emergencyContact;
+	@OneToMany(mappedBy = "elder")
+	private List<FamilyMember> familyMembers;
+	
+	@OneToMany(mappedBy = "medicatedElder")
+	private List<Medication> medications;
+	
+	@ManyToMany(mappedBy="userElders")
+	private List<User> elderCaretakers;
+	
 
 	///// Methods /////
+
+	public List<Medication> getMedications() {
+		return medications;
+	}
+
+	public void setMedications(List<Medication> medications) {
+		this.medications = medications;
+	}
 
 	public Elder() {
 		super();
@@ -199,12 +213,21 @@ public class Elder {
 		this.comments = comments;
 	}
 
-	public List<EmergencyContact> getEmergencyContact() {
-		return emergencyContact;
+
+	public List<FamilyMember> getFamilyMembers() {
+		return familyMembers;
 	}
 
-	public void setEmergencyContact(List<EmergencyContact> emergencyContact) {
-		this.emergencyContact = emergencyContact;
+	public void setFamilyMembers(List<FamilyMember> familyMembers) {
+		this.familyMembers = familyMembers;
+	}
+
+	public List<User> getElderCaretakers() {
+		return elderCaretakers;
+	}
+
+	public void setElderCaretakers(List<User> elderCaretakers) {
+		this.elderCaretakers = elderCaretakers;
 	}
 
 	@Override

@@ -74,7 +74,7 @@ class AppointmentTest {
 	@Test
 	void test_OTM_appointment_reminders() {
 		assertNotNull(appointment);
-		assertEquals("Cardiologist", appointment.getElderAppointments());
+		assertEquals("Bert", appointment.getElderAppointments().getFirstName());
 	}
 }
 

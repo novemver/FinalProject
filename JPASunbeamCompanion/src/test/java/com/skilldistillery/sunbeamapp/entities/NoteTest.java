@@ -40,8 +40,8 @@ class NoteTest {
 	@Test
 	void test_title_description_create() {
 		assertNotNull(note);
-		assertEquals("Pain Issues ", note.getTitle());
-		assertEquals("He told me he had some pain in his chest. ", note.getDescription());
+		assertEquals("Pain Issues", note.getTitle());
+		assertEquals("He told me he had some pain in his chest.", note.getDescription());
 		assertNotNull(note.getCreateDate());
 		
 	}
