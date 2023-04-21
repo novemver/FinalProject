@@ -48,7 +48,7 @@ class ElderTest {
 		assertEquals("Johson", elder.getLastName());
 		assertEquals("180", elder.getWeight());
 		assertEquals("6" , elder.getHeight());
-		assertNotNull(elder.getBirthDate());
+		assertNotNull(elder.getBirthdate());
 		assertNotNull(elder.getElderOverview());
 		assertEquals("Male", elder.getGender());
 		assertNotNull(elder.getCreateDate());
