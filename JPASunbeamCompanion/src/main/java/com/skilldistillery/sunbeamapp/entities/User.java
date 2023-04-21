@@ -9,9 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -45,6 +51,7 @@ public class User {
 	@Column(name = "biography")
 	private String userBio;
 
+	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
 
@@ -52,26 +59,42 @@ public class User {
 	@Column(name = "update_date")
 	private LocalDateTime updateDate;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "receiver")
 	private List<Message> receiveMessages;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "sender")
 	private List<Message> senderMessages;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "userNote")
 	private List<Note> notes;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<FamilyMember> familyMembers;
 	///// Methods /////
  
+	@JsonIgnore
 	@OneToMany(mappedBy = "userAppointments")
 	private List<Appointment> appointments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "userComment")
 	private List<Comment> comments;
 	
-	
-	@OneToMany(mappedBy = "userContact")
-	private List<EmergencyContact> contactsFromUser;
-	
+	@JsonIgnore
+	@ManyToMany(mappedBy="userReminders")
+	private List<Reminder> reminders;
+	 
+	@JsonIgnore
+	@ManyToMany
+	  @JoinTable(name="caretaker_has_client",
+	    joinColumns=@JoinColumn(name="elder_id"),
+	    inverseJoinColumns=@JoinColumn(name="user_id")
+	  )
+	  private List<Elder> userElders;
 	
 	public User() {
 		super();
@@ -85,13 +108,6 @@ public class User {
 		this.id = id;
 	}
  
-	public List<EmergencyContact> getContacts() {
-		return contactsFromUser;
-	}
-
-	public void setContacts(List<EmergencyContact> contact) {
-		this.contactsFromUser = contact;
-	}
 
 	public String getUsername() {
 		return username;
@@ -123,14 +139,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public List<EmergencyContact> getContactsFromUser() {
-		return contactsFromUser;
-	}
-
-	public void setContactsFromUser(List<EmergencyContact> contactsFromUser) {
-		this.contactsFromUser = contactsFromUser;
 	}
 
 	public List<Appointment> getAppointments() {
@@ -235,6 +243,30 @@ public class User {
 
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public List<FamilyMember> getFamilyMembers() {
+		return familyMembers;
+	}
+
+	public void setFamilyMembers(List<FamilyMember> familyMembers) {
+		this.familyMembers = familyMembers;
+	}
+
+	public List<Reminder> getReminders() {
+		return reminders;
+	}
+
+	public void setReminders(List<Reminder> reminders) {
+		this.reminders = reminders;
+	}
+
+	public List<Elder> getUserElders() {
+		return userElders;
+	}
+
+	public void setUserElders(List<Elder> userElders) {
+		this.userElders = userElders;
 	}
 
 	@Override

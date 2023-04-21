@@ -1,6 +1,7 @@
 package com.skilldistillery.sunbeamapp.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Comment {
@@ -22,6 +28,7 @@ public class Comment {
 
 	private String description;
 
+	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDate createDate;
 
@@ -31,20 +38,32 @@ public class Comment {
 	
 	@ManyToOne
 	@JoinColumn(name = "elder_id")
-	private Elder elderComment;
+	private Elder elder;
+	
+	@OneToMany(mappedBy = "parentComment")
+	private List<Comment> replies;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "reply_to_id")
+	private Comment parentComment;
+	
 	///// Methods /////
 	
 	public Comment() {
 		super();
 	}
 
-	public Elder getElderComment() {
-		return elderComment;
+	
+	public Elder getElder() {
+		return elder;
 	}
 
-	public void setElderComment(Elder elderComment) {
-		this.elderComment = elderComment;
+
+	public void setElder(Elder elder) {
+		this.elder = elder;
 	}
+
 
 	public int getId() {
 		return id;
@@ -84,6 +103,22 @@ public class Comment {
 
 	public void setCreateDate(LocalDate createDate) {
 		this.createDate = createDate;
+	}
+
+	public List<Comment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<Comment> replies) {
+		this.replies = replies;
+	}
+
+	public Comment getParentComment() {
+		return parentComment;
+	}
+
+	public void setParentComment(Comment parentComment) {
+		this.parentComment = parentComment;
 	}
 
 	@Override

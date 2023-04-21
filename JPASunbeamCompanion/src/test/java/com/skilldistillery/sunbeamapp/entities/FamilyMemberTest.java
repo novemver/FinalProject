@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class EmergencyContactTest {
+class FamilyMemberTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private EmergencyContact emergencycontact; 
+	private FamilyMember familyMember; 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPASunbeamCompanion");
@@ -30,28 +30,35 @@ class EmergencyContactTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		emergencycontact = em.find(EmergencyContact.class, 1);
+		FamilyMemberId fid = new FamilyMemberId();
+		fid.setElderId(1);
+		fid.setUserId(3);
+		familyMember = em.find(FamilyMember.class, fid);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
 	}
+	
+	@Test
+	void test_family_member_mappings() {
+		assertNotNull(familyMember);
+		assertEquals("Grandson",familyMember.getRelationship());
+		assertEquals(true, familyMember.isEnabled());
+	}
+	@Test
+	void test_family_member_MTO_user_mappings() {
+		assertNotNull(familyMember);
+		assertEquals("Sebastian",familyMember.getUser().getFirstName());
+	}
+	@Test
+	void test_family_member_MTO_elder_mappings() {
+		assertNotNull(familyMember);
+		assertEquals("Bert",familyMember.getElder().getFirstName());
+	}
+	
 
-	@Test
-	void test_emergencyContact_firstName_lastName_number() {
-		assertNotNull(emergencycontact);
-		assertEquals("Shirley", emergencycontact.getFirstName());
-		assertEquals("Jacobs", emergencycontact.getLastName());
-		assertEquals("5555555510", emergencycontact.getPhoneNumber());
-		
-	}
 	
-	@Test
-	void test_MTO_emergencyContact_emergency_contact_user() {
-		assertNotNull(emergencycontact);
-		assertEquals(2,emergencycontact.getElderContact().getEmergencyContact().get(1).getId());
-	}
-	
-	
+
 }

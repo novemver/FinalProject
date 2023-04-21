@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Medication {
@@ -25,6 +27,10 @@ public class Medication {
 	private String dose;
 	
 	private String frequency;
+	
+	@ManyToOne
+	@JoinColumn(name = "elder_id")
+	private Elder medicatedElder;  
 
 	///// Methods /////
 	
@@ -78,6 +84,14 @@ public class Medication {
 
 	public void setFrequency(String frequency) {
 		this.frequency = frequency;
+	}
+
+	public Elder getMedicatedElder() {
+		return medicatedElder;
+	}
+
+	public void setMedicatedElder(Elder medicatedElder) {
+		this.medicatedElder = medicatedElder;
 	}
 
 	@Override

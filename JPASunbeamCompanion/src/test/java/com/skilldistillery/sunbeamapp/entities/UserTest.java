@@ -75,5 +75,15 @@ class UserTest {
 		assertNotNull(user);
 		assertTrue(user.getComments().size() >= 0);
 	}
+	@Test
+	void test_OTM_user_to_family_member() {
+		assertNotNull(user);
+		assertTrue(user.getFamilyMembers().size() == 0);
+	}
+	@Test
+	void test_MTM_user_has_reminders() {
+		assertNotNull(user);
+		assertTrue(user.getReminders().size() >= 0);
+	}
 		
 }
