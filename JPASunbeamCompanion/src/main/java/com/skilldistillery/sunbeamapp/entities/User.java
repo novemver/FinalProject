@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	@Id
@@ -57,28 +59,36 @@ public class User {
 	@Column(name = "update_date")
 	private LocalDateTime updateDate;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "receiver")
 	private List<Message> receiveMessages;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "sender")
 	private List<Message> senderMessages;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "userNote")
 	private List<Note> notes;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<FamilyMember> familyMembers;
 	///// Methods /////
  
+	@JsonIgnore
 	@OneToMany(mappedBy = "userAppointments")
 	private List<Appointment> appointments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "userComment")
 	private List<Comment> comments;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="userReminders")
 	private List<Reminder> reminders;
 	 
+	@JsonIgnore
 	@ManyToMany
 	  @JoinTable(name="caretaker_has_client",
 	    joinColumns=@JoinColumn(name="elder_id"),
