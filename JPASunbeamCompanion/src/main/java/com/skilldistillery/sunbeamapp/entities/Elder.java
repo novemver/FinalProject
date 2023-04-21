@@ -20,81 +20,55 @@ public class Elder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="first_name")
+
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	@Column(name = "last_name")
 	private String lastName;
-	
+
 	private String weight;
 
 	private String height;
 
 	private LocalDate birthdate;
-	
-	@Column(name="access_code")
+
+	@Column(name = "access_code")
 	private String accessCode;
-	
-	@Column(name="elder_overview")
+
+	@Column(name = "elder_overview")
 	private String elderOverview;
-	
+
 	private String gender;
-	
-	@Column(name="create_date")
+
+	@Column(name = "create_date")
 	private LocalDateTime createDate;
-	
-	@Column(name="last_update")
+
+	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
-	
-	@Column(name="image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-		
-	@Column(name="biography")
+
+	@Column(name = "biography")
 	private String elderBio;
-	
+
 	@OneToMany(mappedBy = "elderNote")
 	private List<Note> elderNotes;
-	
+
 	@OneToMany(mappedBy = "elderAppointments")
 	private List<Appointment> appointments;
-	
+
 	@OneToMany(mappedBy = "elderComment")
 	private List<Comment> comments;
-	
+
 	@OneToMany(mappedBy = "elderContact")
-	private List<EmergencyContact> contact;
-	
-	
+	private List<EmergencyContact> emergencyContact;
 
 	///// Methods /////
-	
+
 	public Elder() {
 		super();
-	}
-	
-	public LocalDate getBirthdate() {
-		return birthdate;
-	}
-
-	public void setBirthdate(LocalDate birthdate) {
-		this.birthdate = birthdate;
-	}
-
-	public String getElderBio() {
-		return elderBio;
-	}
-
-	public void setElderBio(String elderBio) {
-		this.elderBio = elderBio;
-	}
-
-	public List<Note> getElderNotes() {
-		return elderNotes;
-	}
-
-	public void setElderNotes(List<Note> elderNotes) {
-		this.elderNotes = elderNotes;
 	}
 
 	public int getId() {
@@ -103,14 +77,6 @@ public class Elder {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public List<EmergencyContact> getContact() {
-		return contact;
-	}
-
-	public void setContact(List<EmergencyContact> contact) {
-		this.contact = contact;
 	}
 
 	public String getFirstName() {
@@ -137,14 +103,6 @@ public class Elder {
 		this.weight = weight;
 	}
 
-	public List<Appointment> getAppointments() {
-		return appointments;
-	}
-
-	public void setAppointments(List<Appointment> appointments) {
-		this.appointments = appointments;
-	}
-
 	public String getHeight() {
 		return height;
 	}
@@ -153,20 +111,12 @@ public class Elder {
 		this.height = height;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public LocalDate getBirthDate() {
+	public LocalDate getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthdate = birthDate;
+	public void setBirthdate(LocalDate birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public String getAccessCode() {
@@ -176,8 +126,6 @@ public class Elder {
 	public void setAccessCode(String accessCode) {
 		this.accessCode = accessCode;
 	}
-
-
 
 	public String getElderOverview() {
 		return elderOverview;
@@ -219,22 +167,53 @@ public class Elder {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getBio() {
+	public String getElderBio() {
 		return elderBio;
 	}
 
-	public void setBio(String bio) {
-		this.elderBio = bio;
+	public void setElderBio(String elderBio) {
+		this.elderBio = elderBio;
 	}
 
+	public List<Note> getElderNotes() {
+		return elderNotes;
+	}
+
+	public void setElderNotes(List<Note> elderNotes) {
+		this.elderNotes = elderNotes;
+	}
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<EmergencyContact> getEmergencyContact() {
+		return emergencyContact;
+	}
+
+	public void setEmergencyContact(List<EmergencyContact> emergencyContact) {
+		this.emergencyContact = emergencyContact;
+	}
 
 	@Override
 	public String toString() {
 		return "Elder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", weight=" + weight
 				+ ", height=" + height + ", birthdate=" + birthdate + ", accessCode=" + accessCode + ", elderOverview="
 				+ elderOverview + ", gender=" + gender + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
-				+ ", imageUrl=" + imageUrl + ", elderBio=" + elderBio + ", elderNotes=" + elderNotes
-				+ ", appointments=" + appointments + "]";
+				+ ", imageUrl=" + imageUrl + ", elderBio=" + elderBio + ", elderNotes=" + elderNotes + ", appointments="
+				+ appointments + "]";
 	}
 
 	@Override
@@ -253,5 +232,5 @@ public class Elder {
 		Elder other = (Elder) obj;
 		return id == other.id;
 	}
-	
+
 }
