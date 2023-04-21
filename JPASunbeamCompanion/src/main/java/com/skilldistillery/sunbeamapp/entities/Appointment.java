@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class Appointment {
 
@@ -30,9 +33,11 @@ public class Appointment {
 
 	private String title;
 
+	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDate createDate;
 
+	@UpdateTimestamp
 	@Column(name = "update_date")
 	private LocalDate updateDate;
 
