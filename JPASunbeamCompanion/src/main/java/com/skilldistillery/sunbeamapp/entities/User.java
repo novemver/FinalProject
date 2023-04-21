@@ -70,7 +70,7 @@ public class User {
 	
 	
 	@OneToMany(mappedBy = "userContact")
-	private List<EmergencyContact> contacts;
+	private List<EmergencyContact> contactsFromUser;
 	
 	
 	public User() {
@@ -86,11 +86,11 @@ public class User {
 	}
  
 	public List<EmergencyContact> getContacts() {
-		return contacts;
+		return contactsFromUser;
 	}
 
 	public void setContacts(List<EmergencyContact> contact) {
-		this.contacts = contact;
+		this.contactsFromUser = contact;
 	}
 
 	public String getUsername() {
@@ -123,6 +123,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<EmergencyContact> getContactsFromUser() {
+		return contactsFromUser;
+	}
+
+	public void setContactsFromUser(List<EmergencyContact> contactsFromUser) {
+		this.contactsFromUser = contactsFromUser;
 	}
 
 	public List<Appointment> getAppointments() {
