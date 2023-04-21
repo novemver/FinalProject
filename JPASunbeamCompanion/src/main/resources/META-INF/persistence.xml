@@ -9,7 +9,7 @@
 		<!-- begin entities -->
 		<class>com.skilldistillery.sunbeamapp.entities.Appointment</class> 
 		<class>com.skilldistillery.sunbeamapp.entities.Category</class> 
-		<class>com.skilldistillery.sunbeamapp.entities.Client</class> 
+		<class>com.skilldistillery.sunbeamapp.entities.Elder</class> 
 		<class>com.skilldistillery.sunbeamapp.entities.Comment</class> 
 		<class>com.skilldistillery.sunbeamapp.entities.EmergencyContact</class> 
 		<class>com.skilldistillery.sunbeamapp.entities.Location</class> 

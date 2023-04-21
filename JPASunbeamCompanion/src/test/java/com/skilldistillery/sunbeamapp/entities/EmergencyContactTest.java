@@ -46,4 +46,12 @@ class EmergencyContactTest {
 		assertEquals("5555555510", emergencycontact.getPhoneNumber());
 		
 	}
+	
+	@Test
+	void test_MTO_emergencyContact_emergency_contact_user() {
+		assertNotNull(emergencycontact);
+		assertEquals(2,emergencycontact.getElderContact().getEmergencyContact().get(1).getId());
+	}
+	
+	
 }

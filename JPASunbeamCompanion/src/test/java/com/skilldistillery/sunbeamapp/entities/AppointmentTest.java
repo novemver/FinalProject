@@ -57,7 +57,7 @@ class AppointmentTest {
 	@Test
 	void test_MTO_client_appointments() {
 		assertNotNull(appointment);
-		assertTrue(appointment.getClientsAppointments().getAppointments().size() >= 0);
+		assertTrue(appointment.getElderAppointments().getAppointments().size() >= 0);
 	}
 
 	@Test
@@ -65,6 +65,16 @@ class AppointmentTest {
 		assertNotNull(appointment);
 		assertEquals("Doctor", appointment.getCategory().getName());
 	}
+	@Test
+	void test_OTM_appointment_location() {
+		assertNotNull(appointment);
+		assertEquals("Denver", appointment.getLocation().getCity());
+	}
 	
+	@Test
+	void test_OTM_appointment_reminders() {
+		assertNotNull(appointment);
+		assertEquals("Cardiologist", appointment.getElderAppointments());
+	}
 }
 

@@ -65,6 +65,14 @@ public class User {
 	@OneToMany(mappedBy = "userAppointments")
 	private List<Appointment> appointments;
 	
+	@OneToMany(mappedBy = "userComment")
+	private List<Comment> comments;
+	
+	
+	@OneToMany(mappedBy = "userContact")
+	private List<EmergencyContact> contactsFromUser;
+	
+	
 	public User() {
 		super();
 	}
@@ -75,6 +83,14 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+ 
+	public List<EmergencyContact> getContacts() {
+		return contactsFromUser;
+	}
+
+	public void setContacts(List<EmergencyContact> contact) {
+		this.contactsFromUser = contact;
 	}
 
 	public String getUsername() {
@@ -109,6 +125,14 @@ public class User {
 		this.password = password;
 	}
 
+	public List<EmergencyContact> getContactsFromUser() {
+		return contactsFromUser;
+	}
+
+	public void setContactsFromUser(List<EmergencyContact> contactsFromUser) {
+		this.contactsFromUser = contactsFromUser;
+	}
+
 	public List<Appointment> getAppointments() {
 		return appointments;
 	}
@@ -123,6 +147,14 @@ public class User {
 
 	public void setNotes(List<Note> notes) {
 		this.notes = notes;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public boolean isEnabled() {

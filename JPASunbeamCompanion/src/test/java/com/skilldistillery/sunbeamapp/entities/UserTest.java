@@ -70,6 +70,10 @@ class UserTest {
 		assertTrue(user.getAppointments().size() >= 0);
 	}
 	
-
+	@Test
+	void test_OTM_comment_user() {
+		assertNotNull(user);
+		assertTrue(user.getComments().size() >= 0);
+	}
 		
 }

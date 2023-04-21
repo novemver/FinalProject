@@ -45,4 +45,17 @@ class CommentTest {
 		assertEquals("Hey everyone, just a reminder that the family reunion is coming up and we would like to have Bert there! Let's see if we can schedule something on here.", comment.getDescription());
 		assertNotNull(comment.getCreateDate());
 	}
+	
+	@Test
+	void test_MTO_comment_user() {
+		assertNotNull(comment);
+		assertEquals("Sebastian", comment.getUserComment().getFirstName());
+	}
+	
+	@Test
+	void test_MTO_comment_elder() {
+		assertNotNull(comment);
+		assertEquals("Bert", comment.getElderComment().getFirstName());
+	}
+	
 }

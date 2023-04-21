@@ -1,6 +1,7 @@
 package com.skilldistillery.sunbeamapp.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -42,18 +43,25 @@ public class Appointment {
 	private User userAppointments;
 
 	@ManyToOne
-	@JoinColumn(name = "client_id")
-	private Client clientsAppointments;
+	@JoinColumn(name = "elder_id")
+	private Elder elderAppointments;
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
 	///// Methods /////
 
+	@ManyToOne
+	@JoinColumn(name = "location_id")
+	private Location location;
+	
+	@OneToMany(mappedBy = "apptReminder")
+	private List<Reminder> reminders;
+	
 	public Appointment() {
 		super();
 	}
-
+ 
 	public int getId() {
 		return id;
 	}
@@ -78,6 +86,22 @@ public class Appointment {
 		this.description = description;
 	}
 
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public List<Reminder> getReminders() {
+		return reminders;
+	}
+
+	public void setReminders(List<Reminder> reminders) {
+		this.reminders = reminders;
+	}
+
 	public LocalDate getApptDate() {
 		return apptDate;
 	}
@@ -94,12 +118,13 @@ public class Appointment {
 		this.apptTime = apptTime;
 	}
 
-	public Client getClientsAppointments() {
-		return clientsAppointments;
+
+	public Elder getElderAppointments() {
+		return elderAppointments;
 	}
 
-	public void setClientsAppointments(Client clientsAppointments) {
-		this.clientsAppointments = clientsAppointments;
+	public void setElderAppointments(Elder elderAppointments) {
+		this.elderAppointments = elderAppointments;
 	}
 
 	public String getTitle() {
@@ -142,11 +167,14 @@ public class Appointment {
 		this.enabled = enabled;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Appointment [id=" + id + ", description=" + description + ", apptDate=" + apptDate + ", apptTime="
 				+ apptTime + ", title=" + title + ", createDate=" + createDate + ", updateDate=" + updateDate
-				+ ", enabled=" + enabled + "]";
+				+ ", enabled=" + enabled + ", userAppointments=" + userAppointments + ", elderAppointments="
+				+ elderAppointments + ", category=" + category + ", location=" + location + ", reminders=" + reminders
+				+ "]";
 	}
 
 	@Override

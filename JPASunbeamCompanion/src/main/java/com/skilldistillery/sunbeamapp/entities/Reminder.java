@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Reminder {
@@ -25,6 +27,10 @@ public class Reminder {
 	private String title;
 	
 	private String description;
+	
+	@ManyToOne
+	@JoinColumn(name = "appointment_id")
+	private Appointment apptReminder;
 	
 	// TODO decide if enabled needed here
 	
@@ -56,6 +62,14 @@ public class Reminder {
 
 	public void setReminderTime(LocalDate reminderTime) {
 		this.reminderTime = reminderTime;
+	}
+
+	public Appointment getApptReminder() {
+		return apptReminder;
+	}
+
+	public void setApptReminder(Appointment apptReminder) {
+		this.apptReminder = apptReminder;
 	}
 
 	public String getTitle() {

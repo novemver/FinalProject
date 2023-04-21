@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `elder` (
   `height` VARCHAR(45) NULL,
   `birthdate` DATE NULL,
   `access_code` VARCHAR(10) NULL,
-  `client_overview` TEXT NULL,
+  `elder_overview` TEXT NULL,
   `gender` VARCHAR(45) NULL,
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
@@ -237,35 +237,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `emergency_contact`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `emergency_contact` ;
-
-CREATE TABLE IF NOT EXISTS `emergency_contact` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `phone_number` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `elder_id` INT NOT NULL,
-  `user_id` INT NULL,
-  PRIMARY KEY (`id`, `elder_id`),
-  INDEX `fk_emergency_contact_client1_idx` (`elder_id` ASC),
-  INDEX `fk_emergency_contact_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_emergency_contact_client1`
-    FOREIGN KEY (`elder_id`)
-    REFERENCES `elder` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_emergency_contact_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `family_member`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `family_member` ;
@@ -275,6 +246,7 @@ CREATE TABLE IF NOT EXISTS `family_member` (
   `user_id` INT NOT NULL,
   `relationship` VARCHAR(45) NULL,
   `enabled` TINYINT NULL,
+  `is_emergency_contact` TINYINT NULL,
   PRIMARY KEY (`elder_id`, `user_id`),
   INDEX `fk_client_has_user_user1_idx` (`user_id` ASC),
   INDEX `fk_client_has_user_client1_idx` (`elder_id` ASC),
@@ -395,9 +367,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'ADMIN', '@distillery.edu', '5553294455', 'SD', 'Dee', 'https://static.wikia.nocookie.net/telletubbies/images/5/5d/Pic-meet-char-po.jpg/revision/latest?cb=20200317005848', NULL, '2023-03-17', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (2, 'kstout', '$2a$10$leijdDDbJ2tNn4G1T2Cbo.yIztaaPEYGWS5UX2Cm9SN7VcfxugduO', 1, 'caretaker', 'kstout@distillery.edu', '5555555555', 'Kira', 'Stout', 'https://static.wikia.nocookie.net/telletubbies/images/e/e5/Tinky_Winky.jpg/revision/latest?cb=20200317005814', NULL, '2023-03-18', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (3, 'user', '$2a$10$qCiN.i4V2GslC.XHGUTMg.CIQAxFAw2iJDL0UZ2tRsuum5b1Mt.9S', 1, 'caretaker', 'stello@distillery.edu', '5555555556', 'Sebastian', 'Tello', 'https://static.wikia.nocookie.net/telletubbies/images/d/d0/Kids_tele_lala.jpg/revision/latest/scale-to-width-down/200?cb=20120225003505', NULL, '2023-03-18', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (4, 'family', '$2a$10$.8sk8P7Bt8xnEjqVIjT2F.RTZ6ZBy9uJ7IFmGymK5sjCQalNqv7eO', 1, 'family', 'dsurina@distillery.edu', '5555555557', 'Dominic', 'Surina', 'https://static.wikia.nocookie.net/telletubbies/images/3/35/Url.jpg/revision/latest/scale-to-width-down/200?cb=20200413020256', NULL, '2023-03-18', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (2, 'kstout', '$2a$10$leijdDDbJ2tNn4G1T2Cbo.yIztaaPEYGWS5UX2Cm9SN7VcfxugduO', 1, 'user', 'kstout@distillery.edu', '5555555555', 'Kira', 'Stout', 'https://static.wikia.nocookie.net/telletubbies/images/e/e5/Tinky_Winky.jpg/revision/latest?cb=20200317005814', NULL, '2023-03-18', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (3, 'user', '$2a$10$qCiN.i4V2GslC.XHGUTMg.CIQAxFAw2iJDL0UZ2tRsuum5b1Mt.9S', 1, 'user', 'stello@distillery.edu', '5555555556', 'Sebastian', 'Tello', 'https://static.wikia.nocookie.net/telletubbies/images/d/d0/Kids_tele_lala.jpg/revision/latest/scale-to-width-down/200?cb=20120225003505', NULL, '2023-03-18', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (4, 'family', '$2a$10$.8sk8P7Bt8xnEjqVIjT2F.RTZ6ZBy9uJ7IFmGymK5sjCQalNqv7eO', 1, 'user', 'dsurina@distillery.edu', '5555555557', 'Dominic', 'Surina', 'https://static.wikia.nocookie.net/telletubbies/images/3/35/Url.jpg/revision/latest/scale-to-width-down/200?cb=20200413020256', NULL, '2023-03-18', NULL);
 
 COMMIT;
 
@@ -417,7 +389,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `client_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`) VALUES (1, 'Bert', 'Johson', '180', '6', '1945-08-05', NULL, 'WW2 Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`) VALUES (1, 'Bert', 'Johson', '180', '6', '1945-08-05', NULL, 'WW2 Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL);
 
 COMMIT;
 
@@ -473,22 +445,12 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `emergency_contact`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `sunbeamdb`;
-INSERT INTO `emergency_contact` (`id`, `first_name`, `last_name`, `phone_number`, `email`, `elder_id`, `user_id`) VALUES (1, 'Shirley', 'Jacobs', '5555555510', NULL, 1, NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `family_member`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`) VALUES (1, 3, 'Grandson', 1);
-INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`) VALUES (1, 4, 'Nephew', 1);
+INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (1, 3, 'Grandson', 1, NULL);
+INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (1, 4, 'Nephew', 1, NULL);
 
 COMMIT;
 
