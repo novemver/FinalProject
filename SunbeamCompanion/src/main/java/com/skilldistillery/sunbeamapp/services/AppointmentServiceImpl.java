@@ -20,27 +20,39 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public Appointment getApptById(Appointment appt) {
-		// TODO Auto-generated method stub
-		return null;
+	public Appointment getApptById(int apptId) {
+		return apptRepo.findById(apptId);
 	}
 
 	@Override
 	public Appointment create(Appointment appt) {
-		// TODO Auto-generated method stub
-		return null;
+		return apptRepo.saveAndFlush(appt);
 	}
 
 	@Override
 	public Appointment update(int apptId, Appointment appt) {
-		// TODO Auto-generated method stub
+		Appointment existingAppt = apptRepo.findById(apptId);
+		if(existingAppt != null) {
+			existingAppt.setDescription(appt.getDescription());
+			existingAppt.setApptDate(appt.getApptDate());
+			existingAppt.setApptTime(appt.getApptTime());
+			existingAppt.setTitle(appt.getTitle());
+			existingAppt.setEnabled(appt.isEnabled());
+			existingAppt.setLocation(appt.getLocation());
+			return apptRepo.saveAndFlush(existingAppt);
+		}
 		return null;
 	}
 
 	@Override
 	public boolean delete(int apptId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Appointment apptToDelete = apptRepo.findById(apptId);
+		if(apptToDelete != null) {
+			apptRepo.delete(apptToDelete);
+			deleted = true;
+		}
+		return deleted;
 	}
 
 	
