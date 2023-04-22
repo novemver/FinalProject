@@ -21,7 +21,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 //	ADMIN 
 	@Override
 	public Appointment getApptByElderId(int elderId) {
-		return apptRepo.findByElderId(elderId);
+		return apptRepo.findByElderAppointments(elderId);
 	}
 
 	@Override
@@ -42,9 +42,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 			existingAppt.setApptDate(appt.getApptDate());
 			existingAppt.setApptTime(appt.getApptTime());
 			existingAppt.setTitle(appt.getTitle());
-			existingAppt.setEnabled(appt.isEnabled());
 			existingAppt.setLocation(appt.getLocation());
-			existingAppt.setEnabled(appt.isEnabled());
 			return apptRepo.saveAndFlush(existingAppt);
 		}
 		return null;
