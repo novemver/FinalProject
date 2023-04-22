@@ -34,7 +34,7 @@ public class AppointmentController {
 		return apptService.findAll();
 	}
 	
-	@GetMapping("elders/{elderId}/appointments/{apptId}")
+	@GetMapping("appointments/{apptId}")
 	public Appointment findApptById(@PathVariable Integer apptId) {
 		return apptService.getApptById(apptId);
 	}
