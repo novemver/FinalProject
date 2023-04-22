@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Reminder {
 
@@ -29,19 +31,21 @@ public class Reminder {
 	
 	private String title;
 	
+	
 	private String description;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "appointment_id")
 	private Appointment apptReminder;
 	
+	@JsonIgnore
 	@ManyToMany
 	  @JoinTable(name="user_has_reminder",
 	    joinColumns=@JoinColumn(name="user_id"),
 	    inverseJoinColumns=@JoinColumn(name="reminder_id")
 	  )
 	  private List<User> userReminders;
-	
 	
 	
 	// TODO decide if enabled needed here
