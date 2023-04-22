@@ -43,9 +43,9 @@ public class Appointment {
 	@Column(name = "update_date")
 	private LocalDate updateDate;
 
-	private boolean enabled;
+	
 
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User userAppointments;
@@ -171,20 +171,14 @@ public class Appointment {
 		this.updateDate = updateDate;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+	
 
 
 	@Override
 	public String toString() {
 		return "Appointment [id=" + id + ", description=" + description + ", apptDate=" + apptDate + ", apptTime="
 				+ apptTime + ", title=" + title + ", createDate=" + createDate + ", updateDate=" + updateDate
-				+ ", enabled=" + enabled + ", userAppointments=" + userAppointments + ", elderAppointments="
+				+  " userAppointments=" + userAppointments + ", elderAppointments="
 				+ elderAppointments + ", category=" + category + ", location=" + location + ", reminders=" + reminders
 				+ "]";
 	}
