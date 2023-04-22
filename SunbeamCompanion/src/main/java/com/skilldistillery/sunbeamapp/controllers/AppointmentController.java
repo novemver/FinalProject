@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class AppointmentController {
 	}
 	
 	@GetMapping("appointments/{apptId}")
-	public Appointment findApptById(Integer apptId) {
+	public Appointment findApptById(@PathVariable Integer apptId) {
 		return apptService.getApptById(apptId);
 	}
 	
@@ -39,6 +40,7 @@ public class AppointmentController {
 			HttpServletRequest req) {
 		try {
 			appt = apptService.create(appt);
+			System.out.println("******************************"+ appt);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(appt.getId());

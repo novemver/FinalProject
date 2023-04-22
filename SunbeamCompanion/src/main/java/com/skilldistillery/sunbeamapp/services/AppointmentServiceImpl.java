@@ -18,6 +18,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public List<Appointment> findAll() {
 		return apptRepo.findAll();
 	}
+//	ADMIN 
+	@Override
+	public Appointment getApptByElderId(int elderId) {
+		return apptRepo.findByElderId(elderId);
+	}
 
 	@Override
 	public Appointment getApptById(int apptId) {
@@ -55,6 +60,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		}
 		return deleted;
 	}
+
 
 	
 }
