@@ -58,6 +58,10 @@ public class AppointmentServiceImpl implements AppointmentService {
 		}
 		return deleted;
 	}
+	@Override
+	public Appointment getApptByUserId(int userId) {
+		return apptRepo.findByUserAppointments(userId);
+	}
 
 
 	
