@@ -1,9 +1,3 @@
-.tos-title{
-  font-weight: bold;
-  text-decoration: underline !important;
-  transition: 0.4s;
-}
-
-.tos-title:hover{
-  color: #4200FF !important;
+#sign-in-btn{
+  background-color: #8459FF;
 }
