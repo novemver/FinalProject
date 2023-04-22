@@ -32,5 +32,7 @@ public class AuthoServiceImpl implements AuthService {
 
 		return userRepo.findByUsername(username);
 	}
+	
+	
 
 }
