@@ -70,16 +70,25 @@ public class ElderServiceImpl implements ElderService {
 //		return elderToBeArchived.isEnabled();
 //	}
 //
-//	@Override
-//	public boolean archiveElder(int userId) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	@Override
-//	public void unarchiveElder(int userId) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	@Override
+	public boolean archiveElder(int elderId) {
+		Elder elderToBeArchived = elderRepo.findById(elderId);
+		if (elderToBeArchived != null) {
+			elderToBeArchived.setEnabled(false);
+			elderRepo.saveAndFlush(elderToBeArchived);
+		}
+		return elderToBeArchived.isEnabled();
+		
+	}
+
+	@Override
+	public void unarchiveElder(int elderId) {
+		boolean unarchived = true;
+		Elder elderToBeArchived = elderRepo.findById(elderId);
+		if (elderToBeArchived != null) {
+			elderToBeArchived.setEnabled(unarchived);
+		}
+		
+	}
 
 }

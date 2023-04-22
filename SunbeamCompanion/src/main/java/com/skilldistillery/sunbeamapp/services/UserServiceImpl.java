@@ -79,12 +79,15 @@ public class UserServiceImpl implements UserService {
 	}
 //	archive user - enabled
 	@Override
-	public void unarchiveUser(int userId) {
+	public boolean unarchiveUser(int userId) {
 		boolean unarchived = true;
-		User userToBeArchived = userRepo.findById(userId);
-		if (userToBeArchived != null) {
-			userToBeArchived.setEnabled(unarchived);
+		User userToUnArchived = userRepo.findById(userId);
+		if (userToUnArchived != null) {
+			userToUnArchived.setEnabled(unarchived);
+			userRepo.saveAndFlush(userToUnArchived);
 		}
+		return userToUnArchived.isEnabled();
+	
 	}
 
 //	
