@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.sunbeamapp.entities.Appointment;
 import com.skilldistillery.sunbeamapp.services.AppointmentService;
+import com.skilldistillery.sunbeamapp.services.ElderService;
 
 @RestController
 @RequestMapping("api")
@@ -25,12 +26,15 @@ public class AppointmentController {
 	@Autowired
 	private AppointmentService apptService;
 
+	@Autowired
+	private ElderService elderService;
+	
 	@GetMapping("appointments")
 	public List<Appointment> getListOfAppointments(){
 		return apptService.findAll();
 	}
 	
-	@GetMapping("appointments/{apptId}")
+	@GetMapping("elders/{elderId}/appointments/{apptId}")
 	public Appointment findApptById(@PathVariable Integer apptId) {
 		return apptService.getApptById(apptId);
 	}
