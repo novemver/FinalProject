@@ -16,12 +16,14 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Appointment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private String description;
 
@@ -41,25 +43,30 @@ public class Appointment {
 	@Column(name = "update_date")
 	private LocalDate updateDate;
 
-	private boolean enabled;
+	
+
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User userAppointments;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "elder_id")
 	private Elder elderAppointments;
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
 	///// Methods /////
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "apptReminder")
 	private List<Reminder> reminders;
 	
@@ -67,11 +74,11 @@ public class Appointment {
 		super();
 	}
  
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -164,20 +171,14 @@ public class Appointment {
 		this.updateDate = updateDate;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+	
 
 
 	@Override
 	public String toString() {
 		return "Appointment [id=" + id + ", description=" + description + ", apptDate=" + apptDate + ", apptTime="
 				+ apptTime + ", title=" + title + ", createDate=" + createDate + ", updateDate=" + updateDate
-				+ ", enabled=" + enabled + ", userAppointments=" + userAppointments + ", elderAppointments="
+				+  " userAppointments=" + userAppointments + ", elderAppointments="
 				+ elderAppointments + ", category=" + category + ", location=" + location + ", reminders=" + reminders
 				+ "]";
 	}
