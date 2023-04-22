@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +41,7 @@ public class AppointmentController {
 		return apptService.getApptById(apptId);
 	}
 	
-	@PostMapping("appointments")
+	@PostMapping("elder/{elderId}/appointments")
 	public Appointment addAppointment(@RequestBody Appointment appt, HttpServletResponse res,
 			HttpServletRequest req) {
 		try {
@@ -57,4 +59,37 @@ public class AppointmentController {
 		}
 		return appt;
 	}
+	@PutMapping("appointments/{apptId}")
+	public Appointment updateAppt(@PathVariable Integer apptId,
+			@RequestBody Appointment appt, HttpServletResponse res) {
+		try {
+			appt = apptService.update(apptId, appt);
+			if (appt == null) {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			appt = null;
+		}
+		return appt;
+	
+	}
+	
+	@DeleteMapping("elders/{elderId}/apointments/{apptId}")
+	public void deleteKibble(@PathVariable Integer apptId, HttpServletResponse res) {
+		try { 
+			if(apptService.delete(apptId)) {
+				res.setStatus(204);
+			} else {
+				res.setStatus(404);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		
+	}
+
 }
