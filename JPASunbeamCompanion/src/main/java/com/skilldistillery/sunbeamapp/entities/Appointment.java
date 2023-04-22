@@ -58,7 +58,6 @@ public class Appointment {
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
-	///// Methods /////
 
 	@JsonIgnore
 	@ManyToOne
@@ -68,6 +67,8 @@ public class Appointment {
 	@JsonIgnore
 	@OneToMany(mappedBy = "apptReminder")
 	private List<Reminder> reminders;
+	///// Methods /////
+
 	
 	public Appointment() {
 		super();

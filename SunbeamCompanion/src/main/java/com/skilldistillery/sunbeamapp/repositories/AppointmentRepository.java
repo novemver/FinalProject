@@ -10,5 +10,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	
 	public Appointment findById(int apptId);
 	public Appointment findByElderAppointments(int elderId);
-	
+	public Appointment findByUserAppointments(int userId);
 }
