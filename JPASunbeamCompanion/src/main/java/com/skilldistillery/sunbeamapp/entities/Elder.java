@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Elder {
 
@@ -43,7 +45,7 @@ public class Elder {
 
 	private String gender;
 
-	@CreationTimestamp
+	@CreationTimestamp 
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
 
@@ -57,27 +59,34 @@ public class Elder {
 	@Column(name = "biography")
 	private String elderBio;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "elderNote")
 	private List<Note> elderNotes;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "elderAppointments")
 	private List<Appointment> appointments;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "elder")
 	private List<Comment> comments;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "elder")
 	private List<FamilyMember> familyMembers;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "medicatedElder")
 	private List<Medication> medications;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="userElders")
 	private List<User> elderCaretakers;
 	
 
 	///// Methods /////
 
+	@JsonIgnore
 	public List<Medication> getMedications() {
 		return medications;
 	}
