@@ -109,7 +109,6 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `category_id` INT NULL,
   `create_date` DATETIME NULL,
   `update_date` DATETIME NULL,
-  `enabled` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_appointment_user_idx` (`user_id` ASC),
   INDEX `fk_appointment_location1_idx` (`location_id` ASC),
@@ -150,7 +149,6 @@ CREATE TABLE IF NOT EXISTS `reminder` (
   `title` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
   `appointment_id` INT NOT NULL,
-  `enabled` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_reminder_appointment1_idx` (`appointment_id` ASC),
   CONSTRAINT `fk_reminder_appointment1`
@@ -168,7 +166,7 @@ DROP TABLE IF EXISTS `medication` ;
 
 CREATE TABLE IF NOT EXISTS `medication` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `medication` VARCHAR(200) NULL,
+  `medication_name` VARCHAR(200) NULL,
   `health_condition` VARCHAR(50) NULL,
   `description` VARCHAR(500) NULL,
   `elder_id` INT NOT NULL,
@@ -410,7 +408,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`, `enabled`) VALUES (1, 'Cardiologist appt. with Dr.Rob', '2023-03-23', '1700', 2, 'Get Bert to Cardiologist', 1, 1, 1, '2023-03-17', NULL, 1);
+INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (1, 'Cardiologist appt. with Dr.Rob', '2023-03-23', '1700', 2, 'Get Bert to Cardiologist', 1, 1, 1, '2023-03-17', NULL);
 
 COMMIT;
 
@@ -420,7 +418,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`, `enabled`) VALUES (1, '2023-03-23', '1600', 'Cardiologist', NULL, 1, NULL);
+INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`) VALUES (1, '2023-03-23', '1600', 'Cardiologist', NULL, 1);
 
 COMMIT;
 
@@ -430,7 +428,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `medication` (`id`, `medication`, `health_condition`, `description`, `elder_id`, `dose`, `frequency`) VALUES (1, 'Benazepril (Lotensin)', 'Heart murmurs', 'He has had a few heart attacks and is on a diet regmine for heart health', 1, '50mg', '2 times a day');
+INSERT INTO `medication` (`id`, `medication_name`, `health_condition`, `description`, `elder_id`, `dose`, `frequency`) VALUES (1, 'Benazepril (Lotensin)', 'Heart murmurs', 'He has had a few heart attacks and is on a diet regmine for heart health', 1, '50mg', '2 times a day');
 
 COMMIT;
 
