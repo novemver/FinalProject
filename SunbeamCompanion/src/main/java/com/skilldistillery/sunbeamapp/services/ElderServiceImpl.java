@@ -65,16 +65,7 @@ public class ElderServiceImpl implements ElderService {
 		return null;
 	}
 
-//	@Override
-//	public  adminUpdateElder(int elderId, Elder elder) {
-//		Elder elderToBeArchived = elderRepo.findById(elderId);
-////		if (elderToBeArchived != null) {
-//			elderToBeArchived.setEnabled(false);
-//			elderRepo.saveAndFlush(elderToBeArchived);
-//		}
-//		return elderToBeArchived.isEnabled();
-//	}
-//
+
 	@Override
 	public boolean archiveElder(int elderId) {
 		Elder elderToBeArchived = elderRepo.findById(elderId);
@@ -98,5 +89,5 @@ public class ElderServiceImpl implements ElderService {
 		
 	}
 
-
+ 
 }

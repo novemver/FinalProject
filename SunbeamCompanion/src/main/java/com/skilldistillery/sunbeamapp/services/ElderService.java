@@ -16,8 +16,6 @@ public interface ElderService {
 
 	public Elder updateElder(int elderId, Elder elder);
 
-//	public Elder adminUpdateElder(int elderId, Elder elder);
-//
 	public boolean archiveElder(int elderId);
 
 	public boolean unarchiveElder(int elderId);
