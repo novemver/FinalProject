@@ -50,7 +50,6 @@ public class Appointment {
 	@JoinColumn(name = "user_id")
 	private User userAppointments;
 
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "elder_id")
 	private Elder elderAppointments;
