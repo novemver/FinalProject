@@ -34,7 +34,7 @@ public class UserController {
 	}
 	
 	@GetMapping("users/{userId}")
-	public User findUserById(@PathVariable int userId, HttpServletResponse res ) {
+	public User findUserById(@PathVariable Integer userId, HttpServletResponse res ) {
 		return userService.getUserById(userId);
 	}
 //	LOGGED IN USER 

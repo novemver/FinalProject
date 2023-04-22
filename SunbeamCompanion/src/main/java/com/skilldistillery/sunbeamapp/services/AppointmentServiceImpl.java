@@ -39,6 +39,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 			existingAppt.setTitle(appt.getTitle());
 			existingAppt.setEnabled(appt.isEnabled());
 			existingAppt.setLocation(appt.getLocation());
+			existingAppt.setEnabled(appt.isEnabled());
 			return apptRepo.saveAndFlush(existingAppt);
 		}
 		return null;
