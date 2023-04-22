@@ -12,12 +12,12 @@ public interface ElderService {
 
 	public Elder getByElderName(String Name);
 
+	public Elder addElder(Elder elder);
+
 	public Elder updateElder(int elderId, Elder elder);
 
-//	public Elder adminUpdateElder(int elderId, Elder elder);
-//
 	public boolean archiveElder(int elderId);
 
-	public void unarchiveElder(int elderId);
+	public boolean unarchiveElder(int elderId);
 
 }
