@@ -32,11 +32,16 @@ public class ElderServiceImpl implements ElderService {
 	@Override
 	public Elder getByElderName(String name) {
 		return elderRepo.findByFirstName(name);
-		
-		 
-	
 	}
 
+	
+	
+	@Override
+	public Elder addElder(Elder elder) {
+		// TODO Auto-generated method stub
+		return elderRepo.saveAndFlush(elder);
+	}
+	
 	@Override
 	public Elder updateElder(int elderId, Elder elder) {
 		Elder existingElder = elderRepo.findById(elderId);
@@ -82,13 +87,16 @@ public class ElderServiceImpl implements ElderService {
 	}
 
 	@Override
-	public void unarchiveElder(int elderId) {
+	public boolean unarchiveElder(int elderId) {
 		boolean unarchived = true;
-		Elder elderToBeArchived = elderRepo.findById(elderId);
-		if (elderToBeArchived != null) {
-			elderToBeArchived.setEnabled(unarchived);
+		Elder elderUnArchived = elderRepo.findById(elderId);
+		if (elderUnArchived != null) {
+			elderUnArchived.setEnabled(unarchived);
+			elderRepo.saveAndFlush(elderUnArchived);
 		}
+		return elderUnArchived.isEnabled();
 		
 	}
+
 
 }
