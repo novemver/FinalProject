@@ -17,7 +17,8 @@ public class Medication {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String medication;
+	@Column(name="medication_name")
+	private String medicationName;
 
 	@Column(name="health_condition")
 	private String healthCondition;
@@ -44,14 +45,6 @@ public class Medication {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getMedication() {
-		return medication;
-	}
-
-	public void setMedication(String medication) {
-		this.medication = medication;
 	}
 
 	public String getHealthCondition() {
@@ -94,10 +87,19 @@ public class Medication {
 		this.medicatedElder = medicatedElder;
 	}
 
+	public String getMedicationName() {
+		return medicationName;
+	}
+
+	public void setMedicationName(String medicationName) {
+		this.medicationName = medicationName;
+	}
+
 	@Override
 	public String toString() {
-		return "Medication [id=" + id + ", medication=" + medication + ", healthCondition=" + healthCondition
-				+ ", description=" + description + ", dose=" + dose + ", frequency=" + frequency + "]";
+		return "Medication [id=" + id + ", medicationName=" + medicationName + ", healthCondition=" + healthCondition
+				+ ", description=" + description + ", dose=" + dose + ", frequency=" + frequency + ", medicatedElder="
+				+ medicatedElder + "]";
 	}
 
 	@Override
