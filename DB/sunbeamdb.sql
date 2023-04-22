@@ -61,7 +61,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `elder` ;
 
 CREATE TABLE IF NOT EXISTS `elder` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `weight` VARCHAR(45) NULL,
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `title` VARCHAR(45) NULL,
   `location_id` INT NULL,
   `elder_id` INT NOT NULL,
-  `category_id` INT NOT NULL,
+  `category_id` INT NULL,
   `create_date` DATETIME NULL,
   `update_date` DATETIME NULL,
   `enabled` TINYINT NULL,

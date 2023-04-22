@@ -7,5 +7,6 @@ import com.skilldistillery.sunbeamapp.entities.Elder;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
 
-
+	
+	public Appointment findById(int apptId);
 }
