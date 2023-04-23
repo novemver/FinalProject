@@ -36,21 +36,21 @@ loggedInUser: User| null = null;
 
     //  });
 
-    this.loadUsers();
+    // this.loadUsers();
   }
   viewUserProfile(user:User) {
     this.router.navigate(['/user-profile', user.id]);
 
   }
-  loadUsers(){
-    this.userService.getUsers().subscribe({
-      next: (users:User[]) => {
-        this.users = users;
-      },
-      error: (nojoy) => {
-        console.log(nojoy);
-      }
-    });
+  // loadUsers(){
+  //   this.userService.getUsers().subscribe({
+  //     next: (users:User[]) => {
+  //       this.users = users;
+  //     },
+  //     error: (nojoy) => {
+  //       console.log(nojoy);
+  //     }
+  //   });
 
-  }
+  // }
 }

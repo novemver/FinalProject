@@ -18,6 +18,7 @@
                         type="text"
                         id="form3Example1c"
                         class="form-control"
+                        [(ngModel)]="newUser.username"
                       />
                       <label class="form-label" for="form3Example1c"
                         >Username</label
@@ -32,6 +33,7 @@
                         type="text"
                         id="form3Example1c"
                         class="form-control"
+                        [(ngModel)]="newUser.firstName"
                       />
                       <label class="form-label" for="form3Example1c"
                         >First Name</label
@@ -46,6 +48,7 @@
                         type="text"
                         id="form3Example1c"
                         class="form-control"
+                        [(ngModel)]="newUser.lastName"
                       />
                       <label class="form-label" for="form3Example1c"
                         >Last Name</label
@@ -60,6 +63,7 @@
                         type="email"
                         id="form3Example3c"
                         class="form-control"
+                        [(ngModel)]="newUser.email"
                       />
                       <label class="form-label" for="form3Example3c"
                         >Your Email</label
@@ -88,6 +92,7 @@
                         type="password"
                         id="form3Example4cd"
                         class="form-control"
+                        [(ngModel)]="newUser.password"
                       />
                       <label class="form-label" for="form3Example4cd"
                         >Repeat your password</label
@@ -176,7 +181,7 @@
                   </div>
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">
+                    <button (click)="register(newUser)" type="button" class="btn btn-primary btn-lg">
                       Register
                     </button>
                   </div>

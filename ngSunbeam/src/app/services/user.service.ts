@@ -26,15 +26,15 @@ export class UserService {
     return options;
   }
 
-  getUsers(): Observable<User[]> {
-    // return [...this.todos];
-    return this.http.get<User[]>(this.url + "api/users", this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('TodoService.index(): error retrieving Todos: ' + err)
-        );
-      })
-    );
-  }
+  // getUsers(): Observable<User[]> {
+
+  //   return this.http.get<User[]>(this.url + "api/users", this.getHttpOptions()).pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError(
+  //         () => new Error('TodoService.index(): error retrieving Todos: ' + err)
+  //       );
+  //     })
+  //   );
+  // }
 }
