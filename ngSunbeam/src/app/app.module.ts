@@ -30,6 +30,10 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+import { AboutComponent } from './components/about/about.component';
+import { FAQComponent } from './components/faq/faq.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { TosComponent } from './components/tos/tos.component';
 
 
 
@@ -42,6 +46,10 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
     ClientPageComponent,
     NavbarComponent,
     FooterComponent,
+    AboutComponent,
+    FAQComponent,
+    ContactComponent,
+    TosComponent,
 
   ],
   imports: [

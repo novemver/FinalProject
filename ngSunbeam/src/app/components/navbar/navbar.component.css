@@ -12,19 +12,22 @@ i {
 .navbar-logo{
 	padding: 15px;
 	color: #FFF;
+  transition: 0.3s;
 }
 
 .navbar-logo:hover{
-  border-radius: 0px 30px 30px 0px;
+  border-radius: 30px 30px 30px 30px;
   background: linear-gradient(
     45deg,
     hsla(39, 87%, 69%, 0.7),
-    hsla(256, 100%, 67%, 0.5) 100%
+    hsla(256, 100%, 67%, 0.5) 100%,
+    hsla(39, 87%, 69%, 0.7)
   );
 }
 .navbar-mainbg{
 	background-color: #8459FF;
 	padding: 0px;
+  margin-bottom: 60px;
 }
 #navbarSupportedContent{
 	overflow: hidden;
@@ -171,4 +174,5 @@ i {
 		bottom: -25px;
 		left: -25px;
 	}
+
 }
