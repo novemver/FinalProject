@@ -50,7 +50,6 @@ public class Appointment {
 	@JoinColumn(name = "user_id")
 	private User userAppointments;
 
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "elder_id")
 	private Elder elderAppointments;
@@ -59,7 +58,6 @@ public class Appointment {
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
-	///// Methods /////
 
 	@JsonIgnore
 	@ManyToOne
@@ -69,6 +67,8 @@ public class Appointment {
 	@JsonIgnore
 	@OneToMany(mappedBy = "apptReminder")
 	private List<Reminder> reminders;
+	///// Methods /////
+
 	
 	public Appointment() {
 		super();
