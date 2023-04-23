@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.sunbeamapp.entities.Elder;
+import com.skilldistillery.sunbeamapp.entities.Medication;
 import com.skilldistillery.sunbeamapp.services.ElderService;
 
 @RestController
@@ -36,6 +37,11 @@ public class ElderController {
 	@GetMapping("elders")
 	public List<Elder> getListOfElder() {
 		return elderService.findAllElders();
+	}
+
+	@GetMapping("elders/{elderId}/medication")
+	public List<Elder> getAllMedicationsForElder(@PathVariable int elderId) {
+		return elderService.getAllMedication(elderId);
 	}
 
 	@PostMapping("elders")

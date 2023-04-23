@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.sunbeamapp.entities.Elder;
 import com.skilldistillery.sunbeamapp.entities.Medication;
-import com.skilldistillery.sunbeamapp.entities.Reminder;
-import com.skilldistillery.sunbeamapp.entities.User;
 import com.skilldistillery.sunbeamapp.repositories.MedicationRepository;
 
 @Service
@@ -17,7 +16,7 @@ public class MedicationServiceImpl implements MedicationService {
 	private MedicationRepository medRepo;
 
 	@Override
-	public Medication getMedicaionById(int medId) {
+	public Medication getMedicationById(int medId) {
 		return medRepo.findById(medId);
 	}
 
@@ -25,10 +24,17 @@ public class MedicationServiceImpl implements MedicationService {
 	public Medication getByMedicationName(String medName) {
 		return medRepo.findByMedicationName(medName);
 	}
+	
+	
+	@Override
+	public Medication addMedication(Medication med) {
+	
+		return medRepo.saveAndFlush(med);
+	}
 
 	@Override
-	public Medication updateMedication(String medName, Medication medication) {
-		Medication existingMedication = medRepo.findByMedicationName(medName);
+	public Medication updateMedication(int medId, Medication medication) {
+		Medication existingMedication = medRepo.findById(medId);
 		if (existingMedication != null) {
 			existingMedication.setMedicationName(medication.getMedicationName());
 			existingMedication.setHealthCondition(medication.getMedicationName());
@@ -52,4 +58,12 @@ public class MedicationServiceImpl implements MedicationService {
 		return deleted;
 
 	}
+
+	@Override
+	public List<Medication> findMedicationsListByElder(Elder medicatedElder) {
+		// TODO Auto-generated method stub
+		return medRepo.findMedicationsByMedicatedElder(medicatedElder);
+	}
+
+
 }
