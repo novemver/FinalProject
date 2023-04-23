@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 		return userRepo.findById(userId);
 	}
 
-
+ 
 
 //	update user 
 	@Override
@@ -95,5 +95,6 @@ public class UserServiceImpl implements UserService {
 	public User getByUsername(String username) {
 		return userRepo.findByUsername(username);
 	}
+
 
 }
