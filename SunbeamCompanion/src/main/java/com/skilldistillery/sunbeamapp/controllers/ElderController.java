@@ -39,7 +39,7 @@ public class ElderController {
 		return elderService.findAllElders();
 	}
 
-	@GetMapping("elders/{elderId}/medication")
+	@GetMapping("elders/meds/{elderId}")
 	public List<Elder> getAllMedicationsForElder(@PathVariable int elderId) {
 		return elderService.getAllMedication(elderId);
 	}

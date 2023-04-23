@@ -35,12 +35,6 @@ public class ElderServiceImpl implements ElderService {
 		return elderRepo.findByFirstName(name);
 	}
 	
-	public List<Elder> getAllMedication(int elderId) {
-		return elderRepo.findMedicationsById(elderId);
-	}
-
-	
-	
 	@Override
 	public Elder addElder(Elder elder) {
 		// TODO Auto-generated method stub
@@ -92,6 +86,12 @@ public class ElderServiceImpl implements ElderService {
 		}
 		return elderUnArchived.isEnabled();
 		
+	}
+
+	@Override
+	public List<Elder> getAllMedication(int elderId) {
+		// TODO Auto-generated method stub
+		return elderRepo.findMedicationsByElderId(elderId);
 	}
 
  
