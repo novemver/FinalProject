@@ -88,7 +88,7 @@ public class Elder {
 
 	///// Methods /////
 
-	@JsonIgnore
+	
 	public List<Medication> getMedications() {
 		return medications;
 	}

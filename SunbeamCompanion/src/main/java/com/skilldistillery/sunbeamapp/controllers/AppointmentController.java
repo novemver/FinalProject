@@ -28,9 +28,6 @@ public class AppointmentController {
 	
 	@Autowired
 	private AppointmentService apptService;
-
-	@Autowired
-	private ElderService elderService;
 	
 	@GetMapping("appointments")
 	public List<Appointment> getListOfAppointments(){
