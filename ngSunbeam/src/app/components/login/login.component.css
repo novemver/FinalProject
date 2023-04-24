@@ -1,5 +1,19 @@
 #sign-in-btn{
   background-color: #8459FF;
+  animation: 0.5s;
+}
+
+#sign-in-btn:hover{
+  background-color: #9571f8;
+  --bs-btn-hover-border-color: #9571f8;
+
+}
+.btn-primary{
+  --bs-btn-border-color: #8459FF;
+  --bs-btn-hover-border-color: #8459FF;
+}
+.btn-primary:hover{
+  --bs-btn-border-color: #8459FF;
 }
 
 #element {

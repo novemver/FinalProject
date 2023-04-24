@@ -19,17 +19,15 @@ export class LoginComponent {
 
 
 
-  login(user: User) {
-    console.log(user);
-    this.auth.login(user.username, user.password).subscribe(
-      loggedIn => {
-        console.log('User logged in.');
+  login(loginUser: User){
+    this.auth.login(loginUser.username, loginUser.password).subscribe({
+      next: (loggedInUser) => {
         this.router.navigateByUrl('/home');
       },
-      fail => {
-        console.error('Login failed.');
-
+      error: (problem) => {
+        console.error('RegisterComponent.register(): Error logging in user:');
+        console.error(problem);
       }
-    )
+    });
   }
 }
