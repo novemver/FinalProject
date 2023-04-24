@@ -10,8 +10,8 @@ public interface AppointmentService {
 	public Appointment getApptById(int apptId);
 	public Appointment getApptByElderId(int elderId);
 	public Appointment getApptByUserId(int userId);
-	public Appointment create(Appointment appt);
-	public Appointment update(int apptId, Appointment appt);
-	public boolean delete(int apptId);
+	public Appointment create(String username, Appointment appt , int elderId);
+	public Appointment update(String username, int apptId, Appointment appt, int elderId);
+	public boolean delete(String username, int apptId);
 	
 }
