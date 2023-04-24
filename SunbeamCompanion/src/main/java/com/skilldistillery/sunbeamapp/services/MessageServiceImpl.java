@@ -59,6 +59,7 @@ public class MessageServiceImpl implements MessageService {
 		Message existingMessage = messageRepo.findById(messId);
 		if(loggedInUser != null && existingMessage != null) {
 			existingMessage.setDescription(message.getDescription());
+			return messageRepo.saveAndFlush(existingMessage);
 		}
 		return null;
 	}
