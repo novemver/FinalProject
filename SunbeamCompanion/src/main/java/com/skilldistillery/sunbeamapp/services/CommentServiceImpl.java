@@ -51,13 +51,14 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Comment update(String username, int comId, Comment comment) {
-		Comment existingComment = comRepo.findByIdAndUser_Username(username, comId);
-		if (existingComment != null) {
+		User loggedInUser = userRepo.findByUsername(username);
+		Comment existingComment = comRepo.findById(comId);
+		if (loggedInUser != null) {
 			existingComment.setTitle(comment.getTitle());
 			existingComment.setDescription(comment.getDescription());
 			return comRepo.saveAndFlush(existingComment);
 		}
-		return null;
+		return existingComment;
 	}
 
 //	@Override
