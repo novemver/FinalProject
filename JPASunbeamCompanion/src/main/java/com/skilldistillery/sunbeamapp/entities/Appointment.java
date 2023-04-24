@@ -178,8 +178,6 @@ public class Appointment {
 	public String toString() {
 		return "Appointment [id=" + id + ", description=" + description + ", apptDate=" + apptDate + ", apptTime="
 				+ apptTime + ", title=" + title + ", createDate=" + createDate + ", updateDate=" + updateDate
-				+  " userAppointments=" + userAppointments + ", elderAppointments="
-				+ elderAppointments + ", category=" + category + ", location=" + location + ", reminders=" + reminders
 				+ "]";
 	}
 
