@@ -9,9 +9,9 @@ import com.skilldistillery.sunbeamapp.entities.Medication;
 
 public interface MedicationRepository extends JpaRepository<Medication, Integer> {
 
-	Medication findByMedicationName(String medName);
+	Medication findByIdAndMedicatedElderId(int medId, int elderId);
 
 	Medication findById(int id);
 	
-//	List<Medication> findMedicationsByElderId(int elderId);
+	List<Medication> findByMedicatedElderId(int elderId); 
 }

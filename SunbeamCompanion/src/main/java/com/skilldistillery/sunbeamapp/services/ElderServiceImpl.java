@@ -88,11 +88,11 @@ public class ElderServiceImpl implements ElderService {
 		
 	}
 
-	@Override
-	public List<Elder> getAllMedication(int elderId) {
-		// TODO Auto-generated method stub
-		return elderRepo.findMedicationsByElderId(elderId);
-	}
+//	@Override
+//	public List<Elder> getAllMedication(int elderId) {
+//		// TODO Auto-generated method stub
+//		return elderRepo.findMedicationsByElderId(elderId);
+//	}
 
  
 }

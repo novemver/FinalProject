@@ -13,7 +13,7 @@ public interface ElderService {
 
 	public Elder getByElderName(String Name);
 	
-	public List<Elder> getAllMedication(int elderId);
+//	public List<Elder> getAllMedication(int elderId);
 
 	public Elder addElder(Elder elder);
 

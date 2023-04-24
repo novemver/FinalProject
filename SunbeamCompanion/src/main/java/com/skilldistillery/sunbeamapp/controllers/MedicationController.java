@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.sunbeamapp.entities.Elder;
 import com.skilldistillery.sunbeamapp.entities.Medication;
+import com.skilldistillery.sunbeamapp.entities.User;
 import com.skilldistillery.sunbeamapp.services.MedicationService;
+import com.skilldistillery.sunbeamapp.services.UserService;
 
 @RestController
 @RequestMapping("api")
@@ -27,21 +29,24 @@ public class MedicationController {
 	@Autowired
 	private MedicationService medService;
 
+	@Autowired
+	private UserService userService;
+
 	@GetMapping("meds/{medId}")
 	public Medication getByMedicationId(@PathVariable Integer medId) {
 		return medService.getMedicationById(medId);
 	}
 
-//	@GetMapping("meds/(medicatedElder)")
-//	public List<Medication> getEldersMeds(@PathVariable Integer elderId){
-//		return medService.findMedicationsByElderId(elderId);
-//	}
+	@GetMapping("meds/elder/{elderId}")
+	public List<Medication> getEldersMeds(@PathVariable Integer elderId){
+		return medService.findMedicationsByElderId(elderId);
+	}
 
 	@PostMapping("meds")
-	public Medication addMed(@RequestBody Medication med, HttpServletResponse res) {
+	public Medication addMed(@RequestBody Medication med, HttpServletResponse res, String username, Elder medicatedElder) {
 		Medication newMed = null;
 		try {
-			newMed = medService.addMedication(med);
+			newMed = medService.addMedication(username, med, medicatedElder);
 			res.setStatus(201); // successful creation
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +56,10 @@ public class MedicationController {
 	}
 
 	@PutMapping("meds/{medId}")
-	public Medication updateElder(@PathVariable int medId, @RequestBody Medication med, HttpServletResponse res) {
+	public Medication updateMed(@PathVariable int medId, @RequestBody Medication med, HttpServletResponse res, String username, Elder medicatedElder) {
 		Medication updatedMed = null;
 		try {
-			updatedMed = medService.updateMedication(medId, med);
+			updatedMed = medService.updateMedication(username, medId, med, medicatedElder);
 			if (med == null) {
 				res.setStatus(404);
 			}
@@ -67,10 +72,10 @@ public class MedicationController {
 	}
 	
 	@DeleteMapping("meds/{medId}")
-	public void destroy(HttpServletResponse res, @PathVariable int medId) {
+	public void destroy(HttpServletResponse res, @PathVariable int medId, String username) {
 
 		try {
-			if (medService.deleteMedication(medId)) {
+			if (medService.deleteMedication(username, medId)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
