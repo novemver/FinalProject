@@ -25,7 +25,7 @@ public class MedicationServiceImpl implements MedicationService {
 		return medRepo.findByMedicationName(medName);
 	}
 	
-	
+	 
 	@Override
 	public Medication addMedication(Medication med) {
 	
@@ -59,11 +59,7 @@ public class MedicationServiceImpl implements MedicationService {
 
 	}
 
-//	@Override
-//	public List<Medication> findMedicationsListByElder(Elder medicatedElder) {
-//		// TODO Auto-generated method stub
-//		return medRepo.findMedicationsByMedicatedElder(medicatedElder);
-//	}
+
 
 
 }

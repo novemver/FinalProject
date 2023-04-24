@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<p>Reg page</p>
-=======
 <section class="vh-60" style="background-color: #ffff">
   <div class="container h-100 mb-0">
     <div class="row d-flex justify-content-center align-items-center h-70 mb-0">
@@ -18,9 +15,11 @@
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <input
+                        name="username"
                         type="text"
                         id="form3Example1c"
                         class="form-control"
+                        [(ngModel)]="newUser.username"
                       />
                       <label class="form-label" for="form3Example1c"
                         >Username</label
@@ -32,9 +31,11 @@
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <input
+                        name="firstName"
                         type="text"
                         id="form3Example1c"
                         class="form-control"
+                        [(ngModel)]="newUser.firstName"
                       />
                       <label class="form-label" for="form3Example1c"
                         >First Name</label
@@ -46,9 +47,11 @@
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <input
+                        name="lastName"
                         type="text"
                         id="form3Example1c"
                         class="form-control"
+                        [(ngModel)]="newUser.lastName"
                       />
                       <label class="form-label" for="form3Example1c"
                         >Last Name</label
@@ -60,9 +63,11 @@
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <input
+                        name="email"
                         type="email"
                         id="form3Example3c"
                         class="form-control"
+                        [(ngModel)]="newUser.email"
                       />
                       <label class="form-label" for="form3Example3c"
                         >Your Email</label
@@ -74,6 +79,7 @@
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <input
+                        name="password"
                         type="password"
                         id="form3Example4c"
                         class="form-control"
@@ -88,9 +94,11 @@
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <input
+                        name="password"
                         type="password"
                         id="form3Example4cd"
                         class="form-control"
+                        [(ngModel)]="newUser.password"
                       />
                       <label class="form-label" for="form3Example4cd"
                         >Repeat your password</label
@@ -179,7 +187,7 @@
                   </div>
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">
+                    <button (click)="register()" type="submit" class="btn btn-primary btn-lg">
                       Register
                     </button>
                   </div>
@@ -201,4 +209,3 @@
     </div>
   </div>
 </section>
->>>>>>> 3d461224de6168c030df04f7e629ad8ebb6a8b4a
