@@ -59,11 +59,11 @@ public class MedicationServiceImpl implements MedicationService {
 
 	}
 
-	@Override
-	public List<Medication> findMedicationsListByElder(Elder medicatedElder) {
-		// TODO Auto-generated method stub
-		return medRepo.findMedicationsByMedicatedElder(medicatedElder);
-	}
+//	@Override
+//	public List<Medication> findMedicationsListByElder(Elder medicatedElder) {
+//		// TODO Auto-generated method stub
+//		return medRepo.findMedicationsByMedicatedElder(medicatedElder);
+//	}
 
 
 }

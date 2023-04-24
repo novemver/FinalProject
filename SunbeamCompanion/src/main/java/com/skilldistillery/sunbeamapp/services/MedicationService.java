@@ -14,7 +14,7 @@ public interface MedicationService {
 	
 	public Medication addMedication(Medication med);
 	
-	public List<Medication> findMedicationsListByElder(Elder medicatedElder);
+//	public List<Medication> findMedicationsListByElder(Elder medicatedElder);
 
 	public Medication updateMedication(int medId, Medication medication);
 
