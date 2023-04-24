@@ -75,9 +75,10 @@ public class AppointmentController {
 	}
 	
 	@DeleteMapping("elders/{elderId}/appointments/{apptId}")
-	public void deleteKibble(@PathVariable Integer apptId, HttpServletResponse res, Principal principal) {
+	public void deleteAppointment(@PathVariable Integer apptId, @PathVariable Integer elderId, 
+			HttpServletResponse res, Principal principal) {
 		try { 
-			if(apptService.delete(principal.getName(),apptId)) {
+			if(apptService.delete(principal.getName(), apptId, elderId)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
