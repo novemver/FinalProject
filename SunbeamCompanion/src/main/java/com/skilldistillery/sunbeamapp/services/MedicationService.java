@@ -13,8 +13,6 @@ public interface MedicationService {
 	public Medication getByMedicationName(String medName);
 	
 	public Medication addMedication(Medication med);
-	
-//	public List<Medication> findMedicationsByElderId(int elderId);
 
 	public Medication updateMedication(int medId, Medication medication);
 

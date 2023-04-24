@@ -32,10 +32,7 @@ public class MedicationController {
 		return medService.getMedicationById(medId);
 	}
 
-//	@GetMapping("meds/(medicatedElder)")
-//	public List<Medication> getEldersMeds(@PathVariable Integer elderId){
-//		return medService.findMedicationsByElderId(elderId);
-//	}
+
 
 	@PostMapping("meds")
 	public Medication addMed(@RequestBody Medication med, HttpServletResponse res) {
