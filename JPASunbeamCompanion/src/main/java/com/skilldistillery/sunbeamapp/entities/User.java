@@ -81,7 +81,7 @@ public class User {
 	private List<Appointment> appointments;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "userComment")
+	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
 	
 	@JsonIgnore
