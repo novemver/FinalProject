@@ -42,6 +42,7 @@ public class MedicationController {
 		return medService.findMedicationsByElderId(elderId);
 	}
 
+
 	@PostMapping("meds")
 	public Medication addMed(@RequestBody Medication med, HttpServletResponse res, String username, Elder medicatedElder) {
 		Medication newMed = null;

@@ -14,4 +14,5 @@ public interface MedicationRepository extends JpaRepository<Medication, Integer>
 	Medication findById(int id);
 	
 	List<Medication> findByMedicatedElderId(int elderId); 
+
 }

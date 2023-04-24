@@ -6,13 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sunbeamapp.entities.Appointment;
+import com.skilldistillery.sunbeamapp.entities.Elder;
+import com.skilldistillery.sunbeamapp.entities.FamilyMember;
+import com.skilldistillery.sunbeamapp.entities.User;
 import com.skilldistillery.sunbeamapp.repositories.AppointmentRepository;
+import com.skilldistillery.sunbeamapp.repositories.ElderRepository;
+import com.skilldistillery.sunbeamapp.repositories.FamilyMemberRepository;
+import com.skilldistillery.sunbeamapp.repositories.UserRepository;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 	
 	@Autowired
 	private AppointmentRepository apptRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
+	
+	@Autowired
+	private ElderRepository elderRepo;
+	@Autowired
+	private FamilyMemberRepository familyRepo;
+	
+	
 	
 	@Override
 	public List<Appointment> findAll() {
@@ -30,14 +46,28 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public Appointment create(Appointment appt) {
-		return apptRepo.saveAndFlush(appt);
+	public Appointment create(String username, Appointment appt, int elderId) {
+		User loggedInUser = userRepo.findByUsername(username);
+		Elder currentElder = elderRepo.findById(elderId);
+		if(loggedInUser != null && currentElder != null  ) {
+			appt.setUserAppointments(loggedInUser);
+			appt.setElderAppointments(currentElder);
+			return apptRepo.saveAndFlush(appt);
+		}
+		return null;
 	}
 
 	@Override
-	public Appointment update(int apptId, Appointment appt) {
+	public Appointment update(String username, int apptId, Appointment appt, int elderId) {
+		User loggedInUser = userRepo.findByUsername(username);
+		if(loggedInUser == null) {
+			return null;
+		}
+		FamilyMember family = familyRepo.findByElder_IdAndUser_Id(elderId, loggedInUser.getId());
+		Elder currentElder = elderRepo.findById(elderId);
 		Appointment existingAppt = apptRepo.findById(apptId);
-		if(existingAppt != null) {
+		if(existingAppt != null && loggedInUser!= null && currentElder != null && family != null
+			&& (currentElder.getElderCaretakers().contains(loggedInUser) || currentElder.getFamilyMembers().contains(family))) {
 			existingAppt.setDescription(appt.getDescription());
 			existingAppt.setApptDate(appt.getApptDate());
 			existingAppt.setApptTime(appt.getApptTime());
@@ -49,13 +79,16 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public boolean delete(int apptId) {
+	public boolean delete(String username, int apptId, int elderId) {
 		boolean deleted = false;
+		User loggedInUser = userRepo.findByUsername(username);
+		Elder currentElder = elderRepo.findById(elderId);
 		Appointment apptToDelete = apptRepo.findById(apptId);
-		if(apptToDelete != null) {
+		if(loggedInUser != null && currentElder != null &&  apptToDelete != null ) {
 			apptRepo.delete(apptToDelete);
 			deleted = true;
 		}
+		System.out.println(deleted);
 		return deleted;
 	}
 	@Override

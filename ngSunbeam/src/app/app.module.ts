@@ -34,6 +34,7 @@ import { AboutComponent } from './components/about/about.component';
 import { FAQComponent } from './components/faq/faq.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { TosComponent } from './components/tos/tos.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -50,6 +51,7 @@ import { TosComponent } from './components/tos/tos.component';
     FAQComponent,
     ContactComponent,
     TosComponent,
+    ProfileComponent,
 
   ],
   imports: [
