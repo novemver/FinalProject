@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,12 +44,12 @@ public class MessageController {
 		return messageService.findMessagesBetweenUsers(principal.getName(), recieverId);
 	}
 	
-	@PostMapping("users/messages/{receiverId}")
+	@PostMapping("users/{receiverId}/messages")
 	public Message addMessage(@RequestBody Message message , 
-			@PathVariable Integer recieverId, HttpServletResponse res,
+			@PathVariable Integer receiverId, HttpServletResponse res,
 			HttpServletRequest req, Principal principal) {
 		try {
-			message = messageService.createMessage(message, principal.getName(), recieverId);
+			message = messageService.createMessage(message, principal.getName(), receiverId);
 			System.out.println("******************************"+ message);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
@@ -61,4 +63,43 @@ public class MessageController {
 		}
 		return message;
 	}
+	
+	@PutMapping("users/{userId}/messages/{messageId}")
+	public Message updateMessage(@PathVariable Integer messageId, 
+			@PathVariable Integer userId,
+			@RequestBody Message message, 
+			HttpServletResponse res, Principal principal) {
+		Message messageToUpdate = null;
+		try {
+			messageToUpdate = messageService.updateMessage(
+					principal.getName(), messageId, message);
+			if (message == null) {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			message = null;
+		}
+		return message;
+	}
+	
+	@DeleteMapping("users/messages/{messageId}")
+	public void deleteMessage(@PathVariable Integer messageId, 
+			HttpServletResponse res, Principal principal) {
+		try { 
+			if(messageService.deleteMessage(principal.getName(), messageId)) {
+				res.setStatus(204);
+			} else {
+				res.setStatus(404);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		
+	}
+	
+	
 }
