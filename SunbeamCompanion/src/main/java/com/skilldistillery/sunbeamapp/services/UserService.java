@@ -13,5 +13,5 @@ public interface UserService {
 	public User updateUser(String username, User user);
 	public User adminUpdateUser(int userId, User user);
 	public boolean archiveUser(int userId);
-	public void unarchiveUser(int userId);
+	public boolean unarchiveUser(int userId);
 }

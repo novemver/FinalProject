@@ -58,6 +58,8 @@ public class Elder {
 
 	@Column(name = "biography")
 	private String elderBio;
+	
+	private boolean enabled;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "elderNote")
@@ -203,6 +205,14 @@ public class Elder {
 		this.elderBio = elderBio;
 	}
 
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public List<Note> getElderNotes() {
 		return elderNotes;
 	}
@@ -244,13 +254,16 @@ public class Elder {
 		this.elderCaretakers = elderCaretakers;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Elder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", weight=" + weight
 				+ ", height=" + height + ", birthdate=" + birthdate + ", accessCode=" + accessCode + ", elderOverview="
 				+ elderOverview + ", gender=" + gender + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
-				+ ", imageUrl=" + imageUrl + ", elderBio=" + elderBio + ", elderNotes=" + elderNotes + ", appointments="
-				+ appointments + "]";
+				+ ", imageUrl=" + imageUrl + ", elderBio=" + elderBio + ", enabled=" + enabled + ", elderNotes="
+				+ elderNotes + ", appointments=" + appointments + ", comments=" + comments + ", familyMembers="
+				+ familyMembers + ", medications=" + medications + ", elderCaretakers=" + elderCaretakers + "]";
 	}
 
 	@Override

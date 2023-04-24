@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sunbeamapp.entities.Elder;
+import com.skilldistillery.sunbeamapp.entities.Medication;
 import com.skilldistillery.sunbeamapp.entities.User;
 import com.skilldistillery.sunbeamapp.repositories.ElderRepository;
 
@@ -32,11 +33,14 @@ public class ElderServiceImpl implements ElderService {
 	@Override
 	public Elder getByElderName(String name) {
 		return elderRepo.findByFirstName(name);
-		
-		 
-	
 	}
-
+	
+	@Override
+	public Elder addElder(Elder elder) {
+		// TODO Auto-generated method stub
+		return elderRepo.saveAndFlush(elder);
+	}
+	
 	@Override
 	public Elder updateElder(int elderId, Elder elder) {
 		Elder existingElder = elderRepo.findById(elderId);
@@ -60,26 +64,35 @@ public class ElderServiceImpl implements ElderService {
 		return null;
 	}
 
+
+	@Override
+	public boolean archiveElder(int elderId) {
+		Elder elderToBeArchived = elderRepo.findById(elderId);
+		if (elderToBeArchived != null) {
+			elderToBeArchived.setEnabled(false);
+			elderRepo.saveAndFlush(elderToBeArchived);
+		}
+		return elderToBeArchived.isEnabled();
+		
+	}
+
+	@Override
+	public boolean unarchiveElder(int elderId) {
+		boolean unarchived = true;
+		Elder elderUnArchived = elderRepo.findById(elderId);
+		if (elderUnArchived != null) {
+			elderUnArchived.setEnabled(unarchived);
+			elderRepo.saveAndFlush(elderUnArchived);
+		}
+		return elderUnArchived.isEnabled();
+		
+	}
+
 //	@Override
-//	public  adminUpdateElder(int elderId, Elder elder) {
-//		Elder elderToBeArchived = elderRepo.findById(elderId);
-////		if (elderToBeArchived != null) {
-//			elderToBeArchived.setEnabled(false);
-//			elderRepo.saveAndFlush(elderToBeArchived);
-//		}
-//		return elderToBeArchived.isEnabled();
-//	}
-//
-//	@Override
-//	public boolean archiveElder(int userId) {
+//	public List<Elder> getAllMedication(int elderId) {
 //		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	@Override
-//	public void unarchiveElder(int userId) {
-//		// TODO Auto-generated method stub
-//		
+//		return elderRepo.findMedicationsByElderId(elderId);
 //	}
 
+ 
 }
