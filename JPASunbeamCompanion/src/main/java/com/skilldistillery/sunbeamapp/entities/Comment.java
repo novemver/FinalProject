@@ -34,7 +34,7 @@ public class Comment {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User userComment;
+	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name = "elder_id")
@@ -89,12 +89,12 @@ public class Comment {
 		this.description = description;
 	}
 
-	public User getUserComment() {
-		return userComment;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserComment(User userComment) {
-		this.userComment = userComment;
+	public void setUser(User userComment) {
+		this.user = userComment;
 	}
 
 	public LocalDate getCreateDate() {
