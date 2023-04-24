@@ -35,6 +35,8 @@ import { FAQComponent } from './components/faq/faq.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { TosComponent } from './components/tos/tos.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -75,6 +77,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
+    BrowserAnimationsModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
