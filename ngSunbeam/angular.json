@@ -96,7 +96,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": ["src/assets/navbarscript.js"]
+            "scripts": ["src/assets/navbarscript.js", "src/assets/landingpagescript.js"]
           }
         }
       }
