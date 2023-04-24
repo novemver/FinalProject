@@ -11,5 +11,6 @@ public interface ElderRepository extends JpaRepository<Elder, Integer> {
 
 	Elder findByFirstName(String fname);
 	Elder findById(int elderId);
-	List<Elder> findMedicationsById(int elderId);
+	List<Elder> findMedicationsByElderId(int elderId);
 }
+ 
