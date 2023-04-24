@@ -53,23 +53,17 @@ public class CommentController {
 	
 	@PostMapping("comment")
 	public Comment create(Principal principal, HttpServletRequest req, HttpServletResponse res, @RequestBody Comment comment) {
+		Comment newComment = null;
 		try {
-			comment = comService.create(principal.getName(), comment);
-			if (comment != null) {
-				res.setStatus(201);
-				StringBuffer url = req.getRequestURL();
-				res.setHeader("Location", url.append("/").append(comment.getId()).toString());
-			} else {
-				res.setStatus(400);
-			}
-
-			return comment;
+			newComment = comService.create(principal.getName(), comment);
+			res.setStatus(201); // successful creation
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
-			return comment;
 		}
-	}
+		return newComment;
+		}
+	 
 	
 	@PutMapping("comment/{comId}")
 	public Comment update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int comId, @RequestBody Comment comment) {
