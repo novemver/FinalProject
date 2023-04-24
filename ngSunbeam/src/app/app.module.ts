@@ -36,6 +36,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { TosComponent } from './components/tos/tos.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 
@@ -54,6 +55,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContactComponent,
     TosComponent,
     ProfileComponent,
+    LogoutComponent,
 
   ],
   imports: [
