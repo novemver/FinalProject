@@ -8,8 +8,8 @@ public interface MessageService {
 	
 	public Message findMessageById(int Id);
 	List<Message> findAll();
-	List<Message> findMessagesBetweenUsers();
-	public Message createMessage(Message message);
+	List<Message> findMessagesBetweenUsers(String username, int receiverId);
+	public Message createMessage(Message message, String username, int receiverId);
 	public Message updateMessage(Message message);
 	public Message deleteMessage(int Id);
 	
