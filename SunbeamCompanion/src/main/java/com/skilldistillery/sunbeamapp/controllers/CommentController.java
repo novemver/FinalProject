@@ -66,7 +66,7 @@ public class CommentController {
 	 
 	
 	@PutMapping("comment/{comId}")
-	public Comment update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int comId, @RequestBody Comment comment) {
+	public Comment update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable Integer comId, @RequestBody Comment comment) {
 		Comment updateToUpdate = null;
 		try {
 			updateToUpdate = comService.update(principal.getName(), comId, comment);
@@ -94,7 +94,7 @@ public class CommentController {
 			e.printStackTrace();
 			res.setStatus(400);
 		}
-
+ 
 	}
 	
 }
