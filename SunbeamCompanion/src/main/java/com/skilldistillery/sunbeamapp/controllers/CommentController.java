@@ -29,8 +29,16 @@ public class CommentController {
 	private CommentService comService;
 	
 	@GetMapping("comment/{comId}")
+	public Comment show( HttpServletRequest req, HttpServletResponse res, @PathVariable int comId) {
+		Comment seeComment = comService.findById(comId);
+		if (seeComment == null) {
+			res.setStatus(404);
+		}
+		return seeComment;
+	}
+	@GetMapping("comment/{comId}/username")
 	public Comment show(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable int comId) {
-		Comment seeComment = comService.findById(principal.getName(), comId);
+		Comment seeComment = comService.findByIdandUsername(principal.getName(), comId);
 		if (seeComment == null) {
 			res.setStatus(404);
 		}

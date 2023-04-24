@@ -31,7 +31,7 @@ public class MedicationServiceImpl implements MedicationService {
 
 	@Override
 	public Medication getByMedIdAndElderId(int medId, int elderId) {
-		return medRepo.findByIdAndMedicatedElderId(medId, elderId);
+		return medRepo.findById_AndMedicatedElderId(medId, elderId);
 	}
 	
 	@Override

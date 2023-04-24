@@ -7,7 +7,8 @@ import com.skilldistillery.sunbeamapp.entities.User;
 
 public interface CommentService {
 
-	  Comment findById(String username, int comId);
+	  Comment findById( int comId);
+	  Comment findByIdandUsername(String username, int comId);
 
 	    List<Comment> findAll(String username, int elderId);
 

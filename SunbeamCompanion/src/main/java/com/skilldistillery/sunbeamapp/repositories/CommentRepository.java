@@ -9,7 +9,8 @@ import com.skilldistillery.sunbeamapp.entities.User;
 
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
-	Comment findByIdAndUser_Username(int comId, String username);
+	Comment findByIdAndUser_Username(String username, int comId);
+	Comment findById(int comId);
 	
 //	Comment findCommentByUsername(String username);
 	
@@ -20,4 +21,6 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 	List<Comment> findByUser_UsernameAndElder_Id(String username, int elderId);
 
 //	Comment findByIdAndUserUsername(int comId, User username);
+	
+	
 }

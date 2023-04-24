@@ -27,9 +27,14 @@ public class CommentServiceImpl implements CommentService {
 //	        return comRepo.findById(comId).orElse(null);
 //	    }
 	@Override
-	public Comment findById(String username, int comId) {
-	    Comment comment = comRepo.findByIdAndUser_Username(comId, username);
-	    return comment;
+	public Comment findById( int comId) {
+	    Comment seeComment = comRepo.findById(comId);
+	    return seeComment;
+	}
+	@Override
+	public Comment findByIdandUsername(String username, int comId) {
+		Comment seeComment = comRepo.findByIdAndUser_Username(username, comId);
+		return seeComment;
 	}
 
 	    @Override
@@ -44,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
 
 	    @Override
 	    public Comment update(String username, int comId, Comment comment) {
-	        Comment existingComment = findById(username, comId);
+	        Comment existingComment = comRepo.findByIdAndUser_Username(username, comId);
 	    	if (existingComment != null) {
 				existingComment.setTitle(comment.getTitle());
 				existingComment.setDescription(comment.getDescription());
@@ -55,7 +60,7 @@ public class CommentServiceImpl implements CommentService {
 
 	    @Override
 	    public boolean delete(String username, int comId) {
-	        Comment existingComment = findById(username, comId);
+	        Comment existingComment = comRepo.findByIdAndUser_Username(username, comId);
 	        if (existingComment != null) {
 	        	comRepo.delete(existingComment);
 	            return true;
