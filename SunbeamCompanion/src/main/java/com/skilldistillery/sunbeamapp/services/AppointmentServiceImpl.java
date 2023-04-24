@@ -91,6 +91,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		System.out.println(deleted);
 		return deleted;
 	}
+	
 	@Override
 	public Appointment getApptByUserId(int userId) {
 		return apptRepo.findByUserAppointments(userId);
