@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sunbeamapp.entities.Elder;
 import com.skilldistillery.sunbeamapp.entities.Medication;
+import com.skilldistillery.sunbeamapp.entities.User;
+import com.skilldistillery.sunbeamapp.repositories.ElderRepository;
 import com.skilldistillery.sunbeamapp.repositories.MedicationRepository;
+import com.skilldistillery.sunbeamapp.repositories.UserRepository;
 
 @Service
 public class MedicationServiceImpl implements MedicationService {
@@ -15,27 +18,48 @@ public class MedicationServiceImpl implements MedicationService {
 	@Autowired
 	private MedicationRepository medRepo;
 
+	@Autowired
+	private UserRepository userRepo;
+
+	@Autowired
+	private ElderRepository elderRepo;
+
 	@Override
 	public Medication getMedicationById(int medId) {
 		return medRepo.findById(medId);
 	}
 
 	@Override
-	public Medication getByMedicationName(String medName) {
-		return medRepo.findByMedicationName(medName);
+	public Medication getByMedIdAndElderId(int medId, int elderId) {
+		return medRepo.findById_AndMedicatedElderId(medId, elderId);
+	}
+	
+	@Override
+	public List<Medication> findMedicationsByElderId(int elderId) {
+		Elder elder = elderRepo.findById(elderId);
+		return medRepo.findByMedicatedElderId(elder.getId());
 	}
 	
 	 
 	@Override
-	public Medication addMedication(Medication med) {
-	
+	public Medication addMedication(String username, Medication med, Elder medicatedElder) {
+	User loggedInUser = userRepo.findByUsername(username);
+	if(loggedInUser != null) {
+		med.setMedicatedElder(medicatedElder);
 		return medRepo.saveAndFlush(med);
+	}
+	return null;
 	}
 
 	@Override
-	public Medication updateMedication(int medId, Medication medication) {
+	public Medication updateMedication(String username, int medId, Medication medication, Elder medicatedElder) {
+		User loggedInUser = userRepo.findByUsername(username);
+		if(loggedInUser == null) {
+			return null;
+		}
+		Elder medElder = elderRepo.findById(medicatedElder.getId());
 		Medication existingMedication = medRepo.findById(medId);
-		if (existingMedication != null) {
+		if (existingMedication != null && medElder != null) {
 			existingMedication.setMedicationName(medication.getMedicationName());
 			existingMedication.setHealthCondition(medication.getMedicationName());
 			existingMedication.setDescription(medication.getDescription());
@@ -48,7 +72,7 @@ public class MedicationServiceImpl implements MedicationService {
 	}
 
 	@Override
-	public boolean deleteMedication(int medId) {
+	public boolean deleteMedication(String username, int medId) {
 		boolean deleted = false;
 		Medication toDelete = medRepo.findById(medId);
 		if (toDelete != null) {
@@ -59,11 +83,7 @@ public class MedicationServiceImpl implements MedicationService {
 
 	}
 
-//	@Override
-//	public List<Medication> findMedicationsByElderId(int elderId) {
-//		// TODO Auto-generated method stub
-//		return medRepo.findMedicationsByElderId(elderId);
-//	}
+
 
 
 }

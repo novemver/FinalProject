@@ -10,15 +10,16 @@ public interface MedicationService {
  
 	public Medication getMedicationById(int medId);
 
-	public Medication getByMedicationName(String medName);
+	public Medication getByMedIdAndElderId(int medId, int elderId);
 	
-	public Medication addMedication(Medication med);
+	public Medication addMedication(String username, Medication med, Elder elder);
 	
-//	public List<Medication> findMedicationsByElderId(int elderId);
+	public List<Medication> findMedicationsByElderId(int elderId);
 
-	public Medication updateMedication(int medId, Medication medication);
 
-	public boolean deleteMedication(int medId);
+	public Medication updateMedication(String username, int medId, Medication med, Elder elder);
+
+	public boolean deleteMedication(String username, int medId);
 	
 	
 }
