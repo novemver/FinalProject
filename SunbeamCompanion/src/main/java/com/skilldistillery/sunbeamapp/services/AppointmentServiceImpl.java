@@ -79,13 +79,16 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public boolean delete(String username, int apptId) {
+	public boolean delete(String username, int apptId, int elderId) {
 		boolean deleted = false;
+		User loggedInUser = userRepo.findByUsername(username);
+		Elder currentElder = elderRepo.findById(elderId);
 		Appointment apptToDelete = apptRepo.findById(apptId);
-		if(apptToDelete != null) {
+		if(loggedInUser != null && currentElder != null &&  apptToDelete != null ) {
 			apptRepo.delete(apptToDelete);
 			deleted = true;
 		}
+		System.out.println(deleted);
 		return deleted;
 	}
 	@Override

@@ -40,7 +40,6 @@ public class ElderController {
 	}
 
 
-
 	@PostMapping("elders")
 	public Elder createElder(@RequestBody Elder elder, HttpServletResponse res) {
 		Elder newElder = null;
