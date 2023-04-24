@@ -49,7 +49,7 @@ class CommentTest {
 	@Test
 	void test_MTO_comment_user() {
 		assertNotNull(comment);
-		assertEquals("Sebastian", comment.getUserComment().getFirstName());
+		assertEquals("Sebastian", comment.getUser().getFirstName());
 	}
 	
 	@Test
