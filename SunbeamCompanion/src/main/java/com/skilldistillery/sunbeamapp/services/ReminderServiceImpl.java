@@ -5,14 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.sunbeamapp.entities.Medication;
 import com.skilldistillery.sunbeamapp.entities.Reminder;
+import com.skilldistillery.sunbeamapp.entities.User;
 import com.skilldistillery.sunbeamapp.repositories.ReminderRepository;
+import com.skilldistillery.sunbeamapp.repositories.UserRepository;
 
 @Service
 public class ReminderServiceImpl implements ReminderService {
 
 	@Autowired
 	private ReminderRepository reminderRepo;
+
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<Reminder> findAllReminder() {
@@ -24,6 +30,15 @@ public class ReminderServiceImpl implements ReminderService {
 	public Reminder getById(int reminderId) {
 		// TODO Auto-generated method stub
 		return reminderRepo.findById(reminderId);
+	}
+
+	@Override
+	public Reminder addReminder(String username, Reminder reminder) {
+		User loggedInUser = userRepo.findByUsername(username);
+		if (loggedInUser != null) {
+			return reminderRepo.saveAndFlush(reminder);
+		}
+		return null;
 	}
 
 	@Override
@@ -41,7 +56,15 @@ public class ReminderServiceImpl implements ReminderService {
 		return null;
 	}
 
-	
+	@Override
+	public boolean deleteReminder(String username, int remId) {
+		boolean deleted = false;
+		Reminder toDelete = reminderRepo.findById(remId);
+		if (toDelete != null) {
+			reminderRepo.delete(toDelete);
+			deleted = true;
+		}
+		return deleted;
+	}
 
-	
 }

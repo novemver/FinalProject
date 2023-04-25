@@ -1,5 +1,6 @@
 package com.skilldistillery.sunbeamapp.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,9 +35,20 @@ public class ElderController {
 		return elderService.getByElderId(elderId);
 	}
 
-	@GetMapping("elders")
+	@GetMapping("elders/admin")
 	public List<Elder> getListOfElder() {
 		return elderService.findAllElders();
+	}
+	
+	@GetMapping("elders")
+	public List<Elder> getEldersForUser(HttpServletResponse res, HttpServletRequest req, Principal principal){
+		List<Elder> elders = elderService.findEldersForUser(principal.getName());
+		if(elders.isEmpty()) {
+			res.setStatus(404);
+		} else {
+			res.setStatus(200);
+		}
+		return elders;
 	}
 
 
