@@ -17,6 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Elder {
@@ -65,7 +66,7 @@ public class Elder {
 	@OneToMany(mappedBy = "elderNote")
 	private List<Note> elderNotes;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"elderAppointments"})
 	@OneToMany(mappedBy = "elderAppointments")
 	private List<Appointment> appointments;
 
@@ -77,7 +78,7 @@ public class Elder {
 	@OneToMany(mappedBy = "elder")
 	private List<FamilyMember> familyMembers;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"medicatedElder"})
 	@OneToMany(mappedBy = "medicatedElder")
 	private List<Medication> medications;
 	
