@@ -23,6 +23,8 @@ export class ClientPageComponent implements OnInit{
 
   selected: Elder | null = null;
 
+  user: User | null = null;
+
   elders: Elder[] = [];
 
   reminder: Reminder[] =[];
@@ -63,6 +65,9 @@ export class ClientPageComponent implements OnInit{
     this.elderService.getEldersForUser().subscribe({
       next: (data) => {
         this.elders = data;
+        if (this.selected) {
+          this.updateSelected();
+        }
       },
       error: (err) => {
         console.error("Error loading  elders" + err);
@@ -70,6 +75,15 @@ export class ClientPageComponent implements OnInit{
       }
     });
   }
+
+  updateSelected(){
+    this.elders.forEach(elder => {
+      if (elder.id === this.selected?.id) {
+        this.selected = elder;
+      }
+    });
+  }
+
     loadReminder(){
       this.reminderService.getReminder().subscribe({
         next: (data) => {
@@ -80,6 +94,7 @@ export class ClientPageComponent implements OnInit{
         }
       })
     }
+
     createReminder(){
       this.reminderService.addReminder(this.newReminder).subscribe({
         next: (newOne) => {
@@ -89,19 +104,6 @@ export class ClientPageComponent implements OnInit{
           console.error("error creating reminder " + ohno)
         }
       })
-    }
-
-    deleteReminder(reminderId: number) {
-      this.reminderService.destroy(reminderId).subscribe({
-        next: () => {
-          this.loadReminder();
-        },
-        error: (didNotWork) => {
-          console.log('Error handiling delete');
-          console.error(didNotWork);
-        },
-      });
-
     }
 
     loadMedication(){
@@ -141,5 +143,22 @@ export class ClientPageComponent implements OnInit{
           console.error(didNotWork);
         },
       });
-}
+    }
+
+      deleteReminder(reminderId: number) {
+        this.reminderService.destroy(reminderId).subscribe({
+          next: () => {
+           this.loadElders();
+          },
+          error: (didNotWork) => {
+            console.log('Error handiling delete');
+            console.error(didNotWork);
+          },
+        });
+      }
+
+      deleteMedication(medicationId: number){
+
+      }
+
 }
