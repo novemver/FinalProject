@@ -71,6 +71,20 @@ export class ClientPageComponent implements OnInit{
         }
       })
     }
+
+    deleteReminder(reminderId: number) {
+      this.reminderService.destroy(reminderId).subscribe({
+        next: () => {
+          this.loadReminder();
+        },
+        error: (didNotWork) => {
+          console.log('Error handiling delete');
+          console.error(didNotWork);
+        },
+      });
+
+    }
+
     loadMedication(){
       this.medicationService.getMedication().subscribe({
         next: (data) => {

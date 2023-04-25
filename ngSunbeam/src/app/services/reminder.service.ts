@@ -56,6 +56,19 @@ export class ReminderService {
       })
     );
   }
+
+
+  destroy(id: number): Observable<void>{
+    return this.http.delete<void>(this.url+ "/" + id, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('destroy error in reminder' + err)
+        );
+      })
+    );
+    }
 }
+
 
 
