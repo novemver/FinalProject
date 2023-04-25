@@ -1,6 +1,6 @@
 
-import { Component } from '@angular/core';
-import { User } from 'src/app/models/user';
+
+
 
 import { Component, OnInit } from "@angular/core";
 import { User } from "src/app/models/user";
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
 
 
-constructor(private auth: AuthService){}
+  constructor(private auth: AuthService){}
   ngOnInit(): void {
    this.auth.getCredentials();
    this.auth.getUser(this.auth.getUsername()!).subscribe((user) => {
