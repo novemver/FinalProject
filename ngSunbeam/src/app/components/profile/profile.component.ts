@@ -5,6 +5,7 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from "src/app/models/user";
 import { AuthService } from "src/app/services/auth.service";
+import { UserService } from "src/app/services/user.service";
 
 
 
@@ -19,10 +20,11 @@ export class ProfileComponent implements OnInit {
 
   user: User = new User();
   users: User[]= [];
-  userService: any;
   editUser = new User();
 
-  constructor(private auth: AuthService){}
+  constructor(private auth: AuthService, private userService: UserService){
+
+  }
   ngOnInit(): void {
    this.auth.getCredentials();
    this.auth.getUser(this.auth.getUsername()!).subscribe((user) => {
@@ -30,29 +32,30 @@ export class ProfileComponent implements OnInit {
    });
 
   }
-  loadUser() {
-    this.userService.getUserByUsername().subscribe(
-      {
-        next: (userList: User[]) => {
-          this.users = userList;
-        },
-        error: (failure: any) => {
-          console.error('Error getting user list from service');
-          console.log(failure);
-        },
-      }
-    );
-  }
+  // loadUser() {
+  //   this.userService.getUserByUsername().subscribe(
+  //     {
+  //       next: (userList: User[]) => {
+  //         this.users = userList;
+  //       },
+  //       error: (failure: any) => {
+  //         console.error('Error getting user list from service');
+  //         console.log(failure);
+  //       },
+  //     }
+  //   );
+  // }
 
 
-  updateUser(user: User) {
-    console.log('Entering updateUser from ProfileComponent, Username: ' + user.username + ' Password: ' + user.password);
-    this.userService.update(user).subscribe({
+  updateUser() {
+
+
+    this.userService.update(this.editUser).subscribe({
       next:(data: any) => {
         this.auth.getLoggedInUser().subscribe({
           next: (user: User) => {
             this.user = user;
-            this.reload();
+            // this.reload();
           },
           error: (nojoy) => {
             console.log(nojoy);
@@ -67,18 +70,18 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  reload(){
-    this.userService.index().subscribe({
-      //when the next piece of data arrives- without error my todos will go here
-      next: (user: User)=>{ this.user = user},
-      // or when it goes wrong
-      error: (failure: any)=> {
-        console.error('Error getting Todo List');
-        console.error(failure);
-      }
-    });
+  // reload(){
+  //   this.userService.index().subscribe({
+  //     //when the next piece of data arrives- without error my todos will go here
+  //     next: (user: User)=>{ this.user = user},
+  //     // or when it goes wrong
+  //     error: (failure: any)=> {
+  //       console.error('Error getting User');
+  //       console.error(failure);
+  //     }
+  //   });
 
-  }
+  // }
 
 
 

@@ -32,7 +32,7 @@ export class UserService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('TodoService.index(): error retrieving Todos: ' + err)
+          () => new Error('UserService.index(): error retrieving Todos: ' + err)
         );
       })
     );
