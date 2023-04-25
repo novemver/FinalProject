@@ -1,1 +1,77 @@
-<p>client-page works!</p>
+<div class="container">
+  <h1>{{ elder.firstName }} {{ elder.lastName }}</h1>
+  <div class="profile-img">
+    <img src="{{ elder.imageUrl }}" width="200" alt="Profile Image" />
+  </div>
+  <blockquote>{{ elder.elderBio }}</blockquote>
+  <table>
+    <thead>
+      <th>Information</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Weight:</td>
+        <td>{{ elder.weight }}</td>
+      </tr>
+      <tr>
+        <td>Height:</td>
+        <td>{{ elder.height }}</td>
+      </tr>
+      <tr>
+        <td>Birthdate:</td>
+        <td>{{ elder.birthdate }}</td>
+      </tr>
+      <tr>
+        <td>Elder Overview:</td>
+        <td>{{ elder.elderOverview }}</td>
+      </tr>
+      <tr>
+        <td>Gender:</td>
+        <td>{{ elder.gender }}</td>
+      </tr>
+      <tr *ngFor="let note of notes">
+        <td>Notes:</td>
+        <td>{{ elder.elderNotes }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+  <h1>Appointments</h1>
+  <table class="table table-striped">
+    <thead>
+      <th> Title</th>
+      <th> Description</th>
+      <th> Date</th>
+      <th> Time</th>
+      <th> Category</th>
+      <th> Location</th>
+
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let appt of appts ">
+        <td>
+          {{ appt.title }}
+        </td>
+        <td>
+          {{ appt.description }}
+        </td>
+        <td>
+          {{ appt.appDate }}
+        </td>
+        <td>
+          {{ appt.appTime }}
+        </td>
+        <td>
+          {{ appt.category }}
+        </td>
+        <td>
+          {{ appt.location }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

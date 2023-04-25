@@ -8,6 +8,7 @@ import { FAQComponent } from './components/faq/faq.component';
 import { AboutComponent } from './components/about/about.component';
 import { ClientPageComponent } from './components/client-page/client-page.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,9 +18,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'faq', component: FAQComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'client', component: ClientPageComponent },
-  { path: 'contact', component: ContactComponent },
   { path: 'client-page', component: ClientPageComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'logout', component: LogoutComponent }
 ];
 
 @NgModule({
