@@ -1,3 +1,5 @@
+import { Reminder } from "./reminder";
+
 export class User {
   id: number;
   username: string;
@@ -12,6 +14,7 @@ export class User {
   biography: string;
   createDate: Date;
   updateDate: Date;
+  reminders: Reminder[] | null;
 
   constructor(
     id: number = 0,
@@ -26,7 +29,8 @@ export class User {
     image_url: string = "",
     biography: string = "",
     createDate: Date = new Date(),
-    updateDate: Date = new Date()
+    updateDate: Date = new Date(),
+    reminders: Reminder [] = []
   ){
     this.id = id;
     this.username = username;
@@ -41,5 +45,6 @@ export class User {
     this.biography = biography;
     this.createDate = createDate;
     this.updateDate = updateDate;
+    this.reminders = reminders;
   }
 }
