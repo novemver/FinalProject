@@ -22,5 +22,7 @@ public interface ElderService {
 	public boolean archiveElder(int elderId);
 
 	public boolean unarchiveElder(int elderId);
+	
+	public List<Elder> findEldersForUser(String username);
  
 }

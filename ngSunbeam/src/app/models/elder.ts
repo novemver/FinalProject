@@ -19,12 +19,12 @@ export class Elder {
   imageUrl: string;
   elderBio: string;
   enabled: boolean;
-  elderNotes: Note;
-  appointments: Appointment;
-  comments: Comment;
-  familyMembers: Familymember [];
-  medications: Medication;
-  elderCaretakers: User;
+  elderNotes: Note | null;
+  appointments: Appointment | null;
+  comments: Comment  | null;
+  familyMembers: Familymember [] | null;
+  medications: Medication | null;
+  elderCaretakers: User [];
 
 constructor(
   id: number = 0,
@@ -41,12 +41,12 @@ constructor(
   imageUrl: string = "",
   elderBio: string = "",
   enabled: boolean = false,
-  elderNotes: Note = new Note(),
-  appointments: Appointment = new Appointment(),
-  comments: Comment = new Comment(),
+  elderNotes: Note | null= null,
+  appointments: Appointment | null = null,
+  comments: Comment | null = null,
   familyMembers: Familymember[] = [],
-  medications: Medication = new Medication(),
-  elderCaretakers: User = new User(),
+  medications: Medication | null = null,
+  elderCaretakers: User[] = [],
 ){
   this.id = id;
   this.firstName = firstName;

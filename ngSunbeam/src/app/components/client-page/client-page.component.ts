@@ -1,3 +1,4 @@
+import { ElderService } from './../../services/elder.service';
 import { Component, OnInit } from '@angular/core';
 import { Elder } from 'src/app/models/elder';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,18 +13,24 @@ import { Note } from 'src/app/models/note';
 })
 export class ClientPageComponent implements OnInit{
 
-  user: User = new User();
-  elder: Elder = new Elder();
+  selected: Elder | null = null;
 
-  appts: Appointment[] = [];
-  notes: Note[] = [];
+  elders: Elder[] = [];
 
-  constructor(private auth: AuthService){}
+  constructor(private auth: AuthService, private elderService: ElderService){}
   ngOnInit(): void {
-   this.auth.getCredentials();
-   this.auth.getUser(this.auth.getUsername()!).subscribe((user) => {
-    this.user = user;
-   });
+    this.loadElders();
+  }
 
+  loadElders(){
+    this.elderService.getEldersForUser().subscribe({
+      next: (data) => {
+        this.elders = data;
+      },
+      error: (err) => {
+        console.log("Error loading  elders" + err);
+
+      }
+    });
   }
 }
