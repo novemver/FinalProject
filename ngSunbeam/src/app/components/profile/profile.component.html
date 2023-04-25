@@ -40,8 +40,23 @@
               <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                 irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
-            <div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
+            <div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5"*ngIf="editUser">
+              <h1>Revise Below</h1>
+              <hr>
               <form>
+                <label for="firstName">First Name:</label>
+                <input type="text" name="lastName" [(ngModel)]="editUser.firstName"><br>
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="firstName" [(ngModel)]="editUser.lastName"><br>
+                <label for="birhday">Birthdate:</label>
+                <input type="date" name="birthdate" [(ngModel)]="editUser.biography"><br>
+                <label for="email">Email:</label>
+                <input type="text" name="email" [(ngModel)]="editUser.email"><br>
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" name="phoneNumber" [(ngModel)]="editUser.phoneNumber"><br>
+                <label for="image_url">First Name:</label>
+                <input type="text" name="image_url" [(ngModel)]="editUser.image_url"><br>
+                <button class=" btn btn-primary" (click)="updateUser(editUser)">Revise</button>
 
 
               </form>

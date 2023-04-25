@@ -37,4 +37,15 @@ export class UserService {
       })
     );
   }
+  update(user: User): Observable<User> {
+    return this.http.put<User>(this.url + '/' + user.id, user).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('userServive.index(): error retrieving user: ' + err)
+        );
+      })
+    );
+  }
 }
