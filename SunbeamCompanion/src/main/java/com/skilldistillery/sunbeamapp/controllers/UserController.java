@@ -32,6 +32,11 @@ public class UserController {
 	public User findUserById(@PathVariable Integer userId, HttpServletResponse res ) {
 		return userService.getUserById(userId);
 	}
+	
+	@GetMapping("users/profile/{username}")
+	public User findByUsername(@PathVariable String username, HttpServletResponse res) {
+		return userService.getByUsername(username);
+	}
 
 	@GetMapping("users")
 	public List<User> getListOfUser(){

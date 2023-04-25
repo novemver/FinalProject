@@ -64,12 +64,14 @@ public class MessageController {
 		return message;
 	}
 	
-	@PutMapping("messages/{messageId}")
+	@PutMapping("users/{userId}/messages/{messageId}")
 	public Message updateMessage(@PathVariable Integer messageId, 
+			@PathVariable Integer userId,
 			@RequestBody Message message, 
 			HttpServletResponse res, Principal principal) {
+		Message messageToUpdate = null;
 		try {
-			message = messageService.updateMessage(
+			messageToUpdate = messageService.updateMessage(
 					principal.getName(), messageId, message);
 			if (message == null) {
 				res.setStatus(404);
