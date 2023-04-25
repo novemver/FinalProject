@@ -11,10 +11,10 @@ export class Appointment {
   title: string;
   createDate: Date;
   updateDate: Date;
-  userAppointment: User;
-  elderAppointment: Elder;
-  category: Category;
-  location: Location;
+  userAppointment: User | null;
+  elderAppointment: Elder | null;
+  category: Category | null;
+  location: Location | null;
   reminders: Reminder [];
 
   constructor(
@@ -25,10 +25,10 @@ export class Appointment {
   title: string = "",
   createDate: Date = new Date(),
   updateDate: Date = new Date(),
-  userAppointment: User = new User,
-  elderAppointment: Elder = new Elder(),
-  category: Category = new Category(),
-  location: Location = new Location(),
+  userAppointment: User | null = null,
+  elderAppointment: Elder | null = null,
+  category: Category | null = null,
+  location: Location | null = null,
   reminders: Reminder[] = [],
   ){
     this.id = id;
