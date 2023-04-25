@@ -8,4 +8,5 @@ import com.skilldistillery.sunbeamapp.entities.FamilyMemberId;
 public interface FamilyMemberRepository extends JpaRepository<FamilyMember, FamilyMemberId> {
 
 	public FamilyMember findByElder_IdAndUser_Id(int elderId, int userId);
+	FamilyMember findById(int userId);
 }
