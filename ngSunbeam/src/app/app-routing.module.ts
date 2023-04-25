@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'faq', component: FAQComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'client-page', component: ClientPageComponent },
+  { path: 'client', component: ClientPageComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'logout', component: LogoutComponent }
 ];
