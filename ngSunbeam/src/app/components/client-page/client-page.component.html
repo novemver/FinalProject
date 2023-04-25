@@ -67,24 +67,24 @@
               <ol class="list-group list-group-numbered">
                 <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let appointment of selected.appointments">
                   <div class="ms-2 me-auto">
-                    <div>{{appointment.description}} on {{appointment.apptDate}} at {{appointment.location}}</div>
+                    <div>{{appointment.description}} on {{appointment.apptDate}}</div>
                   </div>
               </ol>
 
                 <h4>Reminders</h4>
                 <ol class="list-group list-group-numbered">
                   <div *ngFor="let appointment of selected.appointments">
-                    <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let reminder of appointment.reminders">{{reminder.description}}</li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let reminder of appointment.reminders">Date: {{reminder.reminderDate}} - {{reminder.description}}</li>
                   </div>
-
-                    <h4>Medications</h4>
-                    <li *ngFor="let medication of selected.medications">{{medication.medication}}</li>
                 </ol>
-              </div>
-
-
-              <h4></h4>
-              </div>
+                <h4>Medication</h4>
+                <ol class="list-group list-group-numbered">
+                  <div *ngFor="let medication of selected.medications">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">{{medication.description}}</li>
+                  </div>
+                </ol>
+             </div>
+            </div>
           </div>
         </div>
       </div>
