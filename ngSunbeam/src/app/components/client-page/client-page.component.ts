@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from "src/app/models/user";
 import { Appointment } from 'src/app/models/appointment';
 import { Note } from 'src/app/models/note';
+import { ReminderService } from 'src/app/services/reminder.service';
+import { Reminder } from 'src/app/models/reminder';
 
 @Component({
   selector: 'app-client-page',
@@ -17,9 +19,15 @@ export class ClientPageComponent implements OnInit{
 
   elders: Elder[] = [];
 
-  constructor(private auth: AuthService, private elderService: ElderService){}
+  reminder: Reminder[] =[];
+
+  newReminder: Reminder = new Reminder();
+
+  constructor(private auth: AuthService, private elderService: ElderService, private reminderService: ReminderService){}
   ngOnInit(): void {
     this.loadElders();
+    this.loadReminder();
+    this.createReminder();
   }
 
   loadElders(){
@@ -33,6 +41,27 @@ export class ClientPageComponent implements OnInit{
       }
     });
   }
+    loadReminder(){
+      this.reminderService.getReminder().subscribe({
+        next: (data) => {
+          this.reminder = data;
+        },
+        error: (errr) => {
+          console.log("Error loading reminders" + errr)
+        }
+      })
+    }
+    createReminder(){
+      this.reminderService.addReminder(this.newReminder).subscribe({
+        next: (newOne) => {
+          this.newReminder = new Reminder();
+        },
+        error: (ohno) => {
+          console.log("error creating reminder " + ohno)
+        }
+      })
+    }
+  }
 
 
 
@@ -49,4 +78,4 @@ export class ClientPageComponent implements OnInit{
 
 
 
-}
+

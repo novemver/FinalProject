@@ -20,10 +20,10 @@ export class Elder {
   elderBio: string;
   enabled: boolean;
   elderNotes: Note | null;
-  appointments: Appointment | null;
+  appointments: Appointment []| null;
   comments: Comment  | null;
   familyMembers: Familymember [] | null;
-  medications: Medication | null;
+  medications: Medication []| null;
   elderCaretakers: User [];
 
 constructor(
@@ -42,10 +42,10 @@ constructor(
   elderBio: string = "",
   enabled: boolean = false,
   elderNotes: Note | null= null,
-  appointments: Appointment | null = null,
+  appointments: Appointment [] = [],
   comments: Comment | null = null,
   familyMembers: Familymember[] = [],
-  medications: Medication | null = null,
+  medications: Medication[]| null = [],
   elderCaretakers: User[] = [],
 ){
   this.id = id;
