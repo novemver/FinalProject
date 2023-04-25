@@ -88,6 +88,11 @@ public class ElderServiceImpl implements ElderService {
 		
 	}
 
+	@Override
+	public List<Elder> findEldersForUser(String username) {
+		return this.elderRepo.findByFamilyMembersUserUsernameOrElderCaretakersUsername(username, username);
+	}
+
 //	@Override
 //	public List<Elder> getAllMedication(int elderId) {
 //		// TODO Auto-generated method stub

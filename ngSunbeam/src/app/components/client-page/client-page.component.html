@@ -1,77 +1,80 @@
-<div class="container">
-  <h1>{{ elder.firstName }} {{ elder.lastName }}</h1>
-  <div class="profile-img">
-    <img src="{{ elder.imageUrl }}" width="200" alt="Profile Image" />
+
+<!-- ELDER LIST VIEW -->
+<div class="container" *ngIf="!selected">
+  <div class="card mb-3" style="max-width: 540px;" *ngFor="let elder of elders" (click) = "selected = elder">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="..." class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{elder.firstName}} {{elder.lastName}}</h5>
+          <p class="card-text">{{elder.elderOverview}}</p>
+          <ul>
+            <li class="card-text">{{elder.gender}}</li>
+            <li class="card-text">{{elder.birthdate}}</li>
+          </ul>
+
+          <p class="card-text"><small class="text-muted">{{elder.lastUpdate}}</small></p>
+        </div>
+      </div>
+    </div>
   </div>
-  <blockquote>{{ elder.elderBio }}</blockquote>
-  <table>
-    <thead>
-      <th>Information</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Weight:</td>
-        <td>{{ elder.weight }}</td>
-      </tr>
-      <tr>
-        <td>Height:</td>
-        <td>{{ elder.height }}</td>
-      </tr>
-      <tr>
-        <td>Birthdate:</td>
-        <td>{{ elder.birthdate }}</td>
-      </tr>
-      <tr>
-        <td>Elder Overview:</td>
-        <td>{{ elder.elderOverview }}</td>
-      </tr>
-      <tr>
-        <td>Gender:</td>
-        <td>{{ elder.gender }}</td>
-      </tr>
-      <tr *ngFor="let note of notes">
-        <td>Notes:</td>
-        <td>{{ elder.elderNotes }}</td>
-      </tr>
-    </tbody>
-  </table>
+
+
 </div>
 
-<div class="container">
-  <h1>Appointments</h1>
-  <table class="table table-striped">
-    <thead>
-      <th> Title</th>
-      <th> Description</th>
-      <th> Date</th>
-      <th> Time</th>
-      <th> Category</th>
-      <th> Location</th>
 
+<!-- ELDER DETAIL VIEW -->
+<div class="container" *ngIf="selected">
+  <button (click)="selected = null">View All</button>
+  <div class="profile-header">
+    <div class="profile-img">
+      <!-- <img src="{{selected.image_url}}" width="200" alt="Profile Image"> -->
+    </div>
+    <div class="profile-nav-info">
+      <h4 class="address">{{selected.firstName}} {{selected.lastName}}</h4>
+    </div>
 
-    </thead>
-    <tbody>
-      <tr *ngFor="let appt of appts ">
-        <td>
-          {{ appt.title }}
-        </td>
-        <td>
-          {{ appt.description }}
-        </td>
-        <td>
-          {{ appt.appDate }}
-        </td>
-        <td>
-          {{ appt.appTime }}
-        </td>
-        <td>
-          {{ appt.category }}
-        </td>
-        <td>
-          {{ appt.location }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  </div>
+
+  <div class="main-bd">
+    <div class="left-side">
+      <div class="profile-side">
+        <!-- <p class="user-mail">{{selected.}}</p> -->
+        <p class="mobile-no"><i class="fa fa-phone"></i>{{selected.birthdate}}</p>
+        <!-- <p class="user-mail"><i class="fa fa-envelope"></i> {{selected.email}}</p> -->
+        <div class="user-bio">
+          <h3>About me</h3>
+          <p class="bio">{{selected.elderBio}}</p>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="right-side">
+      <div class="container">
+        <div class="p-5 bg-white rounded shadow mb-5" id="tabs-container">
+          <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav">
+            <li class="nav-item flex-sm-fill">
+              <a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active">Home</a>
+            </li>
+            <li class="nav-item flex-sm-fill">
+              <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">Edit Profile</a>
+            </li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
+              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
