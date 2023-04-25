@@ -32,7 +32,18 @@ export class UserService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('TodoService.index(): error retrieving Todos: ' + err)
+          () => new Error('UserService.index(): error retrieving Todos: ' + err)
+        );
+      })
+    );
+  }
+  update(user: User): Observable<User> {
+    return this.http.put<User>(this.url + '/' + user.id, user).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('userServive.index(): error retrieving user: ' + err)
         );
       })
     );

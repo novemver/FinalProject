@@ -379,6 +379,8 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `zipcode`) VALUES (1, 'St. Francis Cardiology', '123 Seasme St', 'Denver', 'CO', '80002');
+INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `zipcode`) VALUES (2, 'Highland Park', '34 Bordeaux Ct', 'Denver', 'CO', '80002');
+INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `zipcode`) VALUES (3, 'VA Hospital', '420 John Paul Jones Cir', 'Dnever', 'CO', '80002');
 
 COMMIT;
 
@@ -388,7 +390,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (1, 'Bert', 'Johson', '180', '6', '1945-08-05', NULL, 'WW2 Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (1, 'Bert', 'Johnson', '180', '6', '1945-08-05', NULL, 'Marine Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (2, 'Teressa', 'Wildermuth', '143', '5\' 9\"', '1949-12-15', NULL, 'Loves Grandening ', 'Female', '2023-03-18', NULL, NULL, NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (DEFAULT, 'Cornelius', 'Swails', '156', '5\' 10\"', '1946-03-20', NULL, 'Bird Watcher', 'Male', '2023-03-18', NULL, NULL, NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (DEFAULT, 'Martha', 'Stewart', '169', '5\' 6\"', '1940-10-24', NULL, 'Foodie - Cat Lover', 'Female', '2023-03-18', NULL, NULL, NULL, 1);
 
 COMMIT;
 
@@ -399,6 +404,8 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `category` (`id`, `name`, `description`) VALUES (1, 'Doctor', 'Medical Appointment');
+INSERT INTO `category` (`id`, `name`, `description`) VALUES (2, 'Family Outings', 'Birthday Parties, Family Gatherings');
+INSERT INTO `category` (`id`, `name`, `description`) VALUES (3, 'Hobby', 'Personal Outsidings, fun activities');
 
 COMMIT;
 
@@ -409,6 +416,9 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (1, 'Cardiologist appt. with Dr.Rob', '2023-03-23', '1700', 2, 'Get Bert to Cardiologist', 1, 1, 1, '2023-03-17', NULL);
+INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (2, ' Johnson Annual Family Reunion at Highland Park ', '2023-04-10', '1200', 3, 'Family Reunion ', 2, 1, 3, '2023-03-17', NULL);
+INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (3, 'ENT appointment ', '2023-03-23', '1600', 2, 'ENT clinic', 3, 1, 1, '2023-03-17', NULL);
+INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (4, 'He needs his dentures to be examined. He chips one of the teeth on it ', '2023-04-23', '1600', 3, 'Dentist', 3, 1, 1, NULL, NULL);
 
 COMMIT;
 
@@ -418,7 +428,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`) VALUES (1, '2023-03-23', '1600', 'Cardiologist', NULL, 1);
+INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`) VALUES (1, '2023-03-23', '1600', 'Cardiologist', 'He\'s getting scans and another EKG done.', 1);
+INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`) VALUES (2, '2023-04-10', '1230', 'ENT ', 'Needs his ears checked again', 3);
+INSERT INTO `reminder` (`id`, `reminder_date`, `reminder_time`, `title`, `description`, `appointment_id`) VALUES (3, '2023-04-09', '1400', 'Dental', 'Dentures ', 2);
 
 COMMIT;
 
