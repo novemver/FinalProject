@@ -46,7 +46,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Comment create(String username, Comment comment) {
-		return comRepo.save(comment);
+		return comRepo.saveAndFlush(comment);
 	}
 
 	@Override
