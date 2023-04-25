@@ -1,3 +1,4 @@
+import { MedicationService } from './../../services/medication.service';
 import { ElderService } from './../../services/elder.service';
 import { Component, OnInit } from '@angular/core';
 import { Elder } from 'src/app/models/elder';
@@ -7,6 +8,8 @@ import { Appointment } from 'src/app/models/appointment';
 import { Note } from 'src/app/models/note';
 import { ReminderService } from 'src/app/services/reminder.service';
 import { Reminder } from 'src/app/models/reminder';
+import { Medication } from 'src/app/models/medication';
+
 
 @Component({
   selector: 'app-client-page',
@@ -23,11 +26,18 @@ export class ClientPageComponent implements OnInit{
 
   newReminder: Reminder = new Reminder();
 
-  constructor(private auth: AuthService, private elderService: ElderService, private reminderService: ReminderService){}
+  newMedication: Medication = new Medication();
+
+  medication: Medication[] =[];
+
+
+  constructor(private auth: AuthService, private elderService: ElderService, private reminderService: ReminderService, private medicationService: MedicationService){}
   ngOnInit(): void {
     this.loadElders();
     this.loadReminder();
     this.createReminder();
+    this.loadMedication();
+    this.createMedication();
   }
 
   loadElders(){
@@ -61,7 +71,28 @@ export class ClientPageComponent implements OnInit{
         }
       })
     }
+    loadMedication(){
+      this.medicationService.getMedication().subscribe({
+        next: (data) => {
+          this.medication = data;
+        },
+        error: (errr) => {
+          console.log("Error loading medications" + errr)
+        }
+      })
+    }
+    createMedication(){
+      this.medicationService.addMedication(this.newMedication).subscribe({
+        next: (newOne) => {
+          this.newMedication = new Medication();
+        },
+        error: (ohno) => {
+          console.log("error creating Medication " + ohno)
+        }
+      })
+    }
   }
+
 
 
 
