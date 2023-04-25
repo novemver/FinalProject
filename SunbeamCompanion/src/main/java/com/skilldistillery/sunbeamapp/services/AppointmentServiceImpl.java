@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sunbeamapp.entities.Appointment;
 import com.skilldistillery.sunbeamapp.entities.Elder;
-import com.skilldistillery.sunbeamapp.entities.FamilyMember;
+import com.skilldistillery.sunbeamapp.entities.Reminder;
 import com.skilldistillery.sunbeamapp.entities.User;
 import com.skilldistillery.sunbeamapp.repositories.AppointmentRepository;
 import com.skilldistillery.sunbeamapp.repositories.ElderRepository;
-import com.skilldistillery.sunbeamapp.repositories.FamilyMemberRepository;
+import com.skilldistillery.sunbeamapp.repositories.ReminderRepository;
 import com.skilldistillery.sunbeamapp.repositories.UserRepository;
 
 @Service
@@ -25,10 +25,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 	
 	@Autowired
 	private ElderRepository elderRepo;
+	
 	@Autowired
-	private FamilyMemberRepository familyRepo;
-	
-	
+	private ReminderRepository reminderRepo;
 	
 	@Override
 	public List<Appointment> findAll() {
@@ -58,16 +57,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public Appointment update(String username, int apptId, Appointment appt, int elderId) {
+	public Appointment update(String username, int apptId, Appointment appt) {
 		User loggedInUser = userRepo.findByUsername(username);
 		if(loggedInUser == null) {
 			return null;
 		}
-		FamilyMember family = familyRepo.findByElder_IdAndUser_Id(elderId, loggedInUser.getId());
-		Elder currentElder = elderRepo.findById(elderId);
+
 		Appointment existingAppt = apptRepo.findById(apptId);
-		if(existingAppt != null && loggedInUser!= null && currentElder != null && family != null
-			&& (currentElder.getElderCaretakers().contains(loggedInUser) || currentElder.getFamilyMembers().contains(family))) {
+		if(existingAppt != null) {
 			existingAppt.setDescription(appt.getDescription());
 			existingAppt.setApptDate(appt.getApptDate());
 			existingAppt.setApptTime(appt.getApptTime());
@@ -79,12 +76,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public boolean delete(String username, int apptId, int elderId) {
+	public boolean delete(String username, int apptId) {
 		boolean deleted = false;
 		User loggedInUser = userRepo.findByUsername(username);
-		Elder currentElder = elderRepo.findById(elderId);
 		Appointment apptToDelete = apptRepo.findById(apptId);
-		if(loggedInUser != null && currentElder != null &&  apptToDelete != null ) {
+		if(loggedInUser != null &&  apptToDelete != null) {
+			for (Reminder reminderDelete : apptToDelete.getReminders()) {
+				reminderRepo.delete(reminderDelete);
+			}
 			apptRepo.delete(apptToDelete);
 			deleted = true;
 		}

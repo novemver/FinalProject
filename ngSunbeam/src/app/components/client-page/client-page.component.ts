@@ -1,3 +1,4 @@
+import { AppointmentService } from './../../services/appointment.service';
 import { MedicationService } from './../../services/medication.service';
 import { ElderService } from './../../services/elder.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,8 @@ import { Note } from 'src/app/models/note';
 import { ReminderService } from 'src/app/services/reminder.service';
 import { Reminder } from 'src/app/models/reminder';
 import { Medication } from 'src/app/models/medication';
+import { catchError, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -30,8 +33,14 @@ export class ClientPageComponent implements OnInit{
 
   medication: Medication[] =[];
 
+  private url = environment.baseUrl + 'api/';
 
-  constructor(private auth: AuthService, private elderService: ElderService, private reminderService: ReminderService, private medicationService: MedicationService){}
+
+  constructor(private auth: AuthService, private elderService: ElderService,
+    private reminderService: ReminderService,
+    private medicationService: MedicationService,
+    private appointmentService: AppointmentService){}
+
   ngOnInit(): void {
     this.loadElders();
     this.loadReminder();
@@ -40,13 +49,23 @@ export class ClientPageComponent implements OnInit{
     this.createMedication();
   }
 
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
+
   loadElders(){
     this.elderService.getEldersForUser().subscribe({
       next: (data) => {
         this.elders = data;
       },
       error: (err) => {
-        console.log("Error loading  elders" + err);
+        console.error("Error loading  elders" + err);
 
       }
     });
@@ -57,7 +76,7 @@ export class ClientPageComponent implements OnInit{
           this.reminder = data;
         },
         error: (errr) => {
-          console.log("Error loading reminders" + errr)
+          console.error("Error loading reminders" + errr)
         }
       })
     }
@@ -67,7 +86,7 @@ export class ClientPageComponent implements OnInit{
           this.newReminder = new Reminder();
         },
         error: (ohno) => {
-          console.log("error creating reminder " + ohno)
+          console.error("error creating reminder " + ohno)
         }
       })
     }
@@ -91,7 +110,7 @@ export class ClientPageComponent implements OnInit{
           this.medication = data;
         },
         error: (errr) => {
-          console.log("Error loading medications" + errr)
+          console.error("Error loading medications" + errr)
         }
       })
     }
@@ -101,26 +120,26 @@ export class ClientPageComponent implements OnInit{
           this.newMedication = new Medication();
         },
         error: (ohno) => {
-          console.log("error creating Medication " + ohno)
+          console.error("error creating Medication " + ohno)
         }
       })
     }
-  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    deleteAppointment(appointmentId: number) {
+      this.appointmentService.deleteAppointment(appointmentId).subscribe({
+        next: () => {
+          if (this.selected?.appointments) {
+            for (let index = 0; index < this.selected?.appointments?.length; index++) {
+              if (this.selected.appointments[index].id == appointmentId) {
+                this.selected.appointments.splice(index,1);
+              }
+            }
+          }
+        },
+        error: (didNotWork) => {
+          console.log('Error handiling delete');
+          console.error(didNotWork);
+        },
+      });
+}
+}

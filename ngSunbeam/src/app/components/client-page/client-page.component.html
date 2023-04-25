@@ -62,14 +62,15 @@
 
           <div id="myTabContent" class="tab-content">
             <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
-              <div>
+
               <h4>Appointments</h4>
               <ol class="list-group list-group-numbered">
                 <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let appointment of selected.appointments">
                   <div class="ms-2 me-auto">
-                    <div>{{appointment.description}} on {{appointment.apptDate}}</div>
+                    <li>{{appointment.description}} on {{appointment.apptDate}}</li>
                   </div>
-              </ol>
+                  <button (click)="deleteAppointment(appointment.id)">X</button>
+                </ol>
 
                 <h4>Reminders</h4>
                 <ol class="list-group list-group-numbered">
@@ -77,14 +78,15 @@
                   <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let reminder of appointment.reminders">Date: {{reminder.reminderDate}} - {{reminder.description}}</li>
                   </div>
                 </ol>
+
                 <h4>Medication</h4>
                 <ol class="list-group list-group-numbered">
                   <div *ngFor="let medication of selected.medications">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">{{medication.description}}</li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">{{medication.medicationName}} {{medication.frequency}} @ {{medication.dose}} - Due to {{medication.healthCondition}}</li>
+
                   </div>
                 </ol>
              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ public interface AppointmentService {
 	public Appointment getApptByElderId(int elderId);
 	public Appointment getApptByUserId(int userId);
 	public Appointment create(String username, Appointment appt , int elderId);
-	public Appointment update(String username, int apptId, Appointment appt, int elderId);
-	public boolean delete(String username, int apptId, int elderId);
+	public Appointment update(String username, int apptId, Appointment appt);
+	public boolean delete(String username, int apptId);
 	
 }
