@@ -40,6 +40,7 @@ export class AuthService {
     return this.http.get<User>(this.url + 'authenticate', httpOptions).pipe(
       tap((newUser) => {
         localStorage.setItem('credentials', credentials);
+        localStorage.setItem('username', username);
         return newUser;
       }),
       catchError((err: any) => {
@@ -93,5 +94,25 @@ export class AuthService {
   getCredentials(): string | null {
     return localStorage.getItem('credentials');
   }
+
+  getUsername(){
+    return localStorage.getItem('username');
+  }
+
+  getUser(username: string){
+    let httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.getCredentials(),
+        'X-Requested-with': 'XMLHttpRequest',
+      },
+    };
+    return this.http.get<User>(this.url+'api/users/profile/' + username, httpOptions).pipe(
+      catchError((err: any) =>{
+        return throwError('Error getting user username');
+      })
+    );
+  }
+
+
 
 }
