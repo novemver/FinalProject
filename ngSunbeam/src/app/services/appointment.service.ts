@@ -10,7 +10,7 @@ import { Appointment } from '../models/appointment';
 })
 export class AppointmentService {
   private baseUrl = 'http://localhost:8090/';
-  private url = environment.baseUrl + 'api/appointments';
+  private url = environment.baseUrl + 'api/';
 
   constructor(
     private http: HttpClient,
@@ -27,10 +27,8 @@ export class AppointmentService {
     return options;
   }
 
-
 index(): Observable<Appointment[]> {
-  // return [...this.todos];
-  return this.http.get<Appointment[]>(this.url, this.getHttpOptions()).pipe(
+  return this.http.get<Appointment[]>(this.url + 'appointments', this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(
@@ -44,8 +42,7 @@ index(): Observable<Appointment[]> {
 }
 
 seeAppt(appointmentId: number): Observable<Appointment> {
-  // return [...this.todos];
-  return this.http.get<Appointment>(this.url + '/' + appointmentId, this.getHttpOptions()).pipe(
+  return this.http.get<Appointment>(this.url + 'appointments' + appointmentId, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(
@@ -55,41 +52,37 @@ seeAppt(appointmentId: number): Observable<Appointment> {
   );
 }
 
-create(appointment: Appointment): Observable<Appointment> {
-  appointment.description = '';
-  return this.http.post<Appointment>(this.url, appointment, this.getHttpOptions()).pipe(
+createAppointment(appointment: Appointment, elderId: number): Observable<Appointment> {
+  return this.http.post<Appointment>(this.url + 'elders' + '/' + elderId + '/' + 'appointments', this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError(
-        () => new Error('AppointmentService.create(): error creating Appointment: ' + err)
+        () => new Error('AppointmentService.createAppointment(): error creating Appointment: ' + err)
       );
     })
   );
 }
 
-
-update(appointment: Appointment): Observable<Appointment> {
-
-  return this.http.put<Appointment>(this.url + '/' + appointment.id, appointment, this.getHttpOptions()).pipe(
+updateAppointment(appointment: Appointment, elderId: number): Observable<Appointment> {
+  return this.http.put<Appointment>(this.url + 'elders' + '/' + elderId + '/' + 'appointments' + '/' + appointment.id, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError(
-        () => new Error('AppointmentService.update(): error updating Appointment: ' + err)
+        () => new Error('AppointmentService.updateAppointment(): error updating Appointment: ' + err)
       );
     })
   );
 }
 
-delete(appointmentId: number): Observable<void> {
-  return this.http.delete<void>(this.url + '/' + appointmentId, this.getHttpOptions()).pipe(
+deleteAppointment(appointmentId: number, elderId: number): Observable<void> {
+  return this.http.delete<void>(this.url + 'elders' + '/' + elderId + '/' + 'appointments' + '/' + appointmentId, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError(
-        () => new Error('AppointmentService.delete(): error deleting Appointment: ' + err)
+        () => new Error('AppointmentService.deleteAppointment(): error deleting Appointment: ' + err)
       );
     })
   );
 }
-
 
 }
