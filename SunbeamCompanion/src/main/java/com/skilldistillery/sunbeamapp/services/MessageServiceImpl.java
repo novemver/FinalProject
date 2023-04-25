@@ -34,14 +34,8 @@ public class MessageServiceImpl implements MessageService {
 		User loggedInUser = userRepo.findByUsername(username);
 		User receiver = userRepo.findById(receiverId);
 		if(loggedInUser != null && receiver != null) {
-			System.out.println(username);
-			System.out.println(receiverId+"*******************************************");
-			
-			return messageRepo.messagesBetweenUsers(
-					username, 
-				 receiverId,
-				 username, 
-				 receiverId);
+			return messageRepo.messagesBetweenUsers(username, receiverId,
+				 username, receiverId);
 		}
 		return null;
 	}
@@ -60,17 +54,27 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public Message updateMessage(Message message) {
-		// TODO Auto-generated method stub
+	public Message updateMessage(String username, int messId, Message message) {
+		User loggedInUser = userRepo.findByUsername(username);
+		Message existingMessage = messageRepo.findById(messId);
+		if(loggedInUser != null && existingMessage != null) {
+			existingMessage.setDescription(message.getDescription());
+			return messageRepo.saveAndFlush(existingMessage);
+		}
 		return null;
 	}
 
 	@Override
-	public Message deleteMessage(int messageId) {
-//		boolean deleted = false;
-//		Message messToDelete = messageRepo.findById(messageId);
-//		return deleted;
-		return null;
+	public boolean deleteMessage(String username, int messageId) {
+		boolean deleted = false;
+		User loggedInUser = userRepo.findByUsername(username);
+		Message messToDelete = messageRepo.findById(messageId);
+		if(loggedInUser != null) {
+			messageRepo.delete(messToDelete);
+			deleted = true;
+		}
+		return deleted;
+		
 	}
 	
 }

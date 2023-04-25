@@ -73,7 +73,7 @@ public class MedicationController {
 	}
 	
 	@DeleteMapping("meds/{medId}")
-	public void destroy(HttpServletResponse res, @PathVariable int medId, String username) {
+	public void destroy(HttpServletResponse res, @PathVariable Integer medId, String username) {
 
 		try {
 			if (medService.deleteMedication(username, medId)) {
