@@ -71,9 +71,10 @@ export class FamilymembersService {
       catchError((err: any) => {
         console.error(err);
         return throwError(
-          () => new Error('AppointmentService.createAppointment(): error creating Appointment: ' + err)
+          () => new Error('createFamilyMember broken Service ' + err)
         );
       })
     );
   }
+
 }
