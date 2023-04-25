@@ -26,4 +26,20 @@ export class ClientPageComponent implements OnInit{
    });
 
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
