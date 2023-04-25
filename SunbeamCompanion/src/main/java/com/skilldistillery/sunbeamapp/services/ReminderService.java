@@ -13,5 +13,9 @@ public interface ReminderService {
 
 	public Reminder getById(int reminderId);
 
+	public Reminder addReminder(String username, Reminder reminder);
+	
 	public Reminder updateReminder(String title, Reminder reminder);
+	
+	public boolean deleteReminder(String username, int remId);
 }
