@@ -392,8 +392,8 @@ START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (1, 'Bert', 'Johnson', '180', '6', '1945-08-05', NULL, 'Marine Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL, 1);
 INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (2, 'Teressa', 'Wildermuth', '143', '5\' 9\"', '1949-12-15', NULL, 'Loves Grandening ', 'Female', '2023-03-18', NULL, NULL, NULL, 1);
-INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (DEFAULT, 'Cornelius', 'Swails', '156', '5\' 10\"', '1946-03-20', NULL, 'Bird Watcher', 'Male', '2023-03-18', NULL, NULL, NULL, 1);
-INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (DEFAULT, 'Martha', 'Stewart', '169', '5\' 6\"', '1940-10-24', NULL, 'Foodie - Cat Lover', 'Female', '2023-03-18', NULL, NULL, NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (3, 'Cornelius', 'Swails', '156', '5\' 10\"', '1946-03-20', NULL, 'Bird Watcher', 'Male', '2023-03-18', NULL, NULL, NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (4, 'Martha', 'Stewart', '169', '5\' 6\"', '1940-10-24', NULL, 'Foodie - Cat Lover', 'Female', '2023-03-18', NULL, NULL, NULL, 1);
 
 COMMIT;
 
@@ -416,7 +416,7 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (1, 'Cardiologist appt. with Dr.Rob', '2023-03-23', '1700', 2, 'Get Bert to Cardiologist', 1, 1, 1, '2023-03-17', NULL);
-INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (2, ' Johnson Annual Family Reunion at Highland Park ', '2023-04-10', '1200', 3, 'Family Reunion ', 2, 1, 3, '2023-03-17', NULL);
+INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (2, 'Johnson Annual Family Reunion at Highland Park ', '2023-04-10', '1200', 3, 'Family Reunion ', 2, 1, 3, '2023-03-17', NULL);
 INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (3, 'ENT appointment ', '2023-03-23', '1600', 2, 'ENT clinic', 3, 1, 1, '2023-03-17', NULL);
 INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (4, 'He needs his dentures to be examined. He chips one of the teeth on it ', '2023-04-23', '1600', 3, 'Dentist', 3, 1, 1, NULL, NULL);
 
@@ -441,6 +441,8 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `medication` (`id`, `medication_name`, `health_condition`, `description`, `elder_id`, `dose`, `frequency`) VALUES (1, 'Benazepril (Lotensin)', 'Heart murmurs', 'He has had a few heart attacks and is on a diet regmine for heart health', 1, '50mg', '2 times a day');
+INSERT INTO `medication` (`id`, `medication_name`, `health_condition`, `description`, `elder_id`, `dose`, `frequency`) VALUES (2, 'Hydrocodone', 'Knee Pain ', 'Patient has had a double hip and one (left) knee replacement 4 years ago. Pain comes and goes very often.', 1, '25mg', 'As needed (no more than 2/day)');
+INSERT INTO `medication` (`id`, `medication_name`, `health_condition`, `description`, `elder_id`, `dose`, `frequency`) VALUES (3, 'Simvastatin (Zocor)', 'Cholesterol', 'medication used to lower the number of triglycerides and LDL (“bad cholesterol”) present in a patient’s blood while raising the amount of HDL (“good cholesterol”) in his or her blood.\n\nmedication used to lower the number of triglycerides and LDL (“bad cholesterol”) present in a patient’s blood while raising the amount of HDL (“good cholesterol”) in his or her blood.\n\n', 1, '100mg ', 'Once a day');
 
 COMMIT;
 
@@ -456,12 +458,26 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `user_has_reminder`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `user_has_reminder` (`user_id`, `reminder_id`) VALUES (1, 2);
+INSERT INTO `user_has_reminder` (`user_id`, `reminder_id`) VALUES (2, 2);
+INSERT INTO `user_has_reminder` (`user_id`, `reminder_id`) VALUES (3, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `family_member`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (1, 3, 'Grandson', 1, 1);
 INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (1, 4, 'Nephew', 1, NULL);
+INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (4, 3, 'Grandson', 1, 1);
+INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (4, 4, 'Nephew', 1, NULL);
 
 COMMIT;
 
@@ -472,6 +488,7 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `caretaker_has_client` (`elder_id`, `user_id`) VALUES (1, 2);
+INSERT INTO `caretaker_has_client` (`elder_id`, `user_id`) VALUES (1, 4);
 
 COMMIT;
 
