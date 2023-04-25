@@ -74,8 +74,8 @@ updateAppointment(appointment: Appointment, elderId: number): Observable<Appoint
   );
 }
 
-deleteAppointment(appointmentId: number, elderId: number): Observable<void> {
-  return this.http.delete<void>(this.url + 'elders' + '/' + elderId + '/' + 'appointments' + '/' + appointmentId, this.getHttpOptions()).pipe(
+deleteAppointment(appointmentId: number): Observable<void> {
+  return this.http.delete<void>(this.url + 'elders/appointments' + '/' + appointmentId, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError(
@@ -84,5 +84,7 @@ deleteAppointment(appointmentId: number, elderId: number): Observable<void> {
     })
   );
 }
+
+
 
 }
