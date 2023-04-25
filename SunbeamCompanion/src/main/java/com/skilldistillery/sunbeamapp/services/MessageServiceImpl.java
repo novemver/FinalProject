@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.sunbeamapp.entities.FamilyMember;
 import com.skilldistillery.sunbeamapp.entities.Message;
 import com.skilldistillery.sunbeamapp.entities.User;
+import com.skilldistillery.sunbeamapp.repositories.FamilyMemberRepository;
 import com.skilldistillery.sunbeamapp.repositories.MessageRepository;
 import com.skilldistillery.sunbeamapp.repositories.UserRepository;
 
@@ -18,6 +20,8 @@ public class MessageServiceImpl implements MessageService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private FamilyMemberRepository familyRepo;
 	
 	@Override
 	public Message findMessageById(int id) {
@@ -34,14 +38,8 @@ public class MessageServiceImpl implements MessageService {
 		User loggedInUser = userRepo.findByUsername(username);
 		User receiver = userRepo.findById(receiverId);
 		if(loggedInUser != null && receiver != null) {
-			System.out.println(username);
-			System.out.println(receiverId+"*******************************************");
-			
-			return messageRepo.messagesBetweenUsers(
-					username, 
-				 receiverId,
-				 username, 
-				 receiverId);
+			return messageRepo.messagesBetweenUsers(username, receiverId,
+				 username, receiverId);
 		}
 		return null;
 	}
@@ -60,17 +58,29 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public Message updateMessage(Message message) {
-		// TODO Auto-generated method stub
+	public Message updateMessage(String username, int messId, Message message) {
+		User loggedInUser = userRepo.findByUsername(username);
+		Message existingMessage = messageRepo.findById(messId);
+
+		if(existingMessage != null && loggedInUser!= null
+				&& existingMessage.getSender().getId() == loggedInUser.getId()) {
+			existingMessage.setDescription(message.getDescription());
+			return messageRepo.saveAndFlush(existingMessage);
+		}
 		return null;
 	}
 
 	@Override
-	public Message deleteMessage(int messageId) {
-//		boolean deleted = false;
-//		Message messToDelete = messageRepo.findById(messageId);
-//		return deleted;
-		return null;
+	public boolean deleteMessage(String username, int messageId) {
+		boolean deleted = false;
+		User loggedInUser = userRepo.findByUsername(username);
+		Message messToDelete = messageRepo.findById(messageId);
+		if(loggedInUser != null) {
+			messageRepo.delete(messToDelete);
+			deleted = true;
+		}
+		return deleted;
+		
 	}
 	
 }

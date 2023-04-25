@@ -1,5 +1,3 @@
-// ---------Responsive-navbar-active-animation-----------
-console.log('navbarscript loaded');
 function test(){
 	var tabsNewAnim = $('#navbarSupportedContent');
 	var selectorNewAnim = $('#navbarSupportedContent').find('li').length;

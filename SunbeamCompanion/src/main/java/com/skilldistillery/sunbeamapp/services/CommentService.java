@@ -16,6 +16,7 @@ public interface CommentService {
 
 	    Comment update(String username, int comId, Comment comment);
 
+//	    boolean delete( int comId);
 	    boolean delete(String username, int comId);
 
 //	    List<Comment> findByUserUsername(String username);
