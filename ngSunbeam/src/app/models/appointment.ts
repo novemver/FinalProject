@@ -6,8 +6,8 @@ import { User } from './user';
 export class Appointment {
   id: number;
   description: string;
-  appDate: Date;
-  appTime: Date;
+  apptDate: Date;
+  apptTime: Date;
   title: string;
   createDate: Date;
   updateDate: Date;
@@ -20,8 +20,8 @@ export class Appointment {
   constructor(
   id: number = 0,
   description: string = "",
-  appDate: Date = new Date(),
-  appTime: Date = new Date(),
+  apptDate: Date = new Date(),
+  apptTime: Date = new Date(),
   title: string = "",
   createDate: Date = new Date(),
   updateDate: Date = new Date(),
@@ -33,8 +33,8 @@ export class Appointment {
   ){
     this.id = id;
     this.description = description;
-    this.appDate = appDate;
-    this.appTime = appTime;
+    this.apptDate = apptDate;
+    this.apptTime = apptTime;
     this.title = title;
     this.createDate = createDate;
     this.updateDate = updateDate;

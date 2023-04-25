@@ -11,6 +11,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ClientPageComponent } from './components/client-page/client-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {MatButtonModule} from '@angular/material/button';
+
 
 // MATERIAL DESIGN MODULES //
 
@@ -82,7 +84,8 @@ import { AppointmentsComponent } from './components/appointments/appointments.co
     MdbTooltipModule,
     MdbValidationModule,
     BrowserAnimationsModule,
-    BrowserModule
+    BrowserModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

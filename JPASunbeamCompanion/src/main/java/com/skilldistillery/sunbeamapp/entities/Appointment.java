@@ -17,6 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Appointment {
@@ -43,9 +44,6 @@ public class Appointment {
 	@Column(name = "update_date")
 	private LocalDate updateDate;
 
-	
-
-
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User userAppointments;
@@ -54,17 +52,16 @@ public class Appointment {
 	@JoinColumn(name = "elder_id")
 	private Elder elderAppointments;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"apptReminder"})
 	@OneToMany(mappedBy = "apptReminder")
 	private List<Reminder> reminders;
 	///// Methods /////
