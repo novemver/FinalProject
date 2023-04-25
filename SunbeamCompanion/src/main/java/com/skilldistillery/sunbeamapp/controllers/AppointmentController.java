@@ -57,11 +57,11 @@ public class AppointmentController {
 		}
 		return appt;
 	}
-	@PutMapping("elders/{elderId}/appointments/{apptId}")
-	public Appointment updateAppt(@PathVariable Integer apptId, @PathVariable Integer elderId,
+	@PutMapping("elders/appointments/{apptId}")
+	public Appointment updateAppt(@PathVariable Integer apptId,
 			@RequestBody Appointment appt, HttpServletResponse res, Principal principal) {
 		try {
-			appt = apptService.update(principal.getName(), apptId, appt, elderId);
+			appt = apptService.update(principal.getName(), apptId, appt);
 			if (appt == null) {
 				res.setStatus(404);
 			}
@@ -74,11 +74,11 @@ public class AppointmentController {
 	
 	}
 	
-	@DeleteMapping("elders/{elderId}/appointments/{apptId}")
-	public void deleteAppointment(@PathVariable Integer apptId, @PathVariable Integer elderId, 
+	@DeleteMapping("elders/appointments/{apptId}")
+	public void deleteAppointment(@PathVariable Integer apptId, 
 			HttpServletResponse res, Principal principal) {
 		try { 
-			if(apptService.delete(principal.getName(), apptId, elderId)) {
+			if(apptService.delete(principal.getName(), apptId)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);

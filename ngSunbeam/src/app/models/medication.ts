@@ -1,6 +1,6 @@
 export class Medication {
   id: number;
-  medication: string;
+  medicationName: string;
   healthCondition: string;
   description: string;
   dose: string;
@@ -8,14 +8,14 @@ export class Medication {
 
   constructor(
     id: number = 0,
-    medication: string = "",
+    medicationName: string = "",
     healthCondition: string = "",
     description: string = "",
     dose: string = "",
     frequency: string = ""
   ){
     this.id = id;
-    this.medication = medication;
+    this.medicationName = medicationName;
     this.healthCondition = healthCondition;
     this.description = description;
     this.dose = dose;

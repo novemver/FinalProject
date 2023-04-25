@@ -365,10 +365,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'ADMIN', '@distillery.edu', '5553294455', 'SD', 'Dee', 'https://static.wikia.nocookie.net/telletubbies/images/5/5d/Pic-meet-char-po.jpg/revision/latest?cb=20200317005848', NULL, '2023-03-17', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (2, 'kstout', '$2a$10$leijdDDbJ2tNn4G1T2Cbo.yIztaaPEYGWS5UX2Cm9SN7VcfxugduO', 1, 'user', 'kstout@distillery.edu', '5555555555', 'Kira', 'Stout', 'https://static.wikia.nocookie.net/telletubbies/images/e/e5/Tinky_Winky.jpg/revision/latest?cb=20200317005814', NULL, '2023-03-18', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (3, 'user', '$2a$10$qCiN.i4V2GslC.XHGUTMg.CIQAxFAw2iJDL0UZ2tRsuum5b1Mt.9S', 1, 'user', 'stello@distillery.edu', '5555555556', 'Sebastian', 'Tello', 'https://static.wikia.nocookie.net/telletubbies/images/d/d0/Kids_tele_lala.jpg/revision/latest/scale-to-width-down/200?cb=20120225003505', NULL, '2023-03-18', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (4, 'family', '$2a$10$.8sk8P7Bt8xnEjqVIjT2F.RTZ6ZBy9uJ7IFmGymK5sjCQalNqv7eO', 1, 'user', 'dsurina@distillery.edu', '5555555557', 'Dominic', 'Surina', 'https://static.wikia.nocookie.net/telletubbies/images/3/35/Url.jpg/revision/latest/scale-to-width-down/200?cb=20200413020256', NULL, '2023-03-18', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'ADMIN', '@distillery.edu', '5553294455', 'SD', 'Dee', 'https://www.thesprucepets.com/thmb/QEM2TRph1ibXY_QtRY0_JOiNEmo=/1080x0/filters:no_upscale():strip_icc()/30592721_1202575869845701_6168113550100267008_n-5b0df5208023b90036f8f456.jpg', 'My constant craving for desserts is becoming worrisome.\n', '2023-03-17', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (2, 'kstout', '$2a$10$leijdDDbJ2tNn4G1T2Cbo.yIztaaPEYGWS5UX2Cm9SN7VcfxugduO', 1, 'user', 'kstout@distillery.edu', '5555555555', 'Kira', 'Stout', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVGVvY7GA_01NwebRdp-rVw8rN1AGlMZI60g&usqp=CAU', 'An evolutionary mass of atoms whose sole instinct is survival.', '2023-03-18', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (3, 'user', '$2a$10$qCiN.i4V2GslC.XHGUTMg.CIQAxFAw2iJDL0UZ2tRsuum5b1Mt.9S', 1, 'user', 'stello@distillery.edu', '5555555556', 'Sebastian', 'Tello', 'https://images.unsplash.com/photo-1575425186775-b8de9a427e67?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZnVubnklMjBkb2d8ZW58MHx8MHx8&w=1000&q=80', 'Long story short, humanity is good for a laugh if nothing else.\n', '2023-03-18', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone_number`, `first_name`, `last_name`, `image_url`, `biography`, `create_date`, `update_date`) VALUES (4, 'family', '$2a$10$.8sk8P7Bt8xnEjqVIjT2F.RTZ6ZBy9uJ7IFmGymK5sjCQalNqv7eO', 1, 'user', 'dsurina@distillery.edu', '5555555557', 'Dominic', 'Surina', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVGVvY7GA_01NwebRdp-rVw8rN1AGlMZI60g&usqp=CAU', 'Long story short, humanity is good for a laugh if nothing else.\n', '2023-03-18', NULL);
 
 COMMIT;
 
@@ -390,10 +390,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
-INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (1, 'Bert', 'Johnson', '180', '6', '1945-08-05', NULL, 'Marine Veteran. ', 'Male', '2023-03-18', NULL, 'https://static.wikia.nocookie.net/telletubbies/images/d/d4/Sun_Baby_Intro.PNG/revision/latest/scale-to-width-down/220?cb=20200319185815', NULL, 1);
-INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (2, 'Teressa', 'Wildermuth', '143', '5\' 9\"', '1949-12-15', NULL, 'Loves Grandening ', 'Female', '2023-03-18', NULL, NULL, NULL, 1);
-INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (DEFAULT, 'Cornelius', 'Swails', '156', '5\' 10\"', '1946-03-20', NULL, 'Bird Watcher', 'Male', '2023-03-18', NULL, NULL, NULL, 1);
-INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (DEFAULT, 'Martha', 'Stewart', '169', '5\' 6\"', '1940-10-24', NULL, 'Foodie - Cat Lover', 'Female', '2023-03-18', NULL, NULL, NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (1, 'Bert', 'Johnson', '180', '6', '1945-08-05', NULL, 'Marine Veteran. ', 'Male', '2023-03-18', NULL, 'https://i.dawn.com/large/2015/02/54ea9f6c092ce.jpg', NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (2, 'Teressa', 'Wildermuth', '143', '5\' 9\"', '1949-12-15', NULL, 'Loves Grandening ', 'Female', '2023-03-18', NULL, 'https://www.thenewsminute.com/sites/default/files/styles/news_detail/public/elderly3x2.jpg?itok=KhxhqSVH', NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (3, 'Cornelius', 'Swails', '156', '5\' 10\"', '1946-03-20', NULL, 'Bird Watcher', 'Male', '2023-03-18', NULL, 'https://c8.alamy.com/comp/EJ83AA/old-senior-man-with-wrinkled-face-and-expressive-eyes-EJ83AA.jpg', NULL, 1);
+INSERT INTO `elder` (`id`, `first_name`, `last_name`, `weight`, `height`, `birthdate`, `access_code`, `elder_overview`, `gender`, `create_date`, `last_update`, `image_url`, `biography`, `enabled`) VALUES (4, 'Martha', 'Stewart', '169', '5\' 6\"', '1940-10-24', NULL, 'Foodie - Cat Lover', 'Female', '2023-03-18', NULL, 'https://www.thenewsminute.com/sites/default/files/styles/news_detail/public/elderly3x2.jpg?itok=KhxhqSVH', NULL, 1);
 
 COMMIT;
 
@@ -416,7 +416,7 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (1, 'Cardiologist appt. with Dr.Rob', '2023-03-23', '1700', 2, 'Get Bert to Cardiologist', 1, 1, 1, '2023-03-17', NULL);
-INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (2, ' Johnson Annual Family Reunion at Highland Park ', '2023-04-10', '1200', 3, 'Family Reunion ', 2, 1, 3, '2023-03-17', NULL);
+INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (2, 'Johnson Annual Family Reunion at Highland Park ', '2023-04-10', '1200', 3, 'Family Reunion ', 2, 1, 3, '2023-03-17', NULL);
 INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (3, 'ENT appointment ', '2023-03-23', '1600', 2, 'ENT clinic', 3, 1, 1, '2023-03-17', NULL);
 INSERT INTO `appointment` (`id`, `description`, `appointment_date`, `appointment_time`, `user_id`, `title`, `location_id`, `elder_id`, `category_id`, `create_date`, `update_date`) VALUES (4, 'He needs his dentures to be examined. He chips one of the teeth on it ', '2023-04-23', '1600', 3, 'Dentist', 3, 1, 1, NULL, NULL);
 
@@ -441,6 +441,8 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `medication` (`id`, `medication_name`, `health_condition`, `description`, `elder_id`, `dose`, `frequency`) VALUES (1, 'Benazepril (Lotensin)', 'Heart murmurs', 'He has had a few heart attacks and is on a diet regmine for heart health', 1, '50mg', '2 times a day');
+INSERT INTO `medication` (`id`, `medication_name`, `health_condition`, `description`, `elder_id`, `dose`, `frequency`) VALUES (2, 'Hydrocodone', 'Knee Pain ', 'Patient has had a double hip and one (left) knee replacement 4 years ago. Pain comes and goes very often.', 1, '25mg', 'As needed (no more than 2/day)');
+INSERT INTO `medication` (`id`, `medication_name`, `health_condition`, `description`, `elder_id`, `dose`, `frequency`) VALUES (3, 'Simvastatin (Zocor)', 'Cholesterol', 'medication used to lower the number of triglycerides and LDL (“bad cholesterol”) present in a patient’s blood while raising the amount of HDL (“good cholesterol”) in his or her blood.\n\nmedication used to lower the number of triglycerides and LDL (“bad cholesterol”) present in a patient’s blood while raising the amount of HDL (“good cholesterol”) in his or her blood.\n\n', 1, '100mg ', 'Once a day');
 
 COMMIT;
 
@@ -456,12 +458,26 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `user_has_reminder`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sunbeamdb`;
+INSERT INTO `user_has_reminder` (`user_id`, `reminder_id`) VALUES (1, 2);
+INSERT INTO `user_has_reminder` (`user_id`, `reminder_id`) VALUES (2, 2);
+INSERT INTO `user_has_reminder` (`user_id`, `reminder_id`) VALUES (3, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `family_member`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (1, 3, 'Grandson', 1, 1);
 INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (1, 4, 'Nephew', 1, NULL);
+INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (4, 3, 'Grandson', 1, 1);
+INSERT INTO `family_member` (`elder_id`, `user_id`, `relationship`, `enabled`, `is_emergency_contact`) VALUES (4, 4, 'Nephew', 1, NULL);
 
 COMMIT;
 
@@ -472,6 +488,7 @@ COMMIT;
 START TRANSACTION;
 USE `sunbeamdb`;
 INSERT INTO `caretaker_has_client` (`elder_id`, `user_id`) VALUES (1, 2);
+INSERT INTO `caretaker_has_client` (`elder_id`, `user_id`) VALUES (1, 4);
 
 COMMIT;
 
