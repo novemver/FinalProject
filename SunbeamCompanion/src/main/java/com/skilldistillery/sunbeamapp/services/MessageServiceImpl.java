@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.sunbeamapp.entities.FamilyMember;
 import com.skilldistillery.sunbeamapp.entities.Message;
 import com.skilldistillery.sunbeamapp.entities.User;
+import com.skilldistillery.sunbeamapp.repositories.FamilyMemberRepository;
 import com.skilldistillery.sunbeamapp.repositories.MessageRepository;
 import com.skilldistillery.sunbeamapp.repositories.UserRepository;
 
@@ -18,6 +20,8 @@ public class MessageServiceImpl implements MessageService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private FamilyMemberRepository familyRepo;
 	
 	@Override
 	public Message findMessageById(int id) {
@@ -57,7 +61,9 @@ public class MessageServiceImpl implements MessageService {
 	public Message updateMessage(String username, int messId, Message message) {
 		User loggedInUser = userRepo.findByUsername(username);
 		Message existingMessage = messageRepo.findById(messId);
-		if(loggedInUser != null && existingMessage != null) {
+
+		if(existingMessage != null && loggedInUser!= null
+				&& existingMessage.getSender().getId() == loggedInUser.getId()) {
 			existingMessage.setDescription(message.getDescription());
 			return messageRepo.saveAndFlush(existingMessage);
 		}

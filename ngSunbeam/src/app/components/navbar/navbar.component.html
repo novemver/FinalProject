@@ -11,7 +11,7 @@
               <a class="nav-link" [routerLink]="['/home']"><i class="fas fa-tachometer-alt"></i>Home</a>
           </li>
 
-          <li class="nav-item active" *ngIf="loggedIn()">
+          <li class="nav-item" *ngIf="loggedIn()">
               <a class="nav-link" [routerLink]="['/client']"><i class="far fa-address-book"></i>ELDER NAME HERE</a>
           </li>
 
@@ -23,7 +23,7 @@
               <a class="nav-link" [routerLink]="['/register']"><i class="far fa-copy"></i>Register</a>
           </li>
 
-          <li class="nav-item" *ngIf="loggedIn()">
+          <li class="nav-item active" *ngIf="loggedIn()">
             <a class="nav-link" [routerLink]="['/profile']"><i class="far fa-copy"></i>Profile</a>
         </li>
 
