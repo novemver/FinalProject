@@ -30,19 +30,19 @@ export class ReminderService {
   }
 
 
-  addReminder(reminder: Reminder) {
-    this.reminderService.create(reminder).subscribe({
-      next: () => {
-        this.newReminder = new Reminder();
-      },
-      error: (fail: any) => {
-        console.error('Error creating reminder in service');
-        console.log(fail);
-      },
-    });
-
+  public addReminder(reminder:Reminder): Observable<Reminder>{
+    return this.http.post<Reminder>(this.url, reminder, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('Reminder Service ' + err)
+        );
+      })
+    );
 
   }
+
+
 
 
   getReminder(): Observable<Reminder[]> {
