@@ -40,6 +40,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { ReminderComponent } from './components/reminder/reminder.component';
 
 
 
@@ -60,6 +61,7 @@ import { AppointmentsComponent } from './components/appointments/appointments.co
     ProfileComponent,
     LogoutComponent,
     AppointmentsComponent,
+    ReminderComponent,
 
   ],
   imports: [
