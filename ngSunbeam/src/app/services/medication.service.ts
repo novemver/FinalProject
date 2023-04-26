@@ -33,7 +33,7 @@ export class MedicationService {
 
 
 getMedication(): Observable<Medication[]> {
-  // return [...this.todos];
+
   return this.http.get<Medication[]>(this.url, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
@@ -55,6 +55,16 @@ public addMedication(medication:Medication): Observable<Medication>{
     })
   );
 
+}
+destoryMedication(medId: number): Observable<void> {
+  return this.http.delete<void>(this.url + '/' + medId).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('MedicationService.index(): error retrieving meds: ' + err)
+      );
+    })
+  );
 }
 
 }
