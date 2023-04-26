@@ -166,7 +166,15 @@ export class ClientPageComponent implements OnInit{
       }
 
       deleteMedication(medicationId: number){
-
+        this.medicationService.destoryMedication(medicationId).subscribe({
+          next:()=>{
+            this.loadElders();
+          },
+          error: (nope) => {
+            console.log('Error deleting delete ');
+            console.error(nope);
+          }
+        });
       }
 
       loadFamilymembers(){
