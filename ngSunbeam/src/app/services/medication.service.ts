@@ -55,8 +55,8 @@ public addMedication(medication:Medication): Observable<Medication>{
   );
 
 }
-destoryMedication(medId: number): Observable<void> {
-  return this.http.delete<void>(this.url + '/' + medId).pipe(
+destroyMedication(id: number): Observable<void> {
+  return this.http.delete<void>(this.url + 'meds/' + id, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(
