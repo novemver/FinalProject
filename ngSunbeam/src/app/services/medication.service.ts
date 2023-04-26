@@ -33,7 +33,6 @@ export class MedicationService {
 
 
 getMedication(): Observable<Medication[]> {
-
   return this.http.get<Medication[]>(this.url, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
