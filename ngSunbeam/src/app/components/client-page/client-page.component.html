@@ -66,7 +66,7 @@
               <ol class="list-group list-group appointmentlist">
                 <li class="list-group-item d-flex justify-content-between align-items-start pt-2 pr-2 pl-2 rounded" *ngFor="let appointment of selected.appointments">
                   <div class="ms-2 me-auto">
-                    <li class="clientdata">{{appointment.description}} on {{appointment.apptDate | date}}</li>
+                    <li class="clientdata">{{appointment.title}} {{appointment.description}} on {{appointment.apptDate | date}}</li>
                   </div>
                   <i class="fa-solid fa-circle-xmark fs-5 mb-2 ml-3" style="color: #dc0914" (click)="deleteAppointment(appointment.id)"></i>
                 </ol>
