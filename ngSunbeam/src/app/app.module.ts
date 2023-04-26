@@ -12,6 +12,14 @@ import { ClientPageComponent } from './components/client-page/client-page.compon
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+
+
+
 
 
 // MATERIAL DESIGN MODULES //
@@ -41,6 +49,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { ReminderComponent } from './components/reminder/reminder.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -87,9 +97,14 @@ import { ReminderComponent } from './components/reminder/reminder.component';
     MdbValidationModule,
     BrowserAnimationsModule,
     BrowserModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
