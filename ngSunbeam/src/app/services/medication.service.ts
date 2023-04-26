@@ -11,8 +11,8 @@ import { Reminder } from '../models/reminder';
   providedIn: 'root'
 })
 export class MedicationService {
-  private baseUrl = 'http://localhost:8090/';
-  private url = environment.baseUrl;
+  // private baseUrl = 'http://localhost:8090/';
+  private url = environment.baseUrl + 'api/meds';
   reminderService: any;
   newReminder: Reminder | undefined;
 
