@@ -1,13 +1,12 @@
 <div class="container">
   <div class="profile-header">
     <div class="profile-img">
-      <img src="{{user.image_url}}" width="200" alt="Profile Image">
+      <img src="{{user.imageUrl}}" width="200" alt="Profile Image">
     </div>
     <div class="profile-nav-info">
       <h3 class="user-name">{{user.username | titlecase}}</h3>
       <h4 class="firstlastname">{{user.firstName}} {{user.lastName}}</h4>
     </div>
-
   </div>
 
   <div class="main-bd">
@@ -18,8 +17,8 @@
         <p class="user-mail"><i class="fa-solid fa-face-laugh-beam"></i> Joined: {{user.createDate | date}}</p>
         <p class="user-mail"><i class="fa-solid fa-users"></i> Role: {{user.role | titlecase}}</p>
       </div>
-
     </div>
+
     <div class="right-side">
       <div class="container ml-3">
         <div class="p-5 bg-white rounded shadow mb-5" id="tabs-container">
@@ -28,7 +27,7 @@
               <a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active">About</a>
             </li>
             <li class="nav-item flex-sm-fill">
-              <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">Edit Profile</a>
+              <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold" (click)="bindUser()">Edit Profile</a>
             </li>
           </ul>
           <div id="myTabContent" class="tab-content">
@@ -42,27 +41,27 @@
               <form class="updateprofile mt-3 w-75">
                 <mat-form-field class="example-full-width">
                   <mat-label>First Name:</mat-label>
-                  <input type="text" matInput placeholder="{{user.firstName}}" value="{{user.firstName}}" [(ngModel)]="editUser.firstName" required>
+                  <input type="text" matInput [(ngModel)]="editUser.firstName" name="firstName" required>
                 </mat-form-field><br>
 
                 <mat-form-field class="example-full-width">
                   <mat-label>Last Name:</mat-label>
-                  <input type="text" matInput placeholder="{{user.lastName}}" value="{{user.lastName}}" [(ngModel)]="editUser.lastName" required>
+                  <input type="text" matInput  [(ngModel)]="editUser.lastName" name="lastName" required>
                 </mat-form-field><br>
 
                 <mat-form-field class="example-full-width">
                   <mat-label>Bio:</mat-label>
-                  <textarea type="text" matInput placeholder="{{user.biography}}" value="{{user.biography}}"></textarea>
+                  <textarea type="text" matInput  [(ngModel)]="editUser.biography" name="biography"></textarea>
                 </mat-form-field><br>
 
                 <mat-form-field class="example-full-width">
                   <mat-label>Email:</mat-label>
-                  <input type="email" matInput placeholder="{{user.email}}" value="{{user.email}}" required>
+                  <input type="email" matInput  required name="email" [(ngModel)]="editUser.email">
                 </mat-form-field><br>
 
                 <mat-form-field class="example-full-width">
                   <mat-label>Phone Number:</mat-label>
-                  <input type="tel" matInput placeholder="{{user.phoneNumber}}" value="{{user.phoneNumber}}">
+                  <input type="tel" matInput name="phoneNumber" [(ngModel)]="editUser.phoneNumber">
                 </mat-form-field>
 
                 <button mat-raised-button color="accent" (click)="updateUser()">Update</button>
