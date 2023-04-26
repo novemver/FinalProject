@@ -1,6 +1,7 @@
 package com.skilldistillery.sunbeamapp.entities;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,7 +17,6 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -32,7 +32,7 @@ public class Appointment {
 	private LocalDate apptDate;
 
 	@Column(name = "appointment_time")
-	private LocalDate apptTime;
+	private LocalTime apptTime;
 
 	private String title;
 
@@ -119,11 +119,11 @@ public class Appointment {
 		this.apptDate = apptDate;
 	}
 
-	public LocalDate getApptTime() {
+	public LocalTime getApptTime() {
 		return apptTime;
 	}
 
-	public void setApptTime(LocalDate apptTime) {
+	public void setApptTime(LocalTime apptTime) {
 		this.apptTime = apptTime;
 	}
 
