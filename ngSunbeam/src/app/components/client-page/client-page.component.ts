@@ -1,3 +1,4 @@
+import { FamilymembersService } from './../../services/familymembers.service';
 import { AppointmentService } from './../../services/appointment.service';
 import { MedicationService } from './../../services/medication.service';
 import { ElderService } from './../../services/elder.service';
@@ -12,6 +13,7 @@ import { Reminder } from 'src/app/models/reminder';
 import { Medication } from 'src/app/models/medication';
 import { catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Familymember } from 'src/app/models/familymember';
 
 @Component({
   selector: 'app-client-page',

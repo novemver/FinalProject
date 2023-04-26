@@ -42,20 +42,20 @@ export class FamilymembersService {
     );
   }
 
-  // seeFamilyMember(familyMemberId: number): Observable<Familymember> {
-  //   return this.http.get<Familymember>(this.url + 'appointments' + appointmentId, this.getHttpOptions()).pipe(
-  //     catchError((err: any) => {
-  //       console.log(err);
-  //       return throwError(
-  //         () => new Error('AppointmentService.seeAppt(): error retrieving Appointment: ' + err)
-  //       );
-  //     })
-  //   );
-  // }
+  seeFamilyMember(familymemberId: number): Observable<Familymember> {
+    return this.http.get<Familymember>(this.url + 'appointments' + familymemberId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('Family memeber see memeber is broken ' + err)
+        );
+      })
+    );
+  }
 
 
-  public addFamilyMember(familyMember: Familymember): Observable<Familymember>{
-    return this.http.post<Familymember>(this.url, familyMember, this.getHttpOptions()).pipe(
+  public addFamilyMember(familymember: Familymember): Observable<Familymember>{
+    return this.http.post<Familymember>(this.url, familymember, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -65,4 +65,16 @@ export class FamilymembersService {
     );
 
   }
+
+  createFamilyMember(familymember: Familymember, familymemeberId: number): Observable<Familymember> {
+    return this.http.post<Familymember>(this.url + 'familymembers' + '/' + familymemeberId + '/' + 'elder', this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('createFamilyMember broken Service ' + err)
+        );
+      })
+    );
+  }
+
 }
