@@ -13,8 +13,8 @@ export class Reminder {
 
    constructor(
     id: number = 0,
-    reminderDate: Date = new Date,
-    reminderTime: Date = new Date,
+    reminderDate: Date = new Date(),
+    reminderTime: Date = new Date(),
     title: string = "",
     description: string = "",
     apptReminder: Appointment = new Appointment(),

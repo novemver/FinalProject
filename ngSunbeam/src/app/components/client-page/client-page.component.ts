@@ -21,6 +21,7 @@ import { Familymember } from 'src/app/models/familymember';
   styleUrls: ['./client-page.component.css'],
 })
 export class ClientPageComponent implements OnInit {
+
   selected: Elder | null = null;
 
   user: User | null = null;
@@ -50,12 +51,10 @@ export class ClientPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.newReminder.apptReminder = new Appointment();
     this.loadElders();
     this.loadReminder();
-    this.createReminder();
     this.loadMedication();
-    this.createMedication();
-
   }
 
   getHttpOptions() {
@@ -103,7 +102,7 @@ export class ClientPageComponent implements OnInit {
 
   createReminder() {
     this.reminderService.addReminder(this.newReminder).subscribe({
-      next: (newOne) => {
+      next: () => {
         this.newReminder = new Reminder();
       },
       error: (ohno) => {
@@ -111,6 +110,17 @@ export class ClientPageComponent implements OnInit {
       },
     });
   }
+
+  // //   addAppointment(){
+  //   this.appointmentService.createAppointment(this.newAppointment, this.selected!.id).subscribe({
+  //     next: () => {
+  //       this.loadElders();
+  //     },
+  //     error: (err) => {
+  //       console.error("Error creating appointment" + err);
+  //     },
+  //   });
+  // }
 
   loadMedication() {
     this.medicationService.getMedication().subscribe({
