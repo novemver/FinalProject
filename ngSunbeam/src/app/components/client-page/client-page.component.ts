@@ -1,3 +1,4 @@
+import { FamilymembersService } from './../../services/familymembers.service';
 import { AppointmentService } from './../../services/appointment.service';
 import { MedicationService } from './../../services/medication.service';
 import { ElderService } from './../../services/elder.service';
@@ -12,6 +13,7 @@ import { Reminder } from 'src/app/models/reminder';
 import { Medication } from 'src/app/models/medication';
 import { catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Familymember } from 'src/app/models/familymember';
 
 
 @Component({
@@ -35,13 +37,19 @@ export class ClientPageComponent implements OnInit{
 
   medication: Medication[] =[];
 
+  familyMembers: Familymember[] =[];
+
+  familyMember: Familymember = new Familymember();
+
   private url = environment.baseUrl + 'api/';
+
 
 
   constructor(private auth: AuthService, private elderService: ElderService,
     private reminderService: ReminderService,
     private medicationService: MedicationService,
-    private appointmentService: AppointmentService){}
+    private appointmentService: AppointmentService ,
+   private familymembersService: FamilymembersService){}
 
   ngOnInit(): void {
     this.loadElders();
@@ -159,6 +167,17 @@ export class ClientPageComponent implements OnInit{
 
       deleteMedication(medicationId: number){
 
+      }
+
+      loadFamilymembers(){
+        this.familymembersService.index().subscribe({
+          next: (listOfFamilymembers) => {
+            this.familyMembers = listOfFamilymembers;
+          },
+          error: (errr) => {
+            console.error("Error loading medications" + errr)
+          }
+        })
       }
 
 }
