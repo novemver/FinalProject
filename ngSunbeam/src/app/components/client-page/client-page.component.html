@@ -8,10 +8,10 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h3 class="ml-3 mt-0">{{elder.firstName}} {{elder.lastName}} - {{elder.elderOverview}}</h3><br>
-
-            <h3 class="ml-3">{{elder.gender}}</h3>
-
+          <h3 class="ml-3 mt-0 mb-0"><i class="fa-solid fa-universal-access mr-2 mt-2" style="color: #1663e9;"></i>{{elder.firstName}} {{elder.lastName}} </h3><br>
+            <h3 class="ml-3 mt-0"><i class="fa-solid fa-address-card mr-2 mt-2" style="color: #2c8514;"></i>{{elder.elderOverview}}</h3>
+            <h3 class="ml-3 mb-1 mt-1 fs-5" *ngIf="elder.gender === 'Female'"><i class="fa-solid fa-venus mr-1 mt-1" style="color: #b512b0;"></i>{{elder.gender}}</h3>
+            <h3 class="ml-3 mb-1 mt-1 fs-5" *ngIf="elder.gender === 'Male'"><i class="fa-solid fa-mars mr-1 mt-1" style="color: #0c50c6;"></i>{{elder.gender}}</h3>
 
 
           <p class="card-text"><small class="text-muted">{{elder.lastUpdate}}</small></p>
@@ -24,14 +24,14 @@
 
 <!-- ELDER DETAIL VIEW -->
 <div class="container" *ngIf="selected">
-  <button mat-raised-button color="primary" class="mb-2" (click)="selected = null">View All</button>
+  <button mat-raised-button color="primary" class="mb-2 fs-5 rounded-2 p-3" (click)="selected = null"><i class="fa-solid fa-address-book mr-2"></i>View All</button>
   <div class="profile-header">
     <div class="profile-img">
       <img src="{{selected.imageUrl}}" width="200" alt="Profile Image">
     </div>
     <div class="profile-nav-info">
-      <h4 class="address">{{selected.firstName}} {{selected.lastName}}</h4>
-      <h4 class="address">{{selected.elderOverview}}</h4>
+      <h4 class="address fs-1 text-dark"><i class="fa-solid fa-signature mr-2 fs-3 pt-3" style="color: #e40046;"></i>{{selected.firstName}} {{selected.lastName}}</h4>
+      <h4 class="address"><i class="fa-solid fa-circle-info pt-1 mr-1 fs-6 pt-2" style="color: #1b52b1;"></i>{{selected.elderOverview}}</h4>
     </div>
   </div>
 
@@ -41,10 +41,10 @@
         <p class="user-mail">{{selected.elderCaretakers}}</p>
         <div class="user-bio">
           <h3>Bio</h3>
-          <p class="bio">Birthday: {{selected.birthdate}}</p>
-          <p class="bio">Height: {{selected.height}}ft</p>
-          <p class="bio">Weight: {{selected.weight}}lbs</p>
-          <p class="bio">Joined on: {{selected.createDate}}</p>
+          <p class="bio"><i class="fa-solid fa-cake-candles mr-1"></i>Birthday: {{selected.birthdate | date}}</p>
+          <p class="bio"><i class="fa-solid fa-ruler mr-1"></i>Height: {{selected.height}}ft</p>
+          <p class="bio"><i class="fa-solid fa-weight-scale mr-1"></i>Weight: {{selected.weight}}lbs</p>
+          <p class="bio"><i class="fa-solid fa-file-signature mr-1"></i>Joined on: {{selected.createDate | date}}</p>
         </div>
       </div>
     </div>
@@ -55,50 +55,49 @@
         <div class="p-5 bg-white rounded shadow mb-5" id="tabs-container">
           <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav">
             <li class="nav-item flex-sm-fill">
-              <a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active">Feed</a>
+              <a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active fs-5">Feed</a>
             </li>
           </ul>
 
 
           <div id="myTabContent" class="tab-content">
             <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
-
-              <h4 class="mt-3">Appointments</h4>
-              <ol class="list-group list-group-numbered">
-                <li class="list-group-item d-flex justify-content-between align-items-start pt-2 pr-2 pl-2" *ngFor="let appointment of selected.appointments">
+              <h4 class="mt-3 mb-1 text-dark"><i class="fa-solid fa-calendar-check m-2 pt-1" style="color: #0a64ff;"></i>Appointments</h4>
+              <ol class="list-group list-group appointmentlist">
+                <li class="list-group-item d-flex justify-content-between align-items-start pt-2 pr-2 pl-2 rounded" *ngFor="let appointment of selected.appointments">
                   <div class="ms-2 me-auto">
-                    <li>{{appointment.description}} on {{appointment.apptDate}}</li>
+                    <li class="clientdata">{{appointment.description}} on {{appointment.apptDate | date}}</li>
                   </div>
-                  <i class="fa-solid fa-circle-xmark" style="color: #dc0914" (click)="deleteAppointment(appointment.id)"></i>
+                  <i class="fa-solid fa-circle-xmark fs-4 mb-1 ml-2" style="color: #dc0914" (click)="deleteAppointment(appointment.id)"></i>
                 </ol>
 
-                <h4 class="mt-3">Reminders</h4>
-                <ol class="list-group list-group-numbered">
-                  <div *ngFor="let appointment of selected.appointments">
-                  <li class="list-group-item d-flex justify-content-between align-items-start pt-2 pr-2 pl-2" *ngFor="let reminder of appointment.reminders">Date: {{reminder.reminderDate}} - {{reminder.description}}
-                    <i class="fa-solid fa-circle-xmark" style="color: #dc0914"  (click)="deleteReminder(reminder.id)"></i></li>
-
+                <h4 class="mt-3 mb-1 text-dark pt-3"><i class="fa-solid fa-note-sticky m-2" style="color: #d4c411;"></i>Reminders</h4>
+                <ol class="clientdata list-group list-group-numbered">
+                  <div *ngFor="let appointment of selected.appointments" class="rounded">
+                  <li class="list-group-item d-flex justify-content-between align-items-start pt-2 pr-2 pl-2" *ngFor="let reminder of appointment.reminders">
+                    Date: {{reminder.reminderDate | date}} - {{reminder.description}}
+                    <i class="fa-solid fa-circle-xmark fs-4 mb-1" style="color: #dc0914"  (click)="deleteReminder(reminder.id)"></i></li>
                   </div>
                 </ol>
-
-                <h4 class="mt-3">Medication</h4>
-                <ol class="list-group list-group-numbered">
+                <ng-container *ngIf="loadMedication !== null">
+                <h4 class="mt-3 mb-1 text-dark pt-3"><i class="fa-solid fa-pills m-2 pt-1" style="color: #1a747a;"></i>Medication</h4>
+                <ol class="clientdata list-group list-group-numbered">
                   <div *ngFor="let medication of selected.medications">
-                    <li class="list-group-item d-flex justify-content-between align-items-start pl-2 pt-2 pr-2">{{medication.medicationName}} {{medication.frequency}} @ {{medication.dose}} - Due to {{medication.healthCondition}}
-                      <i class="fa-solid fa-circle-xmark" style="color: #dc0914"  (click)="deleteMedication(medication.id)"></i>
+                    <li class="list-group-item d-flex justify-content-between align-items-start pl-2 pt-2 pr-2 rounded"><p class="fw-bold fst-italic">{{medication.medicationName}}</p> {{medication.frequency}} @ {{medication.dose}} - Due to {{medication.healthCondition}}
+                      <i class="fa-solid fa-circle-xmark fs-4 mb-1" style="color: #dc0914"  (click)="deleteMedication(medication.id)"></i>
                     </li>
                   </div>
                 </ol>
+              </ng-container>
              </div>
              <div class="text-center">
               <mat-expansion-panel hideToggle class="m-3">
-                <mat-expansion-panel-header>
+                <mat-expansion-panel-header class="formtitle fs-5">
                   <mat-panel-title>Add Appointment</mat-panel-title>
                   <mat-panel-description>Create an appointment for the client</mat-panel-description>
                 </mat-expansion-panel-header>
-                <!-- desc, date, time, title -->
-                <form>
 
+                <form class="formtitle">
                   <mat-form-field class="w-75" appearance="fill">
                     <mat-label>Title</mat-label>
                     <input matInput type="text" [(ngModel)]="newAppointment.title" name="title">
@@ -119,7 +118,6 @@
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field><br>
 
-
                   <mat-form-field class="w-75" appearance="fill">
                     <mat-label>Time</mat-label>
                     <input type="time" matInput [(ngModel)]="newAppointment.apptTime" name="time">
@@ -129,20 +127,78 @@
                 </form>
               </mat-expansion-panel>
 
+              <!-- CREATE REMINDER FORM -->
               <mat-expansion-panel hideToggle class="m-3">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>Add Reminder</mat-panel-title>
+                <mat-expansion-panel-header class="fs-5">
+                  <mat-panel-title >Add Reminder</mat-panel-title>
                   <mat-panel-description>Add an appointment for the client</mat-panel-description>
                 </mat-expansion-panel-header>
-                <p>This is the primary content of the panel.</p>
+
+                <form>
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input matInput type="text" [(ngModel)]="newReminder.title" name="reminderTitle">
+                  </mat-form-field><br>
+
+
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput type="text" [(ngModel)]="newReminder.description" name="reminderDescription"></textarea>
+                  </mat-form-field><br>
+
+
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="pickerTwo" [(ngModel)]="newReminder.reminderDate" name="reminderDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="pickerTwo"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerTwo></mat-datepicker>
+                  </mat-form-field><br>
+
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Time</mat-label>
+                    <input type="time" matInput [(ngModel)]="newReminder.reminderTime" name="apptTime">
+                  </mat-form-field><br>
+
+                  <button type="submit" (click)="createReminder()" mat-button>Add</button>
+                </form>
               </mat-expansion-panel>
 
               <mat-expansion-panel hideToggle class="m-3">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>Add Medication</mat-panel-title>
+                <mat-expansion-panel-header class="fs-5">
+                  <mat-panel-title >Add Medication</mat-panel-title>
                   <mat-panel-description>Add a medication for the client to track</mat-panel-description>
                 </mat-expansion-panel-header>
-                <p>This is the primary content of the panel.</p>
+                <form>
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" [(ngModel)]="newMedication.medicationName" name="medicationTitle">
+                  </mat-form-field><br>
+
+
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput type="text" [(ngModel)]="newMedication.description" name="medicationDescription"></textarea>
+                  </mat-form-field><br>
+
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Dose</mat-label>
+                    <input matInput type="text" [(ngModel)]="newMedication.dose" name="medicationDose">
+                  </mat-form-field><br>
+
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Frequency</mat-label>
+                    <input matInput type="text" [(ngModel)]="newMedication.frequency" name="medicationFrequency">
+                  </mat-form-field><br>
+
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Condition</mat-label>
+                    <input matInput type="text" [(ngModel)]="newMedication.healthCondition" name="medicationCondition">
+                  </mat-form-field><br>
+
+                  <button type="submit" (click)="createMedication()" mat-button>Add</button>
+
+                </form>
               </mat-expansion-panel>
               </div>
 

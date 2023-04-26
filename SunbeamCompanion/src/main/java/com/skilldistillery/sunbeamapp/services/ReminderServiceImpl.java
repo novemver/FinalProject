@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.sunbeamapp.entities.Medication;
 import com.skilldistillery.sunbeamapp.entities.Reminder;
 import com.skilldistillery.sunbeamapp.entities.User;
+import com.skilldistillery.sunbeamapp.repositories.AppointmentRepository;
 import com.skilldistillery.sunbeamapp.repositories.ReminderRepository;
 import com.skilldistillery.sunbeamapp.repositories.UserRepository;
 
@@ -19,6 +20,9 @@ public class ReminderServiceImpl implements ReminderService {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private AppointmentRepository apptRepo;
 
 	@Override
 	public List<Reminder> findAllReminder() {
@@ -35,7 +39,10 @@ public class ReminderServiceImpl implements ReminderService {
 	@Override
 	public Reminder addReminder(String username, Reminder reminder) {
 		User loggedInUser = userRepo.findByUsername(username);
+		System.out.println("reminder****impl" + reminder);
+		System.out.println("reminder****impl user" + loggedInUser);
 		if (loggedInUser != null) {
+			apptRepo.saveAndFlush(reminder.getApptReminder());
 			return reminderRepo.saveAndFlush(reminder);
 		}
 		return null;

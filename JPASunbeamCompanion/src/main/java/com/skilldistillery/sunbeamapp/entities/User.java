@@ -49,7 +49,7 @@ public class User {
 	private String imageUrl;
 
 	@Column(name = "biography")
-	private String userBio;
+	private String biography;
 
 	@CreationTimestamp
 	@Column(name = "create_date")
@@ -221,12 +221,12 @@ public class User {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getUserBio() {
-		return userBio;
+	public String getBiography() {
+		return biography;
 	}
 
-	public void setUserBio(String userBio) {
-		this.userBio = userBio;
+	public void setBiography(String biography) {
+		this.biography = biography;
 	}
 
 	public LocalDateTime getCreateDate() {
@@ -273,7 +273,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + ", email=" + email + ", phoneNumber=" + phoneNumber + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", imageUrl=" + imageUrl + ", userBio=" + userBio + ", createDate="
+				+ ", lastName=" + lastName + ", imageUrl=" + imageUrl + ", userBio=" + biography + ", createDate="
 				+ createDate + ", updateDate=" + updateDate + "]";
 	}
 
