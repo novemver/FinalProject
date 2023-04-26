@@ -68,7 +68,7 @@
                   <div class="ms-2 me-auto">
                     <li class="clientdata">{{appointment.description}} on {{appointment.apptDate | date}}</li>
                   </div>
-                  <i class="fa-solid fa-circle-xmark fs-4 mb-1 ml-2" style="color: #dc0914" (click)="deleteAppointment(appointment.id)"></i>
+                  <i class="fa-solid fa-circle-xmark fs-5 mb-2 ml-3" style="color: #dc0914" (click)="deleteAppointment(appointment.id)"></i>
                 </ol>
 
                 <h4 class="mt-3 mb-1 text-dark pt-3"><i class="fa-solid fa-note-sticky m-2" style="color: #d4c411;"></i>Reminders</h4>
@@ -76,7 +76,7 @@
                   <div *ngFor="let appointment of selected.appointments" class="rounded">
                   <li class="list-group-item d-flex justify-content-between align-items-start pt-2 pr-2 pl-2" *ngFor="let reminder of appointment.reminders">
                     Date: {{reminder.reminderDate | date}} - {{reminder.description}}
-                    <i class="fa-solid fa-circle-xmark fs-4 mb-1" style="color: #dc0914"  (click)="deleteReminder(reminder.id)"></i></li>
+                    <i class="fa-solid fa-circle-xmark fs-5 mb-2" style="color: #dc0914"  (click)="deleteReminder(reminder.id)"></i></li>
                   </div>
                 </ol>
                 <ng-container *ngIf="loadMedication !== null">
@@ -84,7 +84,7 @@
                 <ol class="clientdata list-group list-group-numbered">
                   <div *ngFor="let medication of selected.medications">
                     <li class="list-group-item d-flex justify-content-between align-items-start pl-2 pt-2 pr-2 rounded"><p class="fw-bold fst-italic">{{medication.medicationName}}</p> {{medication.frequency}} @ {{medication.dose}} - Due to {{medication.healthCondition}}
-                      <i class="fa-solid fa-circle-xmark fs-4 mb-1" style="color: #dc0914"  (click)="deleteMedication(medication.id)"></i>
+                      <i class="fa-solid fa-circle-xmark fs-5 mb-2" style="color: #dc0914"  (click)="deleteMedication(medication.id)"></i>
                     </li>
                   </div>
                 </ol>

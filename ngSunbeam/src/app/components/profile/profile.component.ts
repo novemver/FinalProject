@@ -32,57 +32,25 @@ export class ProfileComponent implements OnInit {
    });
 
   }
-  // loadUser() {
-  //   this.userService.getUserByUsername().subscribe(
-  //     {
-  //       next: (userList: User[]) => {
-  //         this.users = userList;
-  //       },
-  //       error: (failure: any) => {
-  //         console.error('Error getting user list from service');
-  //         console.log(failure);
-  //       },
-  //     }
-  //   );
-  // }
-
 
   updateUser() {
-
-
     this.userService.update(this.editUser).subscribe({
       next:(data: any) => {
         this.auth.getLoggedInUser().subscribe({
           next: (user: User) => {
             this.user = user;
-            // this.reload();
+            this.editUser = user;
           },
           error: (nojoy) => {
             console.log(nojoy);
           }
-
          });
-
-
        },
-
       error: (boom: string) => { console.error('Error retrieving user from userService: ' + boom);}
       });
   }
 
-  // reload(){
-  //   this.userService.index().subscribe({
-  //     //when the next piece of data arrives- without error my todos will go here
-  //     next: (user: User)=>{ this.user = user},
-  //     // or when it goes wrong
-  //     error: (failure: any)=> {
-  //       console.error('Error getting User');
-  //       console.error(failure);
-  //     }
-  //   });
-
-  // }
-
-
-
+  bindUser(){
+    this.editUser = Object.assign({},this.user);
+  }
 }

@@ -38,7 +38,7 @@ export class UserService {
     );
   }
   update(user: User): Observable<User> {
-    return this.http.put<User>(this.url + '/' + user.id, user).pipe(
+    return this.http.put<User>(this.url + 'api/users/', user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
