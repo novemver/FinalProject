@@ -55,7 +55,7 @@ export class ClientPageComponent implements OnInit {
     this.createReminder();
     this.loadMedication();
     this.createMedication();
-    this.deleteMedication()
+
   }
 
   getHttpOptions() {
