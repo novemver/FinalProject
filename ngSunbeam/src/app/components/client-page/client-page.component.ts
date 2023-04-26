@@ -55,6 +55,7 @@ export class ClientPageComponent implements OnInit {
     this.createReminder();
     this.loadMedication();
     this.createMedication();
+    this.deleteMedication()
   }
 
   getHttpOptions() {
@@ -154,6 +155,20 @@ export class ClientPageComponent implements OnInit {
     });
   }
 
+
+      deleteMedication(medicationId: number){
+        this.medicationService.destroyMedication(medicationId).subscribe({
+          next:()=>{
+            this.loadElders();
+          },
+          error: (nope) => {
+            console.log('Error deleting delete ');
+            console.error(nope);
+
+          }
+        });
+      }
+
   deleteReminder(reminderId: number) {
     this.reminderService.destroy(reminderId).subscribe({
       next: () => {
@@ -166,7 +181,6 @@ export class ClientPageComponent implements OnInit {
     });
   }
 
-  deleteMedication(medicationId: number) {}
 
   addAppointment(){
     this.appointmentService.createAppointment(this.newAppointment, this.selected!.id).subscribe({
