@@ -1,3 +1,4 @@
+import { FamilymembersService } from './../../services/familymembers.service';
 import { AppointmentService } from './../../services/appointment.service';
 import { MedicationService } from './../../services/medication.service';
 import { ElderService } from './../../services/elder.service';
@@ -12,6 +13,7 @@ import { Reminder } from 'src/app/models/reminder';
 import { Medication } from 'src/app/models/medication';
 import { catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Familymember } from 'src/app/models/familymember';
 
 
 @Component({
@@ -23,6 +25,8 @@ export class ClientPageComponent implements OnInit{
 
   selected: Elder | null = null;
 
+  user: User | null = null;
+
   elders: Elder[] = [];
 
   reminder: Reminder[] =[];
@@ -33,13 +37,19 @@ export class ClientPageComponent implements OnInit{
 
   medication: Medication[] =[];
 
+  familyMembers: Familymember[] =[];
+
+  familyMember: Familymember = new Familymember();
+
   private url = environment.baseUrl + 'api/';
+
 
 
   constructor(private auth: AuthService, private elderService: ElderService,
     private reminderService: ReminderService,
     private medicationService: MedicationService,
-    private appointmentService: AppointmentService){}
+    private appointmentService: AppointmentService ,
+   private familymembersService: FamilymembersService){}
 
   ngOnInit(): void {
     this.loadElders();
@@ -63,6 +73,9 @@ export class ClientPageComponent implements OnInit{
     this.elderService.getEldersForUser().subscribe({
       next: (data) => {
         this.elders = data;
+        if (this.selected) {
+          this.updateSelected();
+        }
       },
       error: (err) => {
         console.error("Error loading  elders" + err);
@@ -70,6 +83,15 @@ export class ClientPageComponent implements OnInit{
       }
     });
   }
+
+  updateSelected(){
+    this.elders.forEach(elder => {
+      if (elder.id === this.selected?.id) {
+        this.selected = elder;
+      }
+    });
+  }
+
     loadReminder(){
       this.reminderService.getReminder().subscribe({
         next: (data) => {
@@ -80,6 +102,7 @@ export class ClientPageComponent implements OnInit{
         }
       })
     }
+
     createReminder(){
       this.reminderService.addReminder(this.newReminder).subscribe({
         next: (newOne) => {
@@ -89,19 +112,6 @@ export class ClientPageComponent implements OnInit{
           console.error("error creating reminder " + ohno)
         }
       })
-    }
-
-    deleteReminder(reminderId: number) {
-      this.reminderService.destroy(reminderId).subscribe({
-        next: () => {
-          this.loadReminder();
-        },
-        error: (didNotWork) => {
-          console.log('Error handiling delete');
-          console.error(didNotWork);
-        },
-      });
-
     }
 
     loadMedication(){
@@ -141,5 +151,33 @@ export class ClientPageComponent implements OnInit{
           console.error(didNotWork);
         },
       });
-}
+    }
+
+      deleteReminder(reminderId: number) {
+        this.reminderService.destroy(reminderId).subscribe({
+          next: () => {
+           this.loadElders();
+          },
+          error: (didNotWork) => {
+            console.log('Error handiling delete');
+            console.error(didNotWork);
+          },
+        });
+      }
+
+      deleteMedication(medicationId: number){
+
+      }
+
+      loadFamilymembers(){
+        this.familymembersService.index().subscribe({
+          next: (listOfFamilymembers) => {
+            this.familyMembers = listOfFamilymembers;
+          },
+          error: (errr) => {
+            console.error("Error loading medications" + errr)
+          }
+        })
+      }
+
 }

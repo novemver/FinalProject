@@ -11,7 +11,7 @@ import { Reminder } from '../models/reminder';
 })
 export class ReminderService {
   private baseUrl = 'http://localhost:8090/';
-  private url = environment.baseUrl;
+  private url = environment.baseUrl + 'api/';
   reminderService: any;
   newReminder: Reminder | undefined;
 
@@ -42,11 +42,7 @@ export class ReminderService {
 
   }
 
-
-
-
   getReminder(): Observable<Reminder[]> {
-    // return [...this.todos];
     return this.http.get<Reminder[]>(this.url + "api/reminders", this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -59,11 +55,11 @@ export class ReminderService {
 
 
   destroy(id: number): Observable<void>{
-    return this.http.delete<void>(this.url+ "/" + id, this.getHttpOptions()).pipe(
+    return this.http.delete<void>(this.url + 'reminders/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('destroy error in reminder' + err)
+          () => new Error('destroy error in reminders' + err)
         );
       })
     );
