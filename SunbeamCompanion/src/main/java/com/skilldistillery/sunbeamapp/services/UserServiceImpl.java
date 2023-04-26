@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 			existingUser.setFirstName(user.getFirstName());
 			existingUser.setLastName(user.getLastName());
 			existingUser.setImageUrl(user.getImageUrl());
-			existingUser.setUserBio(user.getUserBio());
+			existingUser.setBiography(user.getBiography());
 			return userRepo.saveAndFlush(existingUser);
 			
 		}
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 			existingUser.setFirstName(user.getFirstName());
 			existingUser.setLastName(user.getLastName());
 			existingUser.setImageUrl(user.getImageUrl());
-			existingUser.setUserBio(user.getUserBio());
+			existingUser.setBiography(user.getBiography());
 			
 			return userRepo.saveAndFlush(existingUser);
 			

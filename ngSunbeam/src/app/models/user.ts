@@ -10,7 +10,7 @@ export class User {
   phoneNumber: string;
   firstName: string;
   lastName: string;
-  image_url: string;
+  imageUrl: string;
   biography: string;
   createDate: Date;
   updateDate: Date;
@@ -26,7 +26,7 @@ export class User {
     phoneNumber: string = "",
     firstName: string = "",
     lastName: string = "",
-    image_url: string = "",
+    imageUrl: string = "",
     biography: string = "",
     createDate: Date = new Date(),
     updateDate: Date = new Date(),
@@ -41,7 +41,7 @@ export class User {
     this.phoneNumber = phoneNumber;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.image_url = image_url;
+    this.imageUrl = imageUrl;
     this.biography = biography;
     this.createDate = createDate;
     this.updateDate = updateDate;

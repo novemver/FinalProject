@@ -30,8 +30,10 @@ export class ReminderService {
   }
 
 
-  public addReminder(reminder:Reminder): Observable<Reminder>{
-    return this.http.post<Reminder>(this.url, reminder, this.getHttpOptions()).pipe(
+  addReminder(reminder:Reminder): Observable<Reminder>{
+    console.log(reminder);
+
+    return this.http.post<Reminder>(this.url + "reminders", reminder, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -39,11 +41,10 @@ export class ReminderService {
         );
       })
     );
-
   }
 
   getReminder(): Observable<Reminder[]> {
-    return this.http.get<Reminder[]>(this.url + "api/reminders", this.getHttpOptions()).pipe(
+    return this.http.get<Reminder[]>(this.url + "reminders", this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

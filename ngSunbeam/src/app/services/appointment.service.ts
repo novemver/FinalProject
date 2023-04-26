@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Appointment } from '../models/appointment';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,8 @@ export class AppointmentService {
 
   constructor(
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
+    private datepipe: DatePipe
     ) {}
 
   getHttpOptions() {
@@ -53,7 +55,9 @@ seeAppt(appointmentId: number): Observable<Appointment> {
 }
 
 createAppointment(appointment: Appointment, elderId: number): Observable<Appointment> {
-  return this.http.post<Appointment>(this.url + 'elders' + '/' + elderId + '/' + 'appointments', this.getHttpOptions()).pipe(
+  console.log(appointment);
+
+  return this.http.post<Appointment>(this.url + 'elders' + '/' + elderId + '/' + 'appointments', appointment, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError(

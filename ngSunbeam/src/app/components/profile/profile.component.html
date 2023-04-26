@@ -1,64 +1,70 @@
 <div class="container">
   <div class="profile-header">
     <div class="profile-img">
-      <img src="{{user.image_url}}" width="200" alt="Profile Image">
+      <img src="{{user.imageUrl}}" width="200" alt="Profile Image">
     </div>
     <div class="profile-nav-info">
-      <h3 class="user-name">{{user.username}}</h3>
-      <h4 class="address">{{user.firstName}} {{user.lastName}}</h4>
+      <h3 class="user-name">{{user.username | titlecase}}</h3>
+      <h4 class="firstlastname">{{user.firstName}} {{user.lastName}}</h4>
     </div>
-
   </div>
 
   <div class="main-bd">
     <div class="left-side">
       <div class="profile-side">
-        <p class="user-mail">{{user.role}}</p>
         <p class="mobile-no"><i class="fa fa-phone"></i>{{user.phoneNumber}}</p>
         <p class="user-mail"><i class="fa fa-envelope"></i> {{user.email}}</p>
-        <div class="user-bio">
-          <h3>About me</h3>
-          <p class="bio">{{user.biography}}</p>
-        </div>
-
+        <p class="user-mail"><i class="fa-solid fa-face-laugh-beam"></i> Joined: {{user.createDate | date}}</p>
+        <p class="user-mail"><i class="fa-solid fa-users"></i> Role: {{user.role | titlecase}}</p>
       </div>
-
     </div>
+
     <div class="right-side">
-      <div class="container">
+      <div class="container ml-3">
         <div class="p-5 bg-white rounded shadow mb-5" id="tabs-container">
           <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav">
             <li class="nav-item flex-sm-fill">
-              <a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active">Home</a>
+              <a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active">About</a>
             </li>
             <li class="nav-item flex-sm-fill">
-              <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">Edit Profile</a>
+              <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold" (click)="bindUser()">Edit Profile</a>
             </li>
           </ul>
           <div id="myTabContent" class="tab-content">
             <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p class="text-muted">{{user.biography}}</p>
             </div>
             <div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5"*ngIf="editUser">
-              <h1>Revise Below</h1>
+              <h1 class="mb-2 fs-4"><i class="fa-solid fa-file-pen" style="color: #1463b8;"></i>Edit Profile</h1>
               <hr>
-              <form>
-                <label for="firstName">First Name:</label>
-                <input type="text" name="lastName" [(ngModel)]="editUser.firstName"><br>
-                <label for="lastName">Last Name:</label>
-                <input type="text" name="firstName" [(ngModel)]="editUser.lastName"><br>
-                <label for="birhday">Birthdate:</label>
-                <input type="date" name="birthdate" [(ngModel)]="editUser.biography"><br>
-                <label for="email">Email:</label>
-                <input type="text" name="email" [(ngModel)]="editUser.email"><br>
-                <label for="phoneNumber">Phone Number:</label>
-                <input type="text" name="phoneNumber" [(ngModel)]="editUser.phoneNumber"><br>
-                <label for="image_url">First Name:</label>
-                <input type="text" name="image_url" [(ngModel)]="editUser.image_url"><br>
-                <button class=" btn btn-primary" (click)="updateUser()">Revise</button>
+
+              <form class="updateprofile mt-3 w-75">
+                <mat-form-field class="example-full-width">
+                  <mat-label>First Name:</mat-label>
+                  <input type="text" matInput [(ngModel)]="editUser.firstName" name="firstName" required>
+                </mat-form-field><br>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Last Name:</mat-label>
+                  <input type="text" matInput  [(ngModel)]="editUser.lastName" name="lastName" required>
+                </mat-form-field><br>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Bio:</mat-label>
+                  <textarea type="text" matInput  [(ngModel)]="editUser.biography" name="biography"></textarea>
+                </mat-form-field><br>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email:</mat-label>
+                  <input type="email" matInput  required name="email" [(ngModel)]="editUser.email">
+                </mat-form-field><br>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Phone Number:</mat-label>
+                  <input type="tel" matInput name="phoneNumber" [(ngModel)]="editUser.phoneNumber">
+                </mat-form-field>
+
+                <button mat-raised-button color="accent" (click)="updateUser()">Update</button>
 
 
               </form>

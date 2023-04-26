@@ -140,7 +140,7 @@ body {
 .profile-side p {
   margin-bottom: 7px;
   color: #333;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .profile-side p i {
@@ -425,4 +425,18 @@ button.createbtn i {
 
 h3{
   font-family: "Bree Serif", sans-serif;
+}
+
+h4{
+  font-family: "Bree Serif", sans-serif;
+  color: #555;
+}
+
+.formtitle, .clientdata{
+  font-family: "Bree Serif", sans-serif;
+}
+
+.appointmentlist{
+
+  list-style-type: none !important;
 }

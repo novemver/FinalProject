@@ -43,6 +43,7 @@ public class ReminderController {
 
 	@PostMapping("reminders")
 	public Reminder addReminder(@RequestBody Reminder reminder, HttpServletResponse res, Principal principal) {
+		System.out.println("reminder****" + reminder);
 		Reminder newRem = null;
 		try {
 			newRem = reminderService.addReminder(principal.getName(), reminder);

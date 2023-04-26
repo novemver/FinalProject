@@ -1,6 +1,7 @@
 package com.skilldistillery.sunbeamapp.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,16 +25,14 @@ public class Reminder {
 	private int id;
 	
 	@Column(name="reminder_date")
-	private LocalDate reminderDate;
+	private LocalDateTime reminderDate;
 
 	@Column(name="reminder_time")
-	private LocalDate reminderTime;
+	private LocalTime reminderTime;
 	
 	private String title;
 	
-	
 	private String description;
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "appointment_id")
@@ -64,19 +63,19 @@ public class Reminder {
 		this.id = id;
 	}
 
-	public LocalDate getReminderDate() {
+	public LocalDateTime getReminderDate() {
 		return reminderDate;
 	}
 
-	public void setReminderDate(LocalDate reminderDate) {
+	public void setReminderDate(LocalDateTime reminderDate) {
 		this.reminderDate = reminderDate;
 	}
 
-	public LocalDate getReminderTime() {
+	public LocalTime getReminderTime() {
 		return reminderTime;
 	}
 
-	public void setReminderTime(LocalDate reminderTime) {
+	public void setReminderTime(LocalTime reminderTime) {
 		this.reminderTime = reminderTime;
 	}
 
